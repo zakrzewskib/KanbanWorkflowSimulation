@@ -28,8 +28,8 @@ export default {
     return {
       title: "Kanban Board Workflow Simulation",
       tasks: [
-        { id: Math.random(), name: "Zwykły task" },
-        { id: Math.random(), name: "Zwykły task" },
+        { id: Math.random(), name: "Zwykły task 1" },
+        { id: Math.random(), name: "Zwykły task 2" },
       ],
     };
   },

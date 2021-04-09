@@ -1,10 +1,6 @@
 <template>
-  <div 
-    :id="id" 
-    class="column" 
-    @dragover.prevent 
-    @drop.prevent="drop">
-    <slot />
+  <div :id="id" class="column" @dragover.prevent @drop.prevent="drop">
+    <slot /> <!-- You can put the content inside and use it as a tag -->
   </div>
 </template>
 
@@ -20,4 +16,33 @@ export default {
     },
   },
 };
+
+// document.addEventListener("dragenter", function(event) {
+//   // highlight potential drop target when the draggable element enters it
+//   if (event.target.className == "column") {
+//     event.target.style.background = "grey";
+//   }
+
+// }, false);
+
+
+// document.addEventListener(
+//   "dragleave",
+//   function (event) {
+//     if (event.target.className == "column") {
+//       event.target.style.background = "";
+//     }
+//   },
+//   false
+// );
+
+// document.addEventListener("drop", function(event) {
+//   event.preventDefault();
+//   if (event.target.className == "column") {
+//     event.target.style.background = "";
+//   }
+
+// }, false);
+
+
 </script>
