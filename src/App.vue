@@ -1,6 +1,12 @@
 <template>
   <div id="app">
-    <h2>{{ title }}</h2>
+    <h2>{{ title }}</h2> <br>
+    <div class="row">
+      <div class="col-3"></div>
+      <div class="col-3"><h2>STAGE1</h2></div>
+      <div class="col-3"><h2>STAGE2</h2></div>
+      <div class="col-3"></div>
+    </div>
     <main class="flexbox">
       <Column id="column-1" name="TODO">
         <Task
@@ -12,19 +18,11 @@
         >
         </Task>
       </Column>
-      <Column id="column-2">
-        <div class="columnsInside">
-          <Column id="column-2-1"> </Column>
-          <Column id="column-2-2"> </Column>
-        </div>
-      </Column>
-      <Column id="column-3">
-        <div class="columnsInside">
-          <Column id="column-3-1"> </Column>
-          <Column id="column-3-2"> </Column>
-        </div>
-      </Column>
-      <Column id="column-4"> </Column>
+      <Column id="column-2" name="STAGE1"> </Column>
+      <Column id="column-3" name="STAGE1"> </Column>
+      <Column id="column-4" name="STAGE2"> </Column>
+      <Column id="column-5" name="STAGE2"> </Column>
+      <Column id="column-6" name="DONE"> </Column>
     </main>
   </div>
 </template>
@@ -38,8 +36,8 @@ export default {
     return {
       title: "Kanban Board Workflow Simulation",
       tasks: [
-        { id: Math.random(), name: "Zwykły task 1" },
-        { id: Math.random(), name: "Zwykły task 2" },
+        { id: Math.random(), name: "Normal task 1" },
+        { id: Math.random(), name: "Normal task 2" },
       ],
     };
   },
