@@ -19,7 +19,6 @@ export default {
     dragStart: (e) => {
       const target = e.target;
       e.dataTransfer.setData("task_id", target.id);
-      // target.style.opacity = .5;
     },
   },
 };

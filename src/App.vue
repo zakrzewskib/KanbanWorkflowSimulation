@@ -2,7 +2,7 @@
   <div id="app">
     <h2>{{ title }}</h2>
     <main class="flexbox">
-      <Column id="column-1">
+      <Column id="column-1" name="TODO">
         <Task
           v-for="task in tasks"
           :key="task.id"
@@ -12,8 +12,18 @@
         >
         </Task>
       </Column>
-      <Column id="column-2"> </Column>
-      <Column id="column-3"> </Column>
+      <Column id="column-2">
+        <div class="columnsInside">
+          <Column id="column-2-1"> </Column>
+          <Column id="column-2-2"> </Column>
+        </div>
+      </Column>
+      <Column id="column-3">
+        <div class="columnsInside">
+          <Column id="column-3-1"> </Column>
+          <Column id="column-3-2"> </Column>
+        </div>
+      </Column>
       <Column id="column-4"> </Column>
     </main>
   </div>
@@ -40,7 +50,6 @@ export default {
   },
 };
 </script>
-
 
 <style>
 #app {

@@ -1,12 +1,32 @@
 <template>
-  <div :id="id" class="column" @dragover.prevent @drop.prevent="drop">
-    <slot /> <!-- You can put the content inside and use it as a tag -->
+  <div
+    :id="id"
+    :name="name"
+    class="column"
+    @dragover.prevent
+    @drop.prevent="drop"
+  >
+    <h2>{{ name }}</h2> <br>
+    Number of tasks: {{ counter }}
+    <div class="buttoncontainer">
+      <button @click="increaseCounter">+</button>
+      <button @click="decreaseCounter">-</button>
+    </div>
+
+    <slot />
   </div>
 </template>
 
 <script>
 export default {
-  props: ["id"],
+  props: ["id", "name"],
+  data() {
+    return {
+      counter: 0,
+      maxTasks: 5,
+    };
+  },
+
   methods: {
     drop: (e) => {
       const task_id = e.dataTransfer.getData("task_id");
@@ -14,35 +34,19 @@ export default {
       task.style.display = "block";
       e.target.appendChild(task);
     },
+    increaseCounter() {
+      if (this.counter >= this.maxTasks) {
+        this.counter = this.maxTasks;
+      } else {
+        this.counter += 1;
+      }
+    },
+    decreaseCounter() {
+      if (this.counter > 0) {
+        this.counter -= 1;
+      }
+    },
   },
 };
-
-// document.addEventListener("dragenter", function(event) {
-//   // highlight potential drop target when the draggable element enters it
-//   if (event.target.className == "column") {
-//     event.target.style.background = "grey";
-//   }
-
-// }, false);
-
-
-// document.addEventListener(
-//   "dragleave",
-//   function (event) {
-//     if (event.target.className == "column") {
-//       event.target.style.background = "";
-//     }
-//   },
-//   false
-// );
-
-// document.addEventListener("drop", function(event) {
-//   event.preventDefault();
-//   if (event.target.className == "column") {
-//     event.target.style.background = "";
-//   }
-
-// }, false);
-
-
 </script>
+
