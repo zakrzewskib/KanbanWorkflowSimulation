@@ -51,40 +51,7 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
-
-.flexbox {
-  display: flex;
-  justify-content: space-between;
-
-  width: 100%;
-  max-width: 1400px;
-  height: 100vh;
-
-  overflow: hidden;
-  margin: 0 auto;
-  padding: 15px;
-}
-
-.flexbox .column {
-  display: flex;
-  flex-direction: column;
-
-  color: black;
-
-  width: 100%;
-  max-width: 400px;
-  margin: 10px;
-  border: 5px solid black;
-
-  padding: 15px;
-}
-
-.flexbox .column .task {
-  padding: 15px 25px;
-  cursor: pointer;
-  margin-bottom: 15px;
-  border: 2px solid black;
-  /* border-radius: 10px; */
-  /* background-color: red; */
-}
+@import "./styles/flexboxstyles.css";
+@import "./styles/taskstyles.css";
+@import "./styles/columnstyles.css";
 </style>

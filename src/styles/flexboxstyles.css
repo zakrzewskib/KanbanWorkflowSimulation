@@ -1,0 +1,12 @@
+.flexbox {
+    display: flex;
+    justify-content: space-between;
+  
+    width: 100%;
+    max-width: 1400px;
+    height: 100vh;
+  
+    overflow: hidden;
+    margin: 0 auto;
+    padding: 15px;
+  }
