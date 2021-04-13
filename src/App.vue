@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <h2>{{ title }}</h2> <br>
+    <h2>{{ title }}</h2>
+    <button @click="addItem">Add new task</button>
+    <br />
     <div class="row">
       <div class="col-3"></div>
       <div class="col-3"><h2>STAGE1</h2></div>
@@ -18,7 +20,8 @@
         >
         </Task>
       </Column>
-      <Column id="column-2" name="STAGE1"> </Column>
+      <Column id="column-2" name="STAGE1" :numberOfTasks="numberOfTasks">
+      </Column>
       <Column id="column-3" name="STAGE1"> </Column>
       <Column id="column-4" name="STAGE2"> </Column>
       <Column id="column-5" name="STAGE2"> </Column>
@@ -36,10 +39,20 @@ export default {
     return {
       title: "Kanban Board Workflow Simulation",
       tasks: [
-        { id: Math.random(), name: "Normal task 1" },
-        { id: Math.random(), name: "Normal task 2" },
+        // { id: Math.random(), name: "Normal task 1" },
+        // { id: Math.random(), name: "Normal task 2" },
       ],
+      numberOfTasks: 0,
     };
+  },
+  methods: {
+    addItem() {
+      this.tasks.push({
+        name: "Zwykły task",
+        id: Math.random(),
+      });
+      this.numberOfTasks++;
+    },
   },
   name: "App",
   components: {
