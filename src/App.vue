@@ -22,8 +22,8 @@
       </Column>
       <Column id="column-2" name="STAGE1" :numberOfTasks="numberOfTasks">
       </Column>
-      <Column id="column-3" name="STAGE1"> </Column>
-      <Column id="column-4" name="STAGE2"> </Column>
+      <Column id="column-3" name="STAGE2"> </Column>
+      <Column id="column-4" name="STAGE1"> </Column>
       <Column id="column-5" name="STAGE2"> </Column>
       <Column id="column-6" name="DONE"> </Column>
     </main>

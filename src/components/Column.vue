@@ -10,9 +10,8 @@
   >
     <h2>{{ name }}</h2>
     <br />
-    <div id="nrOfTasks">Number of tasks: {{ counter }}</div>
-    <br />
     Maximum number of tasks: {{ maxTasks }}
+    <div id="nrOfTasks">Number of tasks: {{ counter }}</div>
     <div class="buttoncontainer">
       <button @click="increaseCounter">+</button>
       <button @click="decreaseCounter">-</button>
@@ -26,8 +25,8 @@ export default {
   props: ["id", "name", "numberOfTasks"],
   data() {
     return {
-      counter: 0,
       maxTasks: 5,
+      counter: 0,
       styleObject: {
         background: "",
       },
