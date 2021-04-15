@@ -8,6 +8,7 @@
     @dragover.prevent
     @drop.prevent="drop"
     @drop="dropped"
+    @dragstart="left"
   >
     <h2>{{ name }}</h2>
     <br />
@@ -41,6 +42,12 @@ export default {
     dropped(e) {
       console.log(e.target);
       this.$emit("dropped");
+      console.log(this.nrOfTasks);
+    },
+
+    left(e) {
+      console.log(e.target);
+      this.$emit("left");
     },
 
   },

@@ -14,6 +14,7 @@
         id="column-1"
         name="TODO"
         @dropped="dropped1"
+        @left="left1"
         :nrOfTasks="counter0"
       >
         <Task
@@ -104,8 +105,8 @@ export default {
     dropped6() {
       this.counter5++;
     },
-    left2() {
-      this.counter6++;
+    left1() {
+      this.counter0--;
     },
 
     addTask(task) {
