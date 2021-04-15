@@ -15,7 +15,7 @@
         name="TODO"
         @dropped="dropped1"
         @left="left1"
-        :nrOfTasks="counter0"
+        :nrOfTasks="counter1"
       >
         <Task
           v-for="task in tasks"
@@ -30,35 +30,40 @@
         id="column-2"
         name="STAGE1"
         @dropped="dropped2"
-        :nrOfTasks="counter1"
+        @left="left2"
+        :nrOfTasks="counter2"
       >
       </Column>
       <Column
         id="column-3"
         name="STAGE2"
         @dropped="dropped3"
-        :nrOfTasks="counter2"
+        @left="left3"
+        :nrOfTasks="counter3"
       >
       </Column>
       <Column
         id="column-4"
         name="STAGE1"
         @dropped="dropped4"
-        :nrOfTasks="counter3"
+        @left="left4"
+        :nrOfTasks="counter4"
       >
       </Column>
       <Column
         id="column-5"
         name="STAGE2"
         @dropped="dropped5"
-        :nrOfTasks="counter4"
+        @left="left5"
+        :nrOfTasks="counter5"
       >
       </Column>
       <Column
         id="column-6"
         name="DONE"
         @dropped="dropped6"
-        :nrOfTasks="counter5"
+        @left="left6"
+        :nrOfTasks="counter6"
       >
       </Column>
     </main>
@@ -78,36 +83,52 @@ export default {
         // { id: Math.random(), name: "Normal task 1" },
         // { id: Math.random(), name: "Normal task 2" },
       ],
-      counter0: 0,
       counter1: 0,
       counter2: 0,
       counter3: 0,
       counter4: 0,
       counter5: 0,
+      counter6: 0,
     };
   },
   methods: {
     dropped1() {
-      this.counter0++;
-    },
-    dropped2() {
       this.counter1++;
     },
-    dropped3() {
+    dropped2() {
       this.counter2++;
     },
-    dropped4() {
+    dropped3() {
       this.counter3++;
     },
-    dropped5() {
+    dropped4() {
       this.counter4++;
     },
-    dropped6() {
+    dropped5() {
       this.counter5++;
     },
-    left1() {
-      this.counter0--;
+    dropped6() {
+      this.counter6++;
     },
+    left1() {
+      this.counter1--;
+    },
+    left2() {
+      this.counter2--;
+    },
+    left3() {
+      this.counter3--;
+    },
+    left4() {
+      this.counter4--;
+    },
+    left5() {
+      this.counter5--;
+    },
+    left6() {
+      this.counter6--;
+    },
+
 
     addTask(task) {
       console.log(task.name);
@@ -115,7 +136,7 @@ export default {
         id: task.id,
         name: task.name,
       });
-      this.counter0++;
+      this.counter1++;
     },
   },
   name: "App",
