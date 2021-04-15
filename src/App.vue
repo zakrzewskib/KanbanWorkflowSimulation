@@ -21,7 +21,8 @@
         >
         </Task>
       </Column>
-      <Column id="column-2" name="STAGE1" :numberOfTasks="numberOfTasks">
+      <Column id="column-2" name="STAGE1" :numberOfTasks="numberOfTasks" @dropped="dropped">
+      {{counterCol2}}
       </Column>
       <Column id="column-3" name="STAGE2"> </Column>
       <Column id="column-4" name="STAGE1"> </Column>
@@ -45,9 +46,14 @@ export default {
         { id: Math.random(), name: "Normal task 2" },
       ],
       numberOfTasks: 0,
+      counterCol2: 0,
     };
   },
   methods: {
+    dropped() {
+      this.counterCol2++;
+    },
+    
     addTask(task) {
       console.log(task.name);
       this.tasks.push({

@@ -7,6 +7,7 @@
     class="column"
     @dragover.prevent
     @drop.prevent="drop"
+    @drop="test"
   >
     <h2>{{ name }}</h2>
     <br />
@@ -39,6 +40,10 @@ export default {
       const task = document.getElementById(task_id);
       task.style.display = "block";
       e.target.appendChild(task);
+    },
+    test(e) {
+      console.log(e.target);
+      this.$emit("dropped");
     },
 
     increaseCounter() {
