@@ -3,16 +3,16 @@
     v-bind:style="styleObject"
     :id="id"
     :name="name"
-    :numberOfTasks="numberOfTasks"
+    :nrOfTasks="nrOfTasks"
     class="column"
     @dragover.prevent
     @drop.prevent="drop"
-    @drop="test"
+    @drop="dropped"
   >
     <h2>{{ name }}</h2>
     <br />
     Maximum number of tasks: {{ maxTasks }}
-    <div id="nrOfTasks">Number of tasks: {{ counter }}</div>
+    <div id="nrOfTasks"> Number of tasks: {{ nrOfTasks }}</div>
     <div class="buttoncontainer">
       <button @click="increaseCounter">+</button>
       <button @click="decreaseCounter">-</button>
@@ -23,7 +23,7 @@
 
 <script>
 export default {
-  props: ["id", "name", "numberOfTasks"],
+  props: ["id", "name", "nrOfTasks"],
   data() {
     return {
       maxTasks: 5,
@@ -41,11 +41,12 @@ export default {
       task.style.display = "block";
       e.target.appendChild(task);
     },
-    test(e) {
+
+    dropped(e) {
       console.log(e.target);
       this.$emit("dropped");
     },
-
+  
     increaseCounter() {
       if (this.counter < this.maxTasks) {
         this.counter += 1;

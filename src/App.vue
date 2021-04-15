@@ -1,7 +1,6 @@
 <template>
   <div id="app">
     <h2>{{ title }}</h2>
-    <!-- <button @click="addItem">Add new task</button> -->
     <AddTask @add-task="addTask" />
     <br />
     <div class="row">
@@ -11,7 +10,12 @@
       <div class="col-3"></div>
     </div>
     <main class="flexbox">
-      <Column id="column-1" name="TODO">
+      <Column
+        id="column-1"
+        name="TODO"
+        @dropped="dropped1"
+        :nrOfTasks="columnCounters[0]"
+      >
         <Task
           v-for="task in tasks"
           :key="task.id"
@@ -21,13 +25,42 @@
         >
         </Task>
       </Column>
-      <Column id="column-2" name="STAGE1" :numberOfTasks="numberOfTasks" @dropped="dropped">
-      {{counterCol2}}
+      <Column
+        id="column-2"
+        name="STAGE1"
+        @dropped="dropped2"
+        :nrOfTasks="columnCounters[1]"
+      >
+      {{columnCounters[0]}}
       </Column>
-      <Column id="column-3" name="STAGE2"> </Column>
-      <Column id="column-4" name="STAGE1"> </Column>
-      <Column id="column-5" name="STAGE2"> </Column>
-      <Column id="column-6" name="DONE"> </Column>
+      <Column
+        id="column-3"
+        name="STAGE2"
+        @dropped="dropped3"
+        :nrOfTasks="columnCounters[2]"
+      >
+      </Column>
+      <Column
+        id="column-4"
+        name="STAGE1"
+        @dropped="dropped4"
+        :nrOfTasks="columnCounters[3]"
+      >
+      </Column>
+      <Column
+        id="column-5"
+        name="STAGE2"
+        @dropped="dropped5"
+        :nrOfTasks="columnCounters[4]"
+      >
+      </Column>
+      <Column
+        id="column-6"
+        name="DONE"
+        @dropped="dropped6"
+        :nrOfTasks="columnCounters[5]"
+      >
+      </Column>
     </main>
   </div>
 </template>
@@ -42,25 +75,43 @@ export default {
     return {
       title: "Kanban Board Workflow Simulation",
       tasks: [
-        { id: Math.random(), name: "Normal task 1" },
-        { id: Math.random(), name: "Normal task 2" },
+        // { id: Math.random(), name: "Normal task 1" },
+        // { id: Math.random(), name: "Normal task 2" },
       ],
-      numberOfTasks: 0,
-      counterCol2: 0,
+      columnCounters: [0, 0, 0, 0, 0, 0],
     };
   },
   methods: {
-    dropped() {
-      this.counterCol2++;
+    dropped1() {
+      console.log(this.columnCounters[0]);
+      this.columnCounters[0]++;
     },
-    
+    dropped2() {
+      this.columnCounters[1]++;
+    },
+    dropped3() {
+      this.columnCounters[2]++;
+    },
+    dropped4() {
+      this.columnCounters[3]++;
+    },
+    dropped5() {
+      this.columnCounters[4]++;
+    },
+    dropped6() {
+      this.columnCounters[5]++;
+    },
+    left2() {
+      this.columnCounters[1]--;
+    },
+
     addTask(task) {
       console.log(task.name);
       this.tasks.push({
         id: task.id,
         name: task.name,
       });
-      this.numberOfTasks++;
+      this.columnCounters[0]++;
     },
   },
   name: "App",
