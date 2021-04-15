@@ -4,7 +4,6 @@
     :id="id"
     :name="name"
     :nrOfTasks="nrOfTasks"
-    :maximumNrOfTasks="maximumNrOfTasks"
     class="column"
     @dragover.prevent
     @drop.prevent="drop"
@@ -13,14 +12,13 @@
   >
     <h2>{{ name }}</h2>
     <br />
-    Maximum number of tasks: {{ maximumNrOfTasks }}
     <slot />
   </div>
 </template>
 
 <script>
 export default {
-  props: ["id", "name", "nrOfTasks", "maximumNrOfTasks"],
+  props: ["id", "name", "nrOfTasks"],
   data() {
     return {
       maxTasks: 5,
@@ -40,18 +38,12 @@ export default {
     },
 
     dropped() {
-      // var targetId= new String(e.target.id);
-      // targetId = targetId.substr(7,1);
-      // this.$emit("dropped", targetId);
       this.$emit("dropped");
     },
 
     left() {
-      // var targetId= new String(e.target.id);
-      // targetId = targetId.substr(7,1);
-      this.$emit("left")
+      this.$emit("left");
     },
-
   },
 };
 </script>

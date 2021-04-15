@@ -16,8 +16,15 @@
         @dropped="dropped1"
         @left="left1"
         :nrOfTasks="counter1"
-        :maximumNrOfTasks="maxTasks"
       >
+        <div>
+          Max number of tasks:
+          <input
+            class="maxTasksInput"
+            v-model="maxTasks1"
+            placeholder="edit me"
+          />
+        </div>
         <div id="col1counter">Number of tasks: {{ counter1 }}</div>
         <Task
           v-for="task in tasks"
@@ -34,8 +41,15 @@
         @dropped="dropped2"
         @left="left2"
         :nrOfTasks="counter2"
-        :maximumNrOfTasks="maxTasks"
       >
+        <div>
+          Max number of tasks:
+          <input
+            class="maxTasksInput"
+            v-model="maxTasks1"
+            placeholder="edit me"
+          />
+        </div>
         <div id="col2counter">Number of tasks: {{ counter2 }}</div>
       </Column>
       <Column
@@ -44,8 +58,15 @@
         @dropped="dropped3"
         @left="left3"
         :nrOfTasks="counter3"
-        :maximumNrOfTasks="maxTasks"
       >
+        <div>
+          Max number of tasks:
+          <input
+            class="maxTasksInput"
+            v-model="maxTasks3"
+            placeholder="edit me"
+          />
+        </div>
         <div id="col3counter">Number of tasks: {{ counter3 }}</div>
       </Column>
       <Column
@@ -54,8 +75,15 @@
         @dropped="dropped4"
         @left="left4"
         :nrOfTasks="counter4"
-        :maximumNrOfTasks="maxTasks"
       >
+        <div>
+          Max number of tasks:
+          <input
+            class="maxTasksInput"
+            v-model="maxTasks4"
+            placeholder="edit me"
+          />
+        </div>
         <div id="col4counter">Number of tasks: {{ counter4 }}</div>
       </Column>
       <Column
@@ -64,8 +92,15 @@
         @dropped="dropped5"
         @left="left5"
         :nrOfTasks="counter5"
-        :maximumNrOfTasks="maxTasks"
       >
+        <div>
+          Max number of tasks:
+          <input
+            class="maxTasksInput"
+            v-model="maxTasks5"
+            placeholder="edit me"
+          />
+        </div>
         <div id="col5counter">Number of tasks: {{ counter5 }}</div>
       </Column>
       <Column
@@ -74,8 +109,15 @@
         @dropped="dropped6"
         @left="left6"
         :nrOfTasks="counter6"
-        :maximumNrOfTasks="maxTasks"
       >
+        <div>
+          Max number of tasks:
+          <input
+            class="maxTasksInput"
+            v-model="maxTasks6"
+            placeholder="edit me"
+          />
+        </div>
         <div id="col6counter">Number of tasks: {{ counter6 }}</div>
       </Column>
     </main>
@@ -102,9 +144,25 @@ export default {
       counter4: 0,
       counter5: 0,
       counter6: 0,
+      maxTasks1: 6,
+      maxTasks2: 4,
+      maxTasks3: 4,
+      maxTasks4: 3,
+      maxTasks5: 3,
+      maxTasks6: 20,
     };
   },
+
   methods: {
+    changeStyleIfMoreThanMax(counter, option, maxTasks) {
+      var elementId = "col".concat(option, "counter");
+      if (counter >= maxTasks - 1) {
+        document.getElementById(elementId).style.color = "red";
+      } else {
+        document.getElementById(elementId).style.color = "";
+      }
+    },
+
     increaseCounter(counter, option, maxTasks) {
       switch (option) {
         case 1:
@@ -129,13 +187,7 @@ export default {
           break;
       }
 
-      var elementId = "col".concat(option, "counter");
-
-      if (counter >= maxTasks - 1) {
-        document.getElementById(elementId).style.color = "red";
-      } else {
-        document.getElementById(elementId).style.color = "";
-      }
+      this.changeStyleIfMoreThanMax(counter, option, maxTasks);
     },
 
     decreaseCounter(counter, option, maxTasks) {
@@ -161,16 +213,11 @@ export default {
         default:
           break;
       }
-
-      var elementId = "col".concat(option, "counter");
-
-      if (this.counter1 < maxTasks) {
-        document.getElementById(elementId).style.color = "";
-      }
+      this.changeStyleIfMoreThanMax(counter, option, maxTasks);
     },
 
     increaseTodoColumn() {
-      this.increaseCounter(this.counter1, 1, this.maxTasks);
+      this.increaseCounter(this.counter1, 1, this.maxTasks1);
     },
 
     dropped1() {
