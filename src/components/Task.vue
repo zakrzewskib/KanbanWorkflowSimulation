@@ -8,7 +8,7 @@
     @dragover.stop
   >
     {{ name }}
-    <div class = "startDate">
+    <!-- <div class = "startDate">
     Start
     <br>
     <input class="date" v-model="start">
@@ -19,7 +19,7 @@
     <br>
     <input class="date" v-model="end">
     {{end}}
-    </div>
+    </div> -->
 
     <slot />
   </div>

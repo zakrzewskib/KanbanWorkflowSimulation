@@ -1,7 +1,8 @@
 <template>
   <div id="app">
     <h2>{{ title }}</h2>
-    <button @click="addItem">Add new task</button>
+    <!-- <button @click="addItem">Add new task</button> -->
+    <AddTask @add-task="addTask" />
     <br />
     <div class="row">
       <div class="col-3"></div>
@@ -33,6 +34,7 @@
 <script>
 import Column from "./components/Column";
 import Task from "./components/Task";
+import AddTask from "./components/AddTask";
 
 export default {
   data() {
@@ -46,10 +48,11 @@ export default {
     };
   },
   methods: {
-    addItem() {
+    addTask(task) {
+      console.log(task.name);
       this.tasks.push({
-        name: "Zwykły task",
-        id: Math.random(),
+        id: task.id,
+        name: task.name,
       });
       this.numberOfTasks++;
     },
@@ -58,6 +61,7 @@ export default {
   components: {
     Column,
     Task,
+    AddTask,
   },
 };
 </script>
