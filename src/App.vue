@@ -14,7 +14,7 @@
         id="column-1"
         name="TODO"
         @dropped="dropped1"
-        :nrOfTasks="columnCounters[0]"
+        :nrOfTasks="counter0"
       >
         <Task
           v-for="task in tasks"
@@ -29,36 +29,35 @@
         id="column-2"
         name="STAGE1"
         @dropped="dropped2"
-        :nrOfTasks="columnCounters[1]"
+        :nrOfTasks="counter1"
       >
-      {{columnCounters[0]}}
       </Column>
       <Column
         id="column-3"
         name="STAGE2"
         @dropped="dropped3"
-        :nrOfTasks="columnCounters[2]"
+        :nrOfTasks="counter2"
       >
       </Column>
       <Column
         id="column-4"
         name="STAGE1"
         @dropped="dropped4"
-        :nrOfTasks="columnCounters[3]"
+        :nrOfTasks="counter3"
       >
       </Column>
       <Column
         id="column-5"
         name="STAGE2"
         @dropped="dropped5"
-        :nrOfTasks="columnCounters[4]"
+        :nrOfTasks="counter4"
       >
       </Column>
       <Column
         id="column-6"
         name="DONE"
         @dropped="dropped6"
-        :nrOfTasks="columnCounters[5]"
+        :nrOfTasks="counter5"
       >
       </Column>
     </main>
@@ -78,31 +77,35 @@ export default {
         // { id: Math.random(), name: "Normal task 1" },
         // { id: Math.random(), name: "Normal task 2" },
       ],
-      columnCounters: [0, 0, 0, 0, 0, 0],
+      counter0: 0,
+      counter1: 0,
+      counter2: 0,
+      counter3: 0,
+      counter4: 0,
+      counter5: 0,
     };
   },
   methods: {
     dropped1() {
-      console.log(this.columnCounters[0]);
-      this.columnCounters[0]++;
+      this.counter0++;
     },
     dropped2() {
-      this.columnCounters[1]++;
+      this.counter1++;
     },
     dropped3() {
-      this.columnCounters[2]++;
+      this.counter2++;
     },
     dropped4() {
-      this.columnCounters[3]++;
+      this.counter3++;
     },
     dropped5() {
-      this.columnCounters[4]++;
+      this.counter4++;
     },
     dropped6() {
-      this.columnCounters[5]++;
+      this.counter5++;
     },
     left2() {
-      this.columnCounters[1]--;
+      this.counter6++;
     },
 
     addTask(task) {
@@ -111,7 +114,7 @@ export default {
         id: task.id,
         name: task.name,
       });
-      this.columnCounters[0]++;
+      this.counter0++;
     },
   },
   name: "App",
