@@ -33,6 +33,7 @@
         @dropped="dropped2"
         @left="left2"
         :nrOfTasks="counter2"
+        :maximumNrOfTasks="maxTasks"
       >
       </Column>
       <Column
@@ -41,6 +42,7 @@
         @dropped="dropped3"
         @left="left3"
         :nrOfTasks="counter3"
+        :maximumNrOfTasks="maxTasks"
       >
       </Column>
       <Column
@@ -49,6 +51,7 @@
         @dropped="dropped4"
         @left="left4"
         :nrOfTasks="counter4"
+        :maximumNrOfTasks="maxTasks"
       >
       </Column>
       <Column
@@ -57,6 +60,7 @@
         @dropped="dropped5"
         @left="left5"
         :nrOfTasks="counter5"
+        :maximumNrOfTasks="maxTasks"
       >
       </Column>
       <Column
@@ -65,6 +69,7 @@
         @dropped="dropped6"
         @left="left6"
         :nrOfTasks="counter6"
+        :maximumNrOfTasks="maxTasks"
       >
       </Column>
     </main>
@@ -95,20 +100,62 @@ export default {
   },
   methods: {
     increaseCounter(counter, option, maxTasks) {
-      if (counter < maxTasks) {
+      // if (counter < maxTasks) {
         switch (option) {
           case 1:
             this.counter1++;
             break;
+          case 2:
+            this.counter2++;
+            break;
+          case 3:
+            this.counter3++;
+            break;
+          case 4:
+            this.counter4++;
+            break;
+          case 5:
+            this.counter5++;
+            break;
+          case 6:
+            this.counter6++;
+            break;
+          default:
+            break;
+        // }
+        // document.getElementById("nrOfTasks").style.color = "";
+      }
+      if (counter >= maxTasks - 1) {
+        // document.getElementById("nrOfTasks").style.color = "red";
+      }
+    },
+
+    decreaseCounter(counter, option) {
+      if (this.counter > 0) {
+        switch (option) {
+          case 1:
+            this.counter1--;
+            break;
+          case 2:
+            this.counter2--;
+            break;
+          case 3:
+            this.counter3--;
+            break;
+          case 4:
+            this.counter4--;
+            break;
+          case 5:
+            this.counter5--;
+            break;
+          case 6:
+            this.counter6--;
+            break;
           default:
             break;
         }
-        document.getElementById("nrOfTasks").style.color = "";
       }
-      if (counter >= maxTasks - 1) {
-        console.log("test");
-        document.getElementById("nrOfTasks").style.color = "red";
-      }
+      // document.getElementById("nrOfTasks").style.color = "";
     },
 
     increaseTodoColumn() {
@@ -119,19 +166,19 @@ export default {
       this.increaseTodoColumn();
     },
     dropped2() {
-      this.counter2++;
+      this.increaseCounter(this.counter2, 2, this.maxTasks);
     },
     dropped3() {
-      this.counter3++;
+      this.increaseCounter(this.counter3, 3, this.maxTasks);
     },
     dropped4() {
-      this.counter4++;
+      this.increaseCounter(this.counter4, 4, this.maxTasks);
     },
     dropped5() {
-      this.counter5++;
+      this.increaseCounter(this.counter5, 5, this.maxTasks);
     },
     dropped6() {
-      this.counter6++;
+      this.increaseCounter(this.counter6, 6, this.maxTasks);
     },
     left1() {
       this.counter1--;

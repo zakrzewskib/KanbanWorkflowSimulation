@@ -14,7 +14,7 @@
     <h2>{{ name }}</h2>
     <br />
     Maximum number of tasks: {{ maximumNrOfTasks }}
-    <div id="nrOfTasks"> Number of tasks: {{ nrOfTasks }}</div>
+    <div> Number of tasks: {{ nrOfTasks }}</div>
     <slot />
   </div>
 </template>
