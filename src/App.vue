@@ -16,6 +16,7 @@
         @dropped="dropped1"
         @left="left1"
         :nrOfTasks="counter1"
+        :maximumNrOfTasks="maxTasks"
       >
         <Task
           v-for="task in tasks"
@@ -83,6 +84,7 @@ export default {
         // { id: Math.random(), name: "Normal task 1" },
         // { id: Math.random(), name: "Normal task 2" },
       ],
+      maxTasks: 5,
       counter1: 0,
       counter2: 0,
       counter3: 0,
@@ -92,8 +94,29 @@ export default {
     };
   },
   methods: {
+    increaseCounter(counter, option, maxTasks) {
+      if (counter < maxTasks) {
+        switch (option) {
+          case 1:
+            this.counter1++;
+            break;
+          default:
+            break;
+        }
+        document.getElementById("nrOfTasks").style.color = "";
+      }
+      if (counter >= maxTasks - 1) {
+        console.log("test");
+        document.getElementById("nrOfTasks").style.color = "red";
+      }
+    },
+
+    increaseTodoColumn() {
+      this.increaseCounter(this.counter1, 1, this.maxTasks);
+    },
+
     dropped1() {
-      this.counter1++;
+      this.increaseTodoColumn();
     },
     dropped2() {
       this.counter2++;
@@ -129,14 +152,13 @@ export default {
       this.counter6--;
     },
 
-
     addTask(task) {
-      console.log(task.name);
+      // console.log(task.name);
       this.tasks.push({
         id: task.id,
         name: task.name,
       });
-      this.counter1++;
+      this.increaseTodoColumn();
     },
   },
   name: "App",

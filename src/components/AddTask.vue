@@ -14,7 +14,7 @@ export default {
         name: "Normal task",
         day: "11.11",
       };
-      console.log(newTask);
+      // console.log(newTask);
       this.$emit("add-task", newTask);
     },
   },
