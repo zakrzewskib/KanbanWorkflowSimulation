@@ -18,6 +18,7 @@
         :nrOfTasks="counter1"
         :maximumNrOfTasks="maxTasks"
       >
+        <div id="col1counter">Number of tasks: {{ counter1 }}</div>
         <Task
           v-for="task in tasks"
           :key="task.id"
@@ -35,6 +36,7 @@
         :nrOfTasks="counter2"
         :maximumNrOfTasks="maxTasks"
       >
+        <div id="col2counter">Number of tasks: {{ counter2 }}</div>
       </Column>
       <Column
         id="column-3"
@@ -44,6 +46,7 @@
         :nrOfTasks="counter3"
         :maximumNrOfTasks="maxTasks"
       >
+        <div id="col3counter">Number of tasks: {{ counter3 }}</div>
       </Column>
       <Column
         id="column-4"
@@ -53,6 +56,7 @@
         :nrOfTasks="counter4"
         :maximumNrOfTasks="maxTasks"
       >
+        <div id="col4counter">Number of tasks: {{ counter4 }}</div>
       </Column>
       <Column
         id="column-5"
@@ -62,6 +66,7 @@
         :nrOfTasks="counter5"
         :maximumNrOfTasks="maxTasks"
       >
+        <div id="col5counter">Number of tasks: {{ counter5 }}</div>
       </Column>
       <Column
         id="column-6"
@@ -71,6 +76,7 @@
         :nrOfTasks="counter6"
         :maximumNrOfTasks="maxTasks"
       >
+        <div id="col6counter">Number of tasks: {{ counter6 }}</div>
       </Column>
     </main>
   </div>
@@ -100,62 +106,67 @@ export default {
   },
   methods: {
     increaseCounter(counter, option, maxTasks) {
-      // if (counter < maxTasks) {
-        switch (option) {
-          case 1:
-            this.counter1++;
-            break;
-          case 2:
-            this.counter2++;
-            break;
-          case 3:
-            this.counter3++;
-            break;
-          case 4:
-            this.counter4++;
-            break;
-          case 5:
-            this.counter5++;
-            break;
-          case 6:
-            this.counter6++;
-            break;
-          default:
-            break;
-        // }
-        // document.getElementById("nrOfTasks").style.color = "";
+      switch (option) {
+        case 1:
+          this.counter1++;
+          break;
+        case 2:
+          this.counter2++;
+          break;
+        case 3:
+          this.counter3++;
+          break;
+        case 4:
+          this.counter4++;
+          break;
+        case 5:
+          this.counter5++;
+          break;
+        case 6:
+          this.counter6++;
+          break;
+        default:
+          break;
       }
+
+      var elementId = "col".concat(option, "counter");
+
       if (counter >= maxTasks - 1) {
-        // document.getElementById("nrOfTasks").style.color = "red";
+        document.getElementById(elementId).style.color = "red";
+      } else {
+        document.getElementById(elementId).style.color = "";
       }
     },
 
-    decreaseCounter(counter, option) {
-      if (this.counter > 0) {
-        switch (option) {
-          case 1:
-            this.counter1--;
-            break;
-          case 2:
-            this.counter2--;
-            break;
-          case 3:
-            this.counter3--;
-            break;
-          case 4:
-            this.counter4--;
-            break;
-          case 5:
-            this.counter5--;
-            break;
-          case 6:
-            this.counter6--;
-            break;
-          default:
-            break;
-        }
+    decreaseCounter(counter, option, maxTasks) {
+      switch (option) {
+        case 1:
+          this.counter1--;
+          break;
+        case 2:
+          this.counter2--;
+          break;
+        case 3:
+          this.counter3--;
+          break;
+        case 4:
+          this.counter4--;
+          break;
+        case 5:
+          this.counter5--;
+          break;
+        case 6:
+          this.counter6--;
+          break;
+        default:
+          break;
       }
-      // document.getElementById("nrOfTasks").style.color = "";
+
+      var elementId = "col".concat(option, "counter");
+
+      if (this.counter1 < maxTasks) {
+        document.getElementById(elementId).style.color = "";
+      }
     },
 
     increaseTodoColumn() {
@@ -181,22 +192,22 @@ export default {
       this.increaseCounter(this.counter6, 6, this.maxTasks);
     },
     left1() {
-      this.counter1--;
+      this.decreaseCounter(this.counter1, 1, this.maxTasks);
     },
     left2() {
-      this.counter2--;
+      this.decreaseCounter(this.counter2, 2, this.maxTasks);
     },
     left3() {
-      this.counter3--;
+      this.decreaseCounter(this.counter3, 3, this.maxTasks);
     },
     left4() {
-      this.counter4--;
+      this.decreaseCounter(this.counter4, 4, this.maxTasks);
     },
     left5() {
-      this.counter5--;
+      this.decreaseCounter(this.counter5, 5, this.maxTasks);
     },
     left6() {
-      this.counter6--;
+      this.decreaseCounter(this.counter6, 6, this.maxTasks);
     },
 
     addTask(task) {

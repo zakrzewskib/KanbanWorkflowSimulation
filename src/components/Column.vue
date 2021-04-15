@@ -14,7 +14,6 @@
     <h2>{{ name }}</h2>
     <br />
     Maximum number of tasks: {{ maximumNrOfTasks }}
-    <div> Number of tasks: {{ nrOfTasks }}</div>
     <slot />
   </div>
 </template>
@@ -41,13 +40,16 @@ export default {
     },
 
     dropped() {
-      // console.log(e.target);
+      // var targetId= new String(e.target.id);
+      // targetId = targetId.substr(7,1);
+      // this.$emit("dropped", targetId);
       this.$emit("dropped");
     },
 
     left() {
-      // console.log(e.target);
-      this.$emit("left");
+      // var targetId= new String(e.target.id);
+      // targetId = targetId.substr(7,1);
+      this.$emit("left")
     },
 
   },
