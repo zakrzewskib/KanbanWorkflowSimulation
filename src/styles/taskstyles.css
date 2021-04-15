@@ -4,5 +4,19 @@
     margin-bottom: 15px;
     border: 2px solid black;
     /* border-radius: 10px; */
-    /* background-color: red; */
-  }
+    background-color: rgb(241, 241, 241);
+}
+
+.startDate,
+.endDate {
+    font-size: 11px;
+    color: black;
+    width: 50%;
+    margin-right: 20px;
+    border: 2px solid black;
+}
+
+.date {
+    margin-right: 0px;
+    width: 50%;
+}

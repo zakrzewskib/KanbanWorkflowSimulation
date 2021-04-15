@@ -39,8 +39,8 @@ export default {
     return {
       title: "Kanban Board Workflow Simulation",
       tasks: [
-        // { id: Math.random(), name: "Normal task 1" },
-        // { id: Math.random(), name: "Normal task 2" },
+        { id: Math.random(), name: "Normal task 1" },
+        { id: Math.random(), name: "Normal task 2" },
       ],
       numberOfTasks: 0,
     };
