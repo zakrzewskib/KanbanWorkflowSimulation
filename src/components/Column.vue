@@ -13,10 +13,6 @@
     <br />
     Maximum number of tasks: {{ maxTasks }}
     <div id="nrOfTasks"> Number of tasks: {{ nrOfTasks }}</div>
-    <div class="buttoncontainer">
-      <button @click="increaseCounter">+</button>
-      <button @click="decreaseCounter">-</button>
-    </div>
     <slot />
   </div>
 </template>
@@ -46,23 +42,7 @@ export default {
       console.log(e.target);
       this.$emit("dropped");
     },
-  
-    increaseCounter() {
-      if (this.counter < this.maxTasks) {
-        this.counter += 1;
-        document.getElementById("nrOfTasks").style.color = "";
-      }
-      if (this.counter == this.maxTasks) {
-        this.counter = this.maxTasks;
-        document.getElementById("nrOfTasks").style.color = "red";
-      }
-    },
-    decreaseCounter() {
-      if (this.counter > 0) {
-        this.counter -= 1;
-      }
-      document.getElementById("nrOfTasks").style.color = "";
-    },
+
   },
 };
 </script>
