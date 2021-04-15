@@ -10,13 +10,7 @@
       <div class="col-3"></div>
     </div>
     <main class="flexbox">
-      <Column
-        id="column-1"
-        name="TODO"
-        @dropped="dropped1"
-        @left="left1"
-        :nrOfTasks="counter1"
-      >
+      <Column id="column-1" name="TODO" @dropped="dropped1" @left="left1">
         <div>
           Max number of tasks:
           <input
@@ -35,13 +29,7 @@
         >
         </Task>
       </Column>
-      <Column
-        id="column-2"
-        name="STAGE1"
-        @dropped="dropped2"
-        @left="left2"
-        :nrOfTasks="counter2"
-      >
+      <Column id="column-2" name="STAGE1" @dropped="dropped2" @left="left2">
         <div>
           Max number of tasks:
           <input
@@ -57,7 +45,6 @@
         name="STAGE2"
         @dropped="dropped3"
         @left="left3"
-        :nrOfTasks="counter3"
       >
         <div>
           Max number of tasks:
@@ -74,7 +61,6 @@
         name="STAGE1"
         @dropped="dropped4"
         @left="left4"
-        :nrOfTasks="counter4"
       >
         <div>
           Max number of tasks:
@@ -91,7 +77,6 @@
         name="STAGE2"
         @dropped="dropped5"
         @left="left5"
-        :nrOfTasks="counter5"
       >
         <div>
           Max number of tasks:
@@ -108,7 +93,6 @@
         name="DONE"
         @dropped="dropped6"
         @left="left6"
-        :nrOfTasks="counter6"
       >
         <div>
           Max number of tasks:

@@ -3,7 +3,6 @@
     v-bind:style="styleObject"
     :id="id"
     :name="name"
-    :nrOfTasks="nrOfTasks"
     class="column"
     @dragover.prevent
     @drop.prevent="drop"
@@ -18,7 +17,7 @@
 
 <script>
 export default {
-  props: ["id", "name", "nrOfTasks"],
+  props: ["id", "name"],
   data() {
     return {
       maxTasks: 5,
