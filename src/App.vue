@@ -16,7 +16,7 @@
           <input
             class="maxTasksInput"
             v-model="maxTasks1"
-            placeholder="edit me"
+            placeholder="maxTasks1"
           />
         </div>
         <div id="col1counter">Number of tasks: {{ counter1 }}</div>
@@ -25,81 +25,62 @@
           :key="task.id"
           :id="task.id"
           :name="task.name"
+          :urgent="task.urgent"
+          :fixedDate="task.fixedDate"
           draggable="true"
         >
         </Task>
       </Column>
+
       <Column id="column-2" name="STAGE1" @dropped="dropped2" @left="left2">
         <div>
           Max number of tasks:
           <input
             class="maxTasksInput"
-            v-model="maxTasks1"
-            placeholder="edit me"
+            v-model="maxTasks2"
           />
         </div>
         <div id="col2counter">Number of tasks: {{ counter2 }}</div>
       </Column>
-      <Column
-        id="column-3"
-        name="STAGE2"
-        @dropped="dropped3"
-        @left="left3"
-      >
+
+      <Column id="column-3" name="STAGE2" @dropped="dropped3" @left="left3">
         <div>
           Max number of tasks:
           <input
             class="maxTasksInput"
             v-model="maxTasks3"
-            placeholder="edit me"
           />
         </div>
         <div id="col3counter">Number of tasks: {{ counter3 }}</div>
       </Column>
-      <Column
-        id="column-4"
-        name="STAGE1"
-        @dropped="dropped4"
-        @left="left4"
-      >
+
+      <Column id="column-4" name="STAGE1" @dropped="dropped4" @left="left4">
         <div>
           Max number of tasks:
           <input
             class="maxTasksInput"
             v-model="maxTasks4"
-            placeholder="edit me"
           />
         </div>
         <div id="col4counter">Number of tasks: {{ counter4 }}</div>
       </Column>
-      <Column
-        id="column-5"
-        name="STAGE2"
-        @dropped="dropped5"
-        @left="left5"
-      >
+
+      <Column id="column-5" name="STAGE2" @dropped="dropped5" @left="left5">
         <div>
           Max number of tasks:
           <input
             class="maxTasksInput"
             v-model="maxTasks5"
-            placeholder="edit me"
           />
         </div>
         <div id="col5counter">Number of tasks: {{ counter5 }}</div>
       </Column>
-      <Column
-        id="column-6"
-        name="DONE"
-        @dropped="dropped6"
-        @left="left6"
-      >
+      <Column id="column-6" name="DONE" @dropped="dropped6" @left="left6">
         <div>
           Max number of tasks:
           <input
             class="maxTasksInput"
             v-model="maxTasks6"
-            placeholder="edit me"
           />
         </div>
         <div id="col6counter">Number of tasks: {{ counter6 }}</div>
@@ -128,9 +109,9 @@ export default {
       counter4: 0,
       counter5: 0,
       counter6: 0,
-      maxTasks1: 6,
-      maxTasks2: 4,
-      maxTasks3: 4,
+      maxTasks1: 3,
+      maxTasks2: 3,
+      maxTasks3: 3,
       maxTasks4: 3,
       maxTasks5: 3,
       maxTasks6: 20,
@@ -140,7 +121,8 @@ export default {
   methods: {
     changeStyleIfMoreThanMax(counter, option, maxTasks) {
       var elementId = "col".concat(option, "counter");
-      if (counter >= maxTasks - 1) {
+      console.log(elementId, counter, maxTasks)
+      if (counter >= maxTasks) {
         document.getElementById(elementId).style.color = "red";
       } else {
         document.getElementById(elementId).style.color = "";
@@ -171,7 +153,7 @@ export default {
           break;
       }
 
-      this.changeStyleIfMoreThanMax(counter, option, maxTasks);
+      this.changeStyleIfMoreThanMax(counter+1, option, maxTasks);
     },
 
     decreaseCounter(counter, option, maxTasks) {
@@ -197,7 +179,7 @@ export default {
         default:
           break;
       }
-      this.changeStyleIfMoreThanMax(counter, option, maxTasks);
+      this.changeStyleIfMoreThanMax(counter-1, option, maxTasks);
     },
 
     increaseTodoColumn() {
@@ -208,37 +190,37 @@ export default {
       this.increaseTodoColumn();
     },
     dropped2() {
-      this.increaseCounter(this.counter2, 2, this.maxTasks);
+      this.increaseCounter(this.counter2, 2, this.maxTasks2);
     },
     dropped3() {
-      this.increaseCounter(this.counter3, 3, this.maxTasks);
+      this.increaseCounter(this.counter3, 3, this.maxTasks3);
     },
     dropped4() {
-      this.increaseCounter(this.counter4, 4, this.maxTasks);
+      this.increaseCounter(this.counter4, 4, this.maxTasks4);
     },
     dropped5() {
-      this.increaseCounter(this.counter5, 5, this.maxTasks);
+      this.increaseCounter(this.counter5, 5, this.maxTasks5);
     },
     dropped6() {
-      this.increaseCounter(this.counter6, 6, this.maxTasks);
+      this.increaseCounter(this.counter6, 6, this.maxTasks6);
     },
     left1() {
-      this.decreaseCounter(this.counter1, 1, this.maxTasks);
+      this.decreaseCounter(this.counter1, 1, this.maxTasks1);
     },
     left2() {
-      this.decreaseCounter(this.counter2, 2, this.maxTasks);
+      this.decreaseCounter(this.counter2, 2, this.maxTasks2);
     },
     left3() {
-      this.decreaseCounter(this.counter3, 3, this.maxTasks);
+      this.decreaseCounter(this.counter3, 3, this.maxTasks3);
     },
     left4() {
-      this.decreaseCounter(this.counter4, 4, this.maxTasks);
+      this.decreaseCounter(this.counter4, 4, this.maxTasks4);
     },
     left5() {
-      this.decreaseCounter(this.counter5, 5, this.maxTasks);
+      this.decreaseCounter(this.counter5, 5, this.maxTasks5);
     },
     left6() {
-      this.decreaseCounter(this.counter6, 6, this.maxTasks);
+      this.decreaseCounter(this.counter6, 6, this.maxTasks6);
     },
 
     addTask(task) {
@@ -246,6 +228,8 @@ export default {
       this.tasks.push({
         id: task.id,
         name: task.name,
+        urgent: task.urgent,
+        fixedDate: task.fixedDate,
       });
       this.increaseTodoColumn();
     },
@@ -269,6 +253,5 @@ export default {
   margin-top: 60px;
 }
 @import "./styles/flexboxstyles.css";
-@import "./styles/taskstyles.css";
 @import "./styles/columnstyles.css";
 </style>
