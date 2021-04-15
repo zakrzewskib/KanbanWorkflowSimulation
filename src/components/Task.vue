@@ -9,19 +9,12 @@
     @dragover.stop
   >
     {{ name }}
-    <!-- <div class = "startDate">
-    Start
-    <br>
-    <input class="date" v-model="start">
+    <button v-on:click="clicked" class="member"></button>
+
+    <br />
+    <div class="productivity">
+      <button class="prodPoint"></button>
     </div>
-
-    <div class = "endDate">
-    End
-    <br>
-    <input class="date" v-model="end">
-    {{end}}
-    </div> -->
-
     <slot />
   </div>
 </template>
@@ -33,13 +26,17 @@ export default {
       start: "",
       end: "",
     };
+    
   },
-  props: ["id", "name", "draggable", "urgent", "fixedDate"],
+  props: ["id", "name", "draggable", "urgent", "fixedDate", "member"],
   methods: {
     dragStart: (e) => {
       const target = e.target;
       e.dataTransfer.setData("task_id", target.id);
     },
+    clicked(e) {
+      this.$emit("change-author", e);
+    }
   },
 };
 </script>
@@ -54,12 +51,48 @@ export default {
 }
 
 .urgent {
-    background-color: rgb(255, 167, 167);
+  background-color: rgb(255, 167, 167);
 }
 
 .fixedDate {
-    background-color: rgb(200, 255, 207);
-} 
+  background-color: rgb(200, 255, 207);
+}
+
+.productivity .mycheck {
+  margin-left: 4px;
+}
+
+.member {
+  width: 20px;
+  height: 20px;
+  background-color: red;
+  border-radius: 50%;
+}
+
+.mycheck {
+  background: red;
+}
+
+.prodPoint {
+  width: 14px;
+  height: 14px;
+  background-color: white;
+  border: 1px solid black;
+}
+
+.white {
+  width: 14px;
+  height: 14px;
+  background-color: white;
+}
+
+.blue {
+    width: 14px;
+  height: 14px;
+  background-color: blue;
+}
+
+
 /* .startDate,
 .endDate {
     font-size: 11px;

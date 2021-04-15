@@ -28,6 +28,7 @@
           :urgent="task.urgent"
           :fixedDate="task.fixedDate"
           draggable="true"
+          @change-author="changeMember"
         >
         </Task>
       </Column>
@@ -35,10 +36,7 @@
       <Column id="column-2" name="STAGE1" @dropped="dropped2" @left="left2">
         <div>
           Max number of tasks:
-          <input
-            class="maxTasksInput"
-            v-model="maxTasks2"
-          />
+          <input class="maxTasksInput" v-model="maxTasks2" />
         </div>
         <div id="col2counter">Number of tasks: {{ counter2 }}</div>
       </Column>
@@ -46,10 +44,7 @@
       <Column id="column-3" name="STAGE2" @dropped="dropped3" @left="left3">
         <div>
           Max number of tasks:
-          <input
-            class="maxTasksInput"
-            v-model="maxTasks3"
-          />
+          <input class="maxTasksInput" v-model="maxTasks3" />
         </div>
         <div id="col3counter">Number of tasks: {{ counter3 }}</div>
       </Column>
@@ -57,10 +52,7 @@
       <Column id="column-4" name="STAGE1" @dropped="dropped4" @left="left4">
         <div>
           Max number of tasks:
-          <input
-            class="maxTasksInput"
-            v-model="maxTasks4"
-          />
+          <input class="maxTasksInput" v-model="maxTasks4" />
         </div>
         <div id="col4counter">Number of tasks: {{ counter4 }}</div>
       </Column>
@@ -68,20 +60,14 @@
       <Column id="column-5" name="STAGE2" @dropped="dropped5" @left="left5">
         <div>
           Max number of tasks:
-          <input
-            class="maxTasksInput"
-            v-model="maxTasks5"
-          />
+          <input class="maxTasksInput" v-model="maxTasks5" />
         </div>
         <div id="col5counter">Number of tasks: {{ counter5 }}</div>
       </Column>
       <Column id="column-6" name="DONE" @dropped="dropped6" @left="left6">
         <div>
           Max number of tasks:
-          <input
-            class="maxTasksInput"
-            v-model="maxTasks6"
-          />
+          <input class="maxTasksInput" v-model="maxTasks6" />
         </div>
         <div id="col6counter">Number of tasks: {{ counter6 }}</div>
       </Column>
@@ -99,8 +85,18 @@ export default {
     return {
       title: "Kanban Board Workflow Simulation",
       tasks: [
-        // { id: Math.random(), name: "Normal task 1" },
-        // { id: Math.random(), name: "Normal task 2" },
+        {
+          id: Math.random(),
+          name: "Normal task",
+          urgent: false,
+          fixedDate: false,
+        },
+        {
+          id: Math.random(),
+          name: "Urgent task",
+          urgent: true,
+          fixedDate: false,
+        },
       ],
       maxTasks: 5,
       counter1: 0,
@@ -115,13 +111,17 @@ export default {
       maxTasks4: 3,
       maxTasks5: 3,
       maxTasks6: 20,
+
+      currentMemeber: 1,
+      numberOfMemebers: 4,
+      lastButton: '',
     };
   },
 
   methods: {
     changeStyleIfMoreThanMax(counter, option, maxTasks) {
       var elementId = "col".concat(option, "counter");
-      console.log(elementId, counter, maxTasks)
+      console.log(elementId, counter, maxTasks);
       if (counter >= maxTasks) {
         document.getElementById(elementId).style.color = "red";
       } else {
@@ -153,7 +153,7 @@ export default {
           break;
       }
 
-      this.changeStyleIfMoreThanMax(counter+1, option, maxTasks);
+      this.changeStyleIfMoreThanMax(counter + 1, option, maxTasks);
     },
 
     decreaseCounter(counter, option, maxTasks) {
@@ -179,7 +179,7 @@ export default {
         default:
           break;
       }
-      this.changeStyleIfMoreThanMax(counter-1, option, maxTasks);
+      this.changeStyleIfMoreThanMax(counter - 1, option, maxTasks);
     },
 
     increaseTodoColumn() {
@@ -232,6 +232,32 @@ export default {
         fixedDate: task.fixedDate,
       });
       this.increaseTodoColumn();
+    },
+
+    changeMember(e) {
+      if (this.currentMemeber < this.numberOfMemebers) {
+        this.currentMemeber++;
+      } else {
+        this.currentMemeber = 1;
+      }
+
+      var color;
+      switch (this.currentMemeber) {
+        case 1:
+          color = "red";
+          break;
+        case 2:
+          color = "blue";
+          break;
+        case 3:
+          color = "green";
+          break;
+        case 4:
+          color = "yellow";
+          break;
+      }
+
+      e.target.style.background = color;
     },
   },
   name: "App",
