@@ -10,7 +10,7 @@
       <div class="col-3"></div>
     </div>
     <main class="flexbox">
-      <Column id="column-1" name="TODO" @dropped="dropped1" @left="left1">
+      <Column id="column-1" name="TODO" @dropped="dropped" @left="left1">
         <div>
           Max number of tasks:
           <input
@@ -33,7 +33,7 @@
         </Task>
       </Column>
 
-      <Column id="column-2" name="STAGE1" @dropped="dropped2" @left="left2">
+      <Column id="column-2" name="STAGE1" @dropped="dropped" @left="left2">
         <div>
           Max number of tasks:
           <input class="maxTasksInput" v-model="maxTasks2" />
@@ -41,7 +41,7 @@
         <div id="col2counter">Number of tasks: {{ counter2 }}</div>
       </Column>
 
-      <Column id="column-3" name="STAGE2" @dropped="dropped3" @left="left3">
+      <Column id="column-3" name="STAGE2" @dropped="dropped" @left="left3">
         <div>
           Max number of tasks:
           <input class="maxTasksInput" v-model="maxTasks3" />
@@ -49,7 +49,7 @@
         <div id="col3counter">Number of tasks: {{ counter3 }}</div>
       </Column>
 
-      <Column id="column-4" name="STAGE1" @dropped="dropped4" @left="left4">
+      <Column id="column-4" name="STAGE1" @dropped="dropped" @left="left4">
         <div>
           Max number of tasks:
           <input class="maxTasksInput" v-model="maxTasks4" />
@@ -57,14 +57,14 @@
         <div id="col4counter">Number of tasks: {{ counter4 }}</div>
       </Column>
 
-      <Column id="column-5" name="STAGE2" @dropped="dropped5" @left="left5">
+      <Column id="column-5" name="STAGE2" @dropped="dropped" @left="left5">
         <div>
           Max number of tasks:
           <input class="maxTasksInput" v-model="maxTasks5" />
         </div>
         <div id="col5counter">Number of tasks: {{ counter5 }}</div>
       </Column>
-      <Column id="column-6" name="DONE" @dropped="dropped6" @left="left6">
+      <Column id="column-6" name="DONE" @dropped="dropped" @left="left6">
         <div>
           Max number of tasks:
           <input class="maxTasksInput" v-model="maxTasks6" />
@@ -114,7 +114,7 @@ export default {
 
       currentMemeber: 1,
       numberOfMemebers: 4,
-      lastButton: '',
+      lastButton: "",
 
       currentLeft: 0,
     };
@@ -192,31 +192,31 @@ export default {
       this.increaseCounter(this.counter1, 1, this.maxTasks1);
     },
 
-    dropped1() {
+    dropped(id) {
       this.decreaseLeftColumn();
-      this.increaseTodoColumn();
+      var idToInt = id;
+      switch (parseInt(idToInt, 10)) {
+        case 1:
+          this.increaseCounter(this.counter1, parseInt(idToInt, 10), this.maxTasks1);
+          break;
+        case 2:
+          this.increaseCounter(this.counter2, parseInt(idToInt, 10), this.maxTasks2);
+          break;
+        case 3:
+          this.increaseCounter(this.counter3, parseInt(idToInt, 10), this.maxTasks3);
+          break;
+        case 4:
+          this.increaseCounter(this.counter4, parseInt(idToInt, 10), this.maxTasks4);
+          break;
+        case 5:
+          this.increaseCounter(this.counter5, parseInt(idToInt, 10), this.maxTasks5);
+          break;
+        case 6:
+          this.increaseCounter(this.counter6, parseInt(idToInt, 10), this.maxTasks6);
+          break;
+      }
     },
-
-    dropped2() {
-      this.decreaseLeftColumn();
-      this.increaseCounter(this.counter2, 2, this.maxTasks2);
-    },
-    dropped3() {
-      this.decreaseLeftColumn();
-      this.increaseCounter(this.counter3, 3, this.maxTasks3);
-    },
-    dropped4() {
-      this.decreaseLeftColumn();
-      this.increaseCounter(this.counter4, 4, this.maxTasks4);
-    },
-    dropped5() {
-      this.decreaseLeftColumn();
-      this.increaseCounter(this.counter5, 5, this.maxTasks5);
-    },
-    dropped6() {
-     this.decreaseLeftColumn();
-      this.increaseCounter(this.counter6, 6, this.maxTasks6);
-    },
+    
     left1() {
       this.currentLeft = 1;
       // this.decreaseCounter(this.counter1, 1, this.maxTasks1);

@@ -36,8 +36,9 @@ export default {
       e.target.appendChild(task);
     },
 
-    dropped() {
-      this.$emit("dropped");
+    dropped(e) {
+      var droppedToId = e.target.id.substring(7);
+      this.$emit("dropped", droppedToId);
     },
 
     left() {
