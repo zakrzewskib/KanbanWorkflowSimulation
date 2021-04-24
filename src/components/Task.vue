@@ -8,13 +8,39 @@
     @dragstart="dragStart"
     @dragover.stop
   >
-    {{ name }}
-    <button v-on:click="clicked" class="member"></button>
+    <div>
+      Authors:
+      <button v-on:click="changeMemeber" class="member"></button>
+      <button class="member"></button>
+    </div>
 
     <br />
+    {{ name }}
+
+    <br />
+
     <div class="productivity">
+      <button
+        :style="
+          prodPointClicked0
+            ? { 'background-color': colors[currentMemeber] }
+            : null
+        "
+        v-on:click="addedProdPoint"
+        class="prodPoint"
+      ></button>
+      <button class="prodPoint"></button>
+      <button class="prodPoint"></button>
+      <button class="prodPoint"></button>
+      <button class="prodPoint"></button>
+      <br />
+      <button class="prodPoint"></button>
+      <button class="prodPoint"></button>
+      <button class="prodPoint"></button>
+      <button class="prodPoint"></button>
       <button class="prodPoint"></button>
     </div>
+
     <slot />
   </div>
 </template>
@@ -25,8 +51,11 @@ export default {
     return {
       start: "",
       end: "",
+      prodPointClicked0: false,
+      colors: ["red", "blue", "green", "yellow"],
+      currentMemeber: 0,
+      numberOfMembers: 4,
     };
-    
   },
   props: ["id", "name", "draggable", "urgent", "fixedDate", "member"],
   methods: {
@@ -34,9 +63,18 @@ export default {
       const target = e.target;
       e.dataTransfer.setData("task_id", target.id);
     },
-    clicked(e) {
+    changeMemeber(e) {
+      if (this.currentMemeber > this.numberOfMembers) {
+        this.currentMemeber = 0;
+      } else {
+        this.currentMemeber++;
+      }
       this.$emit("change-author", e);
-    }
+    },
+    addedProdPoint() {
+      this.prodPointClicked0 = true;
+      console.log("addedProdPoint");
+    },
   },
 };
 </script>
@@ -74,10 +112,11 @@ export default {
 }
 
 .prodPoint {
-  width: 14px;
-  height: 14px;
+  width: 18px;
+  height: 18px;
   background-color: white;
   border: 1px solid black;
+  margin: 4px;
 }
 
 .white {
@@ -87,11 +126,10 @@ export default {
 }
 
 .blue {
-    width: 14px;
+  width: 14px;
   height: 14px;
   background-color: blue;
 }
-
 
 /* .startDate,
 .endDate {
