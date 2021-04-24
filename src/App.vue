@@ -85,18 +85,18 @@ export default {
     return {
       title: "Kanban Board Workflow Simulation",
       tasks: [
-        {
-          id: Math.random(),
-          name: "Normal task",
-          urgent: false,
-          fixedDate: false,
-        },
-        {
-          id: Math.random(),
-          name: "Urgent task",
-          urgent: true,
-          fixedDate: false,
-        },
+        // {
+        //   id: Math.random(),
+        //   name: "Normal task",
+        //   urgent: false,
+        //   fixedDate: false,
+        // },
+        // {
+        //   id: Math.random(),
+        //   name: "Urgent task",
+        //   urgent: true,
+        //   fixedDate: false,
+        // },
       ],
       maxTasks: 5,
       counter1: 0,
@@ -115,6 +115,8 @@ export default {
       currentMemeber: 1,
       numberOfMemebers: 4,
       lastButton: '',
+
+      currentLeft: 0,
     };
   },
 
@@ -182,45 +184,62 @@ export default {
       this.changeStyleIfMoreThanMax(counter - 1, option, maxTasks);
     },
 
+    decreaseLeftColumn() {
+      this.decreaseCounter(this.counter1, this.currentLeft, this.maxTasks1);
+    },
+
     increaseTodoColumn() {
       this.increaseCounter(this.counter1, 1, this.maxTasks1);
     },
 
     dropped1() {
+      this.decreaseLeftColumn();
       this.increaseTodoColumn();
     },
+
     dropped2() {
+      this.decreaseLeftColumn();
       this.increaseCounter(this.counter2, 2, this.maxTasks2);
     },
     dropped3() {
+      this.decreaseLeftColumn();
       this.increaseCounter(this.counter3, 3, this.maxTasks3);
     },
     dropped4() {
+      this.decreaseLeftColumn();
       this.increaseCounter(this.counter4, 4, this.maxTasks4);
     },
     dropped5() {
+      this.decreaseLeftColumn();
       this.increaseCounter(this.counter5, 5, this.maxTasks5);
     },
     dropped6() {
+     this.decreaseLeftColumn();
       this.increaseCounter(this.counter6, 6, this.maxTasks6);
     },
     left1() {
-      this.decreaseCounter(this.counter1, 1, this.maxTasks1);
+      this.currentLeft = 1;
+      // this.decreaseCounter(this.counter1, 1, this.maxTasks1);
     },
     left2() {
-      this.decreaseCounter(this.counter2, 2, this.maxTasks2);
+      this.currentLeft = 2;
+      // this.decreaseCounter(this.counter2, 2, this.maxTasks2);
     },
     left3() {
-      this.decreaseCounter(this.counter3, 3, this.maxTasks3);
+      this.currentLeft = 3;
+      // this.decreaseCounter(this.counter3, 3, this.maxTasks3);
     },
     left4() {
-      this.decreaseCounter(this.counter4, 4, this.maxTasks4);
+      this.currentLeft = 4;
+      // this.decreaseCounter(this.counter4, 4, this.maxTasks4);
     },
     left5() {
-      this.decreaseCounter(this.counter5, 5, this.maxTasks5);
+      this.currentLeft = 5;
+      // this.decreaseCounter(this.counter5, 5, this.maxTasks5);
     },
     left6() {
-      this.decreaseCounter(this.counter6, 6, this.maxTasks6);
+      this.currentLeft = 6;
+      // this.decreaseCounter(this.counter6, 6, this.maxTasks6);
     },
 
     addTask(task) {
