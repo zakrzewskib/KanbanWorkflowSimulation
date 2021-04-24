@@ -15,7 +15,7 @@
           Max number of tasks:
           <input
             class="maxTasksInput"
-            v-model="maxTasks1"
+            v-model="maxTasks[0]"
             placeholder="maxTasks1"
           />
         </div>
@@ -36,7 +36,7 @@
       <Column id="column-2" name="STAGE1" @dropped="dropped" @left="left2">
         <div>
           Max number of tasks:
-          <input class="maxTasksInput" v-model="maxTasks2" />
+          <input class="maxTasksInput" v-model="maxTasks[1]" />
         </div>
         <div id="col2counter">Number of tasks: {{ counter2 }}</div>
       </Column>
@@ -44,7 +44,7 @@
       <Column id="column-3" name="STAGE2" @dropped="dropped" @left="left3">
         <div>
           Max number of tasks:
-          <input class="maxTasksInput" v-model="maxTasks3" />
+          <input class="maxTasksInput" v-model="maxTasks[2]" />
         </div>
         <div id="col3counter">Number of tasks: {{ counter3 }}</div>
       </Column>
@@ -52,7 +52,7 @@
       <Column id="column-4" name="STAGE1" @dropped="dropped" @left="left4">
         <div>
           Max number of tasks:
-          <input class="maxTasksInput" v-model="maxTasks4" />
+          <input class="maxTasksInput" v-model="maxTasks[3]" />
         </div>
         <div id="col4counter">Number of tasks: {{ counter4 }}</div>
       </Column>
@@ -60,14 +60,14 @@
       <Column id="column-5" name="STAGE2" @dropped="dropped" @left="left5">
         <div>
           Max number of tasks:
-          <input class="maxTasksInput" v-model="maxTasks5" />
+          <input class="maxTasksInput" v-model="maxTasks[4]" />
         </div>
         <div id="col5counter">Number of tasks: {{ counter5 }}</div>
       </Column>
       <Column id="column-6" name="DONE" @dropped="dropped" @left="left6">
         <div>
           Max number of tasks:
-          <input class="maxTasksInput" v-model="maxTasks6" />
+          <input class="maxTasksInput" v-model="maxTasks[5]" />
         </div>
         <div id="col6counter">Number of tasks: {{ counter6 }}</div>
       </Column>
@@ -98,19 +98,15 @@ export default {
         //   fixedDate: false,
         // },
       ],
-      maxTasks: 5,
+      counters: [0, 0, 0, 0, 0, 0],
+      maxTasks: [3, 3, 3, 3, 3, 20],
+
       counter1: 0,
       counter2: 0,
       counter3: 0,
       counter4: 0,
       counter5: 0,
       counter6: 0,
-      maxTasks1: 3,
-      maxTasks2: 3,
-      maxTasks3: 3,
-      maxTasks4: 3,
-      maxTasks5: 3,
-      maxTasks6: 20,
 
       currentMemeber: 1,
       numberOfMemebers: 4,
@@ -121,9 +117,10 @@ export default {
   },
 
   methods: {
+
     changeStyleIfMoreThanMax(counter, option, maxTasks) {
       var elementId = "col".concat(option, "counter");
-      console.log(elementId, counter, maxTasks);
+      console.log(elementId);
       if (counter >= maxTasks) {
         document.getElementById(elementId).style.color = "red";
       } else {
@@ -131,119 +128,55 @@ export default {
       }
     },
 
-    increaseCounter(counter, option, maxTasks) {
-      switch (option) {
-        case 1:
-          this.counter1++;
-          break;
-        case 2:
-          this.counter2++;
-          break;
-        case 3:
-          this.counter3++;
-          break;
-        case 4:
-          this.counter4++;
-          break;
-        case 5:
-          this.counter5++;
-          break;
-        case 6:
-          this.counter6++;
-          break;
-        default:
-          break;
-      }
-
-      this.changeStyleIfMoreThanMax(counter + 1, option, maxTasks);
-    },
-
-    decreaseCounter(counter, option, maxTasks) {
-      switch (option) {
-        case 1:
-          this.counter1--;
-          break;
-        case 2:
-          this.counter2--;
-          break;
-        case 3:
-          this.counter3--;
-          break;
-        case 4:
-          this.counter4--;
-          break;
-        case 5:
-          this.counter5--;
-          break;
-        case 6:
-          this.counter6--;
-          break;
-        default:
-          break;
-      }
-      this.changeStyleIfMoreThanMax(counter - 1, option, maxTasks);
-    },
-
-    decreaseLeftColumn() {
-      this.decreaseCounter(this.counter1, this.currentLeft, this.maxTasks1);
+    decreaseLeftColumn(id) {
+      this.counters[id-1]--;
+      this.udpateCounters();
+      this.changeStyleIfMoreThanMax(this.counters[id-1], id, this.maxTasks[id-1]);
     },
 
     increaseTodoColumn() {
-      this.increaseCounter(this.counter1, 1, this.maxTasks1);
+      this.counters[0]++;
+      this.changeStyleIfMoreThanMax(this.counters[0], 1, this.maxTasks[0]);
+      this.udpateCounters();
+    },
+
+    udpateCounters() {
+      this.counter1 = this.counters[0];
+      this.counter2 = this.counters[1];
+      this.counter3 = this.counters[2];
+      this.counter4 = this.counters[3];
+      this.counter5 = this.counters[4];
+      this.counter6 = this.counters[5];
     },
 
     dropped(id) {
-      this.decreaseLeftColumn();
-      var idToInt = id;
-      switch (parseInt(idToInt, 10)) {
-        case 1:
-          this.increaseCounter(this.counter1, parseInt(idToInt, 10), this.maxTasks1);
-          break;
-        case 2:
-          this.increaseCounter(this.counter2, parseInt(idToInt, 10), this.maxTasks2);
-          break;
-        case 3:
-          this.increaseCounter(this.counter3, parseInt(idToInt, 10), this.maxTasks3);
-          break;
-        case 4:
-          this.increaseCounter(this.counter4, parseInt(idToInt, 10), this.maxTasks4);
-          break;
-        case 5:
-          this.increaseCounter(this.counter5, parseInt(idToInt, 10), this.maxTasks5);
-          break;
-        case 6:
-          this.increaseCounter(this.counter6, parseInt(idToInt, 10), this.maxTasks6);
-          break;
-      }
+      var idToInt = parseInt(id, 10);
+      this.decreaseLeftColumn(this.currentLeft);
+      this.counters[idToInt-1]++;
+      this.udpateCounters();
+      this.changeStyleIfMoreThanMax(this.counters[idToInt - 1], idToInt, this.maxTasks[idToInt-1]);
     },
-    
+
     left1() {
       this.currentLeft = 1;
-      // this.decreaseCounter(this.counter1, 1, this.maxTasks1);
     },
     left2() {
       this.currentLeft = 2;
-      // this.decreaseCounter(this.counter2, 2, this.maxTasks2);
     },
     left3() {
       this.currentLeft = 3;
-      // this.decreaseCounter(this.counter3, 3, this.maxTasks3);
     },
     left4() {
       this.currentLeft = 4;
-      // this.decreaseCounter(this.counter4, 4, this.maxTasks4);
     },
     left5() {
       this.currentLeft = 5;
-      // this.decreaseCounter(this.counter5, 5, this.maxTasks5);
     },
     left6() {
       this.currentLeft = 6;
-      // this.decreaseCounter(this.counter6, 6, this.maxTasks6);
     },
 
     addTask(task) {
-      // console.log(task.name);
       this.tasks.push({
         id: task.id,
         name: task.name,
