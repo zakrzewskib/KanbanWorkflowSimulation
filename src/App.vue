@@ -34,7 +34,6 @@
           draggable="true"
           @change-author="changeMember"
         >
-        <input type="text">
         </Task>
       </Column>
 

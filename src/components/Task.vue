@@ -8,27 +8,26 @@
     @dragstart="dragStart"
     @dragover.stop
   >
-    <div>
-      Authors:
-      <button v-on:click="changeMemeber" class="member"></button>
-      <button class="member"></button>
-    </div>
-
-    <br />
     {{ name }}
 
-    <br />
-
     <div class="productivity">
-      <!-- <button
-        v-on:click="addedProdPoint"
-        class="prodButton"
-        v-for="button in buttons"
-        :key="button.id"
-        :id="button.id"
-      ></button> -->
-      <button v-on:click="addedProdPoint1" class="prodButton"></button>
-      <button  v-on:click="addedProdPoint2" class="prodButton"></button>
+      <button
+        :style="prodPointClicked0 ? { 'background-color': 'red' } : null"
+        v-on:click="addedProdPoint0"
+        class="prodPoint"
+      ></button>
+
+      <button
+        :style="prodPointClicked1 ? { 'background-color': 'red' } : null"
+        v-on:click="addedProdPoint1"
+        class="prodPoint"
+      ></button>
+
+      <button
+        :style="prodPointClicked2 ? { 'background-color': 'red' } : null"
+        v-on:click="addedProdPoint2"
+        class="prodPoint"
+      ></button>
     </div>
 
     <slot />
@@ -42,60 +41,43 @@ export default {
       start: "",
       end: "",
       prodPointClicked0: false,
+      prodPointClicked1: false,
+      prodPointClicked2: false,
       colors: ["red", "blue", "green", "yellow"],
-      currentMemeber: 0,
-      numberOfMembers: 4,
-      buttons: [
-        { id: 1 },
-        { id: 2 },
-        { id: 3 },
-        { id: 4 },
-        { id: 5 },
-        { id: 6 },
-        { id: 7 },
-        { id: 8 },
-        { id: 9 },
-        { id: 10 },
-      ],
     };
   },
 
-  props: ["id", "name", "draggable", "urgent", "fixedDate", "member"],
+  props: [
+    "id",
+    "name",
+    "draggable",
+    "urgent",
+    "fixedDate",
+    "member",
+    "currentMemeber",
+  ],
 
   methods: {
-
     dragStart: (e) => {
       const target = e.target;
       e.dataTransfer.setData("task_id", target.id);
     },
 
-    changeMemeber(e) {
-      if (this.currentMemeber > this.numberOfMembers) {
-        this.currentMemeber = 0;
-      } else {
-        this.currentMemeber++;
-      }
-      this.$emit("change-author", e);
+    addedProdPoint0() {
+      this.prodPointClicked0 = !this.prodPointClicked0;
     },
-
-    addedProdPoint(e) {
-      console.log(e.target);
-    },
-
     addedProdPoint1() {
-      console.log("pierwszy");
+      this.prodPointClicked1 = !this.prodPointClicked1;
     },
-
     addedProdPoint2() {
-      console.log("drugi");
+      this.prodPointClicked2 = !this.prodPointClicked2;
     },
-
   },
 };
 </script>
 
 <style scoped>
-.productivity .prodButton {
+.productivity .prodPoint {
   width: 18px;
   height: 18px;
   background-color: white;
