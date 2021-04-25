@@ -28,6 +28,7 @@
         "
         v-on:click="addedProdPoint"
         class="prodPoint"
+        id="point-1"
       ></button>
       <button class="prodPoint"></button>
       <button class="prodPoint"></button>
@@ -71,7 +72,8 @@ export default {
       }
       this.$emit("change-author", e);
     },
-    addedProdPoint() {
+    addedProdPoint(e) {
+      console.log(e.target.id.substring(6));
       this.prodPointClicked0 = true;
       console.log("addedProdPoint");
     },
