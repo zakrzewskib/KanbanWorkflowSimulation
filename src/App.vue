@@ -1,7 +1,11 @@
 <template>
   <div id="app">
     <h2>{{ title }}</h2>
-    <AddTask @add-task="addTask" />
+    <div>
+      <AddTask @add-task="addTask" />
+      <button v-on:click="changeMemebers" id="changeMemeberGlobal">Change current member</button>
+    </div>
+
     <br />
     <div class="row">
       <div class="col-3"></div>
@@ -100,24 +104,20 @@ export default {
       ],
       counters: [0, 0, 0, 0, 0, 0],
       maxTasks: [3, 3, 3, 3, 3, 20],
-
       counter1: 0,
       counter2: 0,
       counter3: 0,
       counter4: 0,
       counter5: 0,
       counter6: 0,
+      currentLeft: 0,
 
       currentMemeber: 1,
       numberOfMemebers: 4,
-      lastButton: "",
-
-      currentLeft: 0,
     };
   },
 
   methods: {
-
     changeStyleIfMoreThanMax(counter, option, maxTasks) {
       var elementId = "col".concat(option, "counter");
       console.log(elementId);
@@ -129,9 +129,13 @@ export default {
     },
 
     decreaseLeftColumn(id) {
-      this.counters[id-1]--;
+      this.counters[id - 1]--;
       this.udpateCounters();
-      this.changeStyleIfMoreThanMax(this.counters[id-1], id, this.maxTasks[id-1]);
+      this.changeStyleIfMoreThanMax(
+        this.counters[id - 1],
+        id,
+        this.maxTasks[id - 1]
+      );
     },
 
     increaseTodoColumn() {
@@ -152,9 +156,13 @@ export default {
     dropped(id) {
       var idToInt = parseInt(id, 10);
       this.decreaseLeftColumn(this.currentLeft);
-      this.counters[idToInt-1]++;
+      this.counters[idToInt - 1]++;
       this.udpateCounters();
-      this.changeStyleIfMoreThanMax(this.counters[idToInt - 1], idToInt, this.maxTasks[idToInt-1]);
+      this.changeStyleIfMoreThanMax(
+        this.counters[idToInt - 1],
+        idToInt,
+        this.maxTasks[idToInt - 1]
+      );
     },
 
     left1() {
@@ -211,6 +219,30 @@ export default {
 
       e.target.style.background = color;
     },
+    changeMemebers() {
+      if (this.currentMemeber < this.numberOfMemebers) {
+        this.currentMemeber++;
+      } else {
+        this.currentMemeber = 1;
+      }
+
+      var color;
+      switch (this.currentMemeber) {
+        case 1:
+          color = "red";
+          break;
+        case 2:
+          color = "DeepSkyBlue";
+          break;
+        case 3:
+          color = "green";
+          break;
+        case 4:
+          color = "yellow";
+          break;
+      }
+      document.getElementById("changeMemeberGlobal").style.background = color;
+    }
   },
   name: "App",
   components: {
@@ -232,4 +264,8 @@ export default {
 }
 @import "./styles/flexboxstyles.css";
 @import "./styles/columnstyles.css";
+
+#changeMemeberGlobal {
+  background: red;
+}
 </style>

@@ -21,6 +21,14 @@
 
     <div class="productivity">
       <button
+          class="prodButton"
+          v-for="button in buttons"
+          :key="button.id"
+          :id="button.id"
+        >
+        </button>
+
+      <!-- <button
         :style="
           prodPointClicked0
             ? { 'background-color': colors[currentMemeber] }
@@ -39,7 +47,7 @@
       <button class="prodPoint"></button>
       <button class="prodPoint"></button>
       <button class="prodPoint"></button>
-      <button class="prodPoint"></button>
+      <button class="prodPoint"></button> -->
     </div>
 
     <slot />
@@ -56,6 +64,15 @@ export default {
       colors: ["red", "blue", "green", "yellow"],
       currentMemeber: 0,
       numberOfMembers: 4,
+      buttons: [
+         {
+          id: Math.random()
+        },
+        {
+          id: Math.random()
+        },
+      ],
+
     };
   },
   props: ["id", "name", "draggable", "urgent", "fixedDate", "member"],
@@ -78,10 +95,20 @@ export default {
       console.log("addedProdPoint");
     },
   },
+
 };
 </script>
 
 <style scoped>
+
+.productivity .prodButton {
+  width: 18px;
+  height: 18px;
+  background-color: white;
+  border: 1px solid black;
+  margin: 4px;
+}
+
 .task {
   padding: 15px 25px;
   cursor: pointer;
@@ -98,10 +125,6 @@ export default {
   background-color: rgb(200, 255, 207);
 }
 
-.productivity .mycheck {
-  margin-left: 4px;
-}
-
 .member {
   width: 20px;
   height: 20px;
@@ -109,41 +132,4 @@ export default {
   border-radius: 50%;
 }
 
-.mycheck {
-  background: red;
-}
-
-.prodPoint {
-  width: 18px;
-  height: 18px;
-  background-color: white;
-  border: 1px solid black;
-  margin: 4px;
-}
-
-.white {
-  width: 14px;
-  height: 14px;
-  background-color: white;
-}
-
-.blue {
-  width: 14px;
-  height: 14px;
-  background-color: blue;
-}
-
-/* .startDate,
-.endDate {
-    font-size: 11px;
-    color: black;
-    width: 50%;
-    margin-right: 20px;
-    border: 2px solid black;
-}
-
-.date {
-    margin-right: 0px;
-    width: 50%;
-} */
 </style>
