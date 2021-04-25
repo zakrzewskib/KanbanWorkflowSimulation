@@ -13,7 +13,7 @@
 
     <div class="productivity">
       <button
-        :style="prodPointClicked0 ? { 'background-color': colors[test-1] } : null"
+        :style="prodPointClicked0 ? { 'background-color': colors[currentMem1-1] } : null"
         v-on:click="addedProdPoint0"
         class="prodPoint"
       ></button>
@@ -45,6 +45,7 @@ export default {
       prodPointClicked1: false,
       prodPointClicked2: false,
       colors: ["red", "blue", "green", "yellow"],
+      currentMem1: '',
     };
   },
 
@@ -64,6 +65,8 @@ export default {
     },
 
     addedProdPoint0() {
+      this.currentMem1 = this.test;
+      console.log(this.currentMem1);
       this.prodPointClicked0 = !this.prodPointClicked0;
     },
     addedProdPoint1() {
