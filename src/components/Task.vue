@@ -2,6 +2,7 @@
   <div
     :id="id"
     :name="name"
+    :currentMemeber="currentMemeber"
     class="task"
     v-bind:class="{ urgent: urgent, fixedDate: fixedDate }"
     :draggable="draggable"
@@ -12,7 +13,7 @@
 
     <div class="productivity">
       <button
-        :style="prodPointClicked0 ? { 'background-color': 'red' } : null"
+        :style="prodPointClicked0 ? { 'background-color': colors[1] } : null"
         v-on:click="addedProdPoint0"
         class="prodPoint"
       ></button>
@@ -53,7 +54,6 @@ export default {
     "draggable",
     "urgent",
     "fixedDate",
-    "member",
     "currentMemeber",
   ],
 
@@ -64,6 +64,8 @@ export default {
     },
 
     addedProdPoint0() {
+      console.log(this.currentMemeber);
+      console.log(this.name);
       this.prodPointClicked0 = !this.prodPointClicked0;
     },
     addedProdPoint1() {
@@ -99,12 +101,5 @@ export default {
 
 .fixedDate {
   background-color: rgb(200, 255, 207);
-}
-
-.member {
-  width: 20px;
-  height: 20px;
-  background-color: red;
-  border-radius: 50%;
 }
 </style>
