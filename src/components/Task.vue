@@ -21,33 +21,12 @@
 
     <div class="productivity">
       <button
-          class="prodButton"
-          v-for="button in buttons"
-          :key="button.id"
-          :id="button.id"
-        >
-        </button>
-
-      <!-- <button
-        :style="
-          prodPointClicked0
-            ? { 'background-color': colors[currentMemeber] }
-            : null
-        "
         v-on:click="addedProdPoint"
-        class="prodPoint"
-        id="point-1"
+        class="prodButton"
+        v-for="button in buttons"
+        :key="button.id"
+        :id="button.id"
       ></button>
-      <button class="prodPoint"></button>
-      <button class="prodPoint"></button>
-      <button class="prodPoint"></button>
-      <button class="prodPoint"></button>
-      <br />
-      <button class="prodPoint"></button>
-      <button class="prodPoint"></button>
-      <button class="prodPoint"></button>
-      <button class="prodPoint"></button>
-      <button class="prodPoint"></button> -->
     </div>
 
     <slot />
@@ -65,22 +44,29 @@ export default {
       currentMemeber: 0,
       numberOfMembers: 4,
       buttons: [
-         {
-          id: Math.random()
-        },
-        {
-          id: Math.random()
-        },
+        { id: 1 },
+        { id: 2 },
+        { id: 3 },
+        { id: 4 },
+        { id: 5 },
+        { id: 6 },
+        { id: 7 },
+        { id: 8 },
+        { id: 9 },
+        { id: 10 },
       ],
-
     };
   },
+
   props: ["id", "name", "draggable", "urgent", "fixedDate", "member"],
+
   methods: {
+
     dragStart: (e) => {
       const target = e.target;
       e.dataTransfer.setData("task_id", target.id);
     },
+
     changeMemeber(e) {
       if (this.currentMemeber > this.numberOfMembers) {
         this.currentMemeber = 0;
@@ -89,18 +75,16 @@ export default {
       }
       this.$emit("change-author", e);
     },
-    addedProdPoint(e) {
-      console.log(e.target.id.substring(6));
-      this.prodPointClicked0 = true;
-      console.log("addedProdPoint");
-    },
-  },
 
+    addedProdPoint(e) {
+      document.getElementById(e.target.id).style.background = "red";
+    },
+
+  },
 };
 </script>
 
 <style scoped>
-
 .productivity .prodButton {
   width: 18px;
   height: 18px;
@@ -131,5 +115,4 @@ export default {
   background-color: red;
   border-radius: 50%;
 }
-
 </style>

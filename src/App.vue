@@ -89,18 +89,18 @@ export default {
     return {
       title: "Kanban Board Workflow Simulation",
       tasks: [
-        {
-          id: Math.random(),
-          name: "Normal task",
-          urgent: false,
-          fixedDate: false,
-        },
-        {
-          id: Math.random(),
-          name: "Urgent task",
-          urgent: true,
-          fixedDate: false,
-        },
+        // {
+        //   id: Math.random(),
+        //   name: "Normal task",
+        //   urgent: false,
+        //   fixedDate: false,
+        // },
+        // {
+        //   id: Math.random(),
+        //   name: "Urgent task",
+        //   urgent: true,
+        //   fixedDate: false,
+        // },
       ],
       counters: [0, 0, 0, 0, 0, 0],
       maxTasks: [3, 3, 3, 3, 3, 20],
