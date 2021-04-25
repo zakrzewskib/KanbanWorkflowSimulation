@@ -20,13 +20,15 @@
     <br />
 
     <div class="productivity">
-      <button
+      <!-- <button
         v-on:click="addedProdPoint"
         class="prodButton"
         v-for="button in buttons"
         :key="button.id"
         :id="button.id"
-      ></button>
+      ></button> -->
+      <button v-on:click="addedProdPoint1" class="prodButton"></button>
+      <button  v-on:click="addedProdPoint2" class="prodButton"></button>
     </div>
 
     <slot />
@@ -77,7 +79,15 @@ export default {
     },
 
     addedProdPoint(e) {
-      document.getElementById(e.target.id).style.background = "red";
+      console.log(e.target);
+    },
+
+    addedProdPoint1() {
+      console.log("pierwszy");
+    },
+
+    addedProdPoint2() {
+      console.log("drugi");
     },
 
   },

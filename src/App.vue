@@ -34,6 +34,7 @@
           draggable="true"
           @change-author="changeMember"
         >
+        <input type="text">
         </Task>
       </Column>
 
@@ -89,18 +90,18 @@ export default {
     return {
       title: "Kanban Board Workflow Simulation",
       tasks: [
-        // {
-        //   id: Math.random(),
-        //   name: "Normal task",
-        //   urgent: false,
-        //   fixedDate: false,
-        // },
-        // {
-        //   id: Math.random(),
-        //   name: "Urgent task",
-        //   urgent: true,
-        //   fixedDate: false,
-        // },
+        {
+          id: Math.random(),
+          name: "Normal task",
+          urgent: false,
+          fixedDate: false,
+        },
+        {
+          id: Math.random(),
+          name: "Urgent task",
+          urgent: true,
+          fixedDate: false,
+        },
       ],
       counters: [0, 0, 0, 0, 0, 0],
       maxTasks: [3, 3, 3, 3, 3, 20],
@@ -118,6 +119,11 @@ export default {
   },
 
   methods: {
+
+    hej(e) {
+      document.getElementById(e.target.id).style.background = "red";
+    },
+
     changeStyleIfMoreThanMax(counter, option, maxTasks) {
       var elementId = "col".concat(option, "counter");
       console.log(elementId);
