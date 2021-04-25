@@ -2,7 +2,7 @@
   <div
     :id="id"
     :name="name"
-    :currentMemeber="currentMemeber"
+    :test="test"
     class="task"
     v-bind:class="{ urgent: urgent, fixedDate: fixedDate }"
     :draggable="draggable"
@@ -13,7 +13,7 @@
 
     <div class="productivity">
       <button
-        :style="prodPointClicked0 ? { 'background-color': colors[1] } : null"
+        :style="prodPointClicked0 ? { 'background-color': colors[test-1] } : null"
         v-on:click="addedProdPoint0"
         class="prodPoint"
       ></button>
@@ -54,7 +54,7 @@ export default {
     "draggable",
     "urgent",
     "fixedDate",
-    "currentMemeber",
+    "test",
   ],
 
   methods: {
@@ -64,8 +64,6 @@ export default {
     },
 
     addedProdPoint0() {
-      console.log(this.currentMemeber);
-      console.log(this.name);
       this.prodPointClicked0 = !this.prodPointClicked0;
     },
     addedProdPoint1() {

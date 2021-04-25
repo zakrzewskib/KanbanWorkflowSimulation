@@ -31,7 +31,7 @@
           :name="task.name"
           :urgent="task.urgent"
           :fixedDate="task.fixedDate"
-          :currentMember="task.currentMemeber"
+          :test = "currentMemeber"
           draggable="true"
           @change-author="changeMember"
         >
@@ -95,14 +95,12 @@ export default {
           name: "Normal task",
           urgent: false,
           fixedDate: false,
-          currentMemeber: 1,
         },
         {
           id: Math.random(),
           name: "Urgent task",
           urgent: true,
           fixedDate: false,
-          currentMemeber: "10",
         },
       ],
       counters: [0, 0, 0, 0, 0, 0],
