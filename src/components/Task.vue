@@ -32,8 +32,6 @@
         class="prodPoint"
       ></button>
 
-      <hr class="myLine" />
-
       <button
         :style="
           prodPointClicked3
@@ -53,9 +51,70 @@
         v-on:click="addedProdPoint4"
         class="prodPoint"
       ></button>
-    </div>
 
-    <slot />
+      <button
+        :style="
+          prodPointClicked5
+            ? { 'background-color': colors[currentMem5 - 1] }
+            : null
+        "
+        v-on:click="addedProdPoint5"
+        class="prodPoint"
+      ></button>
+
+      <hr class="myLine" />
+
+      <button
+        :style="
+          prodPointClicked6
+            ? { 'background-color': colors[currentMem6 - 1] }
+            : null
+        "
+        v-on:click="addedProdPoint6"
+        class="prodPoint"
+      ></button>
+
+      <button
+        :style="
+          prodPointClicked7
+            ? { 'background-color': colors[currentMem7 - 1] }
+            : null
+        "
+        v-on:click="addedProdPoint7"
+        class="prodPoint"
+      ></button>
+
+      <button
+        :style="
+          prodPointClicked8
+            ? { 'background-color': colors[currentMem8 - 1] }
+            : null
+        "
+        v-on:click="addedProdPoint8"
+        class="prodPoint"
+      ></button>
+
+      <button
+        :style="
+          prodPointClicked9
+            ? { 'background-color': colors[currentMem9 - 1] }
+            : null
+        "
+        v-on:click="addedProdPoint9"
+        class="prodPoint"
+      ></button>
+
+      <button
+        :style="
+          prodPointClicked10
+            ? { 'background-color': colors[currentMem10 - 1] }
+            : null
+        "
+        v-on:click="addedProdPoint10"
+        class="prodPoint"
+      ></button>
+      <slot />
+    </div>
   </div>
 </template>
 
@@ -69,11 +128,23 @@ export default {
       prodPointClicked2: false,
       prodPointClicked3: false,
       prodPointClicked4: false,
+      prodPointClicked5: false,
+      prodPointClicked6: false,
+      prodPointClicked7: false,
+      prodPointClicked8: false,
+      prodPointClicked9: false,
+      prodPointClicked10: false,
       colors: ["red", "yellow", "green", "blue", "purple"],
       currentMem1: 1,
       currentMem2: 1,
       currentMem3: 1,
       currentMem4: 1,
+      currentMem5: 1,
+      currentMem6: 1,
+      currentMem7: 1,
+      currentMem8: 1,
+      currentMem9: 1,
+      currentMem10: 1,
     };
   },
 
@@ -101,6 +172,30 @@ export default {
       this.currentMem4 = this.member;
       this.prodPointClicked4 = !this.prodPointClicked4;
     },
+    addedProdPoint5() {
+      this.currentMem5 = this.member;
+      this.prodPointClicked5 = !this.prodPointClicked5;
+    },
+    addedProdPoint6() {
+      this.currentMem6 = this.member;
+      this.prodPointClicked6 = !this.prodPointClicked6;
+    },
+    addedProdPoint7() {
+      this.currentMem7 = this.member;
+      this.prodPointClicked7 = !this.prodPointClicked7;
+    },
+    addedProdPoint8() {
+      this.currentMem8 = this.member;
+      this.prodPointClicked8 = !this.prodPointClicked8;
+    },
+    addedProdPoint9() {
+      this.currentMem9 = this.member;
+      this.prodPointClicked9 = !this.prodPointClicked9;
+    },
+    addedProdPoint10() {
+      this.currentMem10 = this.member;
+      this.prodPointClicked10 = !this.prodPointClicked10;
+    },
   },
 };
 </script>
@@ -115,6 +210,7 @@ export default {
 }
 
 .task {
+
   padding: 15px 25px;
   cursor: pointer;
   margin-bottom: 15px;
@@ -132,9 +228,9 @@ export default {
 
 hr.myLine {
   height: 1px;
-  border-width:0;
-  color:black;
-  background-color:black;
+  border-width: 0;
+  color: black;
+  background-color: black;
   margin: 0;
 }
 </style>
