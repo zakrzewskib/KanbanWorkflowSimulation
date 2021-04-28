@@ -1,11 +1,11 @@
 <template>
   <div id="app">
     <h2>{{ title }}</h2>
-    <img :src="cube1" :width="cubesSize" :height="cubesSize" />
-    <img :src="cube2" :width="cubesSize" :height="cubesSize" />
-    <img :src="cube3" :width="cubesSize" :height="cubesSize" />
-    <img :src="cube4" :width="cubesSize" :height="cubesSize" />
-    <img :src="cube5" :width="cubesSize" :height="cubesSize" />
+    <img :src="dice1.imgsource" :width="dicesSize" :height="dicesSize" />
+    <img :src="dice2.imgsource" :width="dicesSize" :height="dicesSize" />
+    <img :src="dice3.imgsource" :width="dicesSize" :height="dicesSize" />
+    <img :src="dice4.imgsource" :width="dicesSize" :height="dicesSize" />
+    <img :src="dice5.imgsource" :width="dicesSize" :height="dicesSize" />
     <div>
       <AddTask @add-task="addTask" />
       <button v-on:click="changeMemebers" id="changeMemeberGlobal">
@@ -126,29 +126,60 @@ export default {
       currentMemeber: 1,
       numberOfMemebers: 5,
       colors: ["red", "yellow", "green", "blue", "purple"],
-      cubes: [
-        "/img/1.c5bb03d1.png",
-        "/img/2.28a31ce5.png",
-        "/img/3.acb38a74.png",
-        "/img/4.5b5bac68.png",
-        "/img/5.93cb77a5.png",
+
+      dices: [
+        {
+          imgsource: require("./assets/dices/1.png"),
+        },
+        {
+          imgsource: require("./assets/dices/2.png"),
+        },
+        {
+          imgsource: require("./assets/dices/3.png"),
+        },
+        {
+          imgsource: require("./assets/dices/4.png"),
+        },
+        {
+          imgsource: require("./assets/dices/5.png"),
+        },
       ],
 
-      cubesYellow: [
-        "/img/1.dfd045fd.png",
-        "/img/2.5b6a7d0a.png",
-        "/img/3.4dccb6f1.png",
-        "/img/4.2b19a1a2.png",
-        "/img/5.7b399d9a.png",
+      dicesYellow: [
+        {
+          imgsource: require("./assets/dices/yellow/1.png"),
+        },
+        {
+          imgsource: require("./assets/dices/yellow/2.png"),
+        },
+        {
+          imgsource: require("./assets/dices/yellow/3.png"),
+        },
+        {
+          imgsource: require("./assets/dices/yellow/4.png"),
+        },
+        {
+          imgsource: require("./assets/dices/yellow/5.png"),
+        },
       ],
 
-      cube1: "/img/1.c5bb03d1.png",
-      cube2: "/img/2.5b6a7d0a.png",
-      cube3: "/img/3.acb38a74.png",
-      cube4: "/img/4.5b5bac68.png",
-      cube5: "/img/5.93cb77a5.png",
+      dice1: {
+        imgsource: require("./assets/dices/1.png"),
+      },
+      dice2: {
+        imgsource: require("./assets/dices/2.png"),
+      },
+      dice3: {
+        imgsource: require("./assets/dices/3.png"),
+      },
+      dice4: {
+        imgsource: require("./assets/dices/4.png"),
+      },
+      dice5: {
+        imgsource: require("./assets/dices/5.png"),
+      },
 
-      cubesSize: 60,
+      dicesSize: 60,
       test: "./assets/dices/5.png",
     };
   },
@@ -200,7 +231,7 @@ export default {
         this.maxTasks[idToInt - 1]
       );
 
-      if(idToInt == 6) {
+      if (idToInt == 6) {
         console.log("done!");
       }
     },
@@ -253,11 +284,11 @@ export default {
         random[i] = Math.floor(Math.random() * (this.numberOfMemebers - 1));
       }
 
-      this.cube1 = this.cubes[random[0]];
-      this.cube2 = this.cubesYellow[random[1]];
-      this.cube3 = this.cubes[random[2]];
-      this.cube4 = this.cubes[random[3]];
-      this.cube5 = this.cubes[random[4]];
+      this.dice1 = this.dices[random[0]];
+      this.dice2 = this.dicesYellow[random[1]];
+      this.dice3 = this.dices[random[2]];
+      this.dice4 = this.dices[random[3]];
+      this.dice5 = this.dices[random[4]];
     },
   },
 
