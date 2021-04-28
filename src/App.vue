@@ -1,11 +1,41 @@
 <template>
   <div id="app">
     <h2>{{ title }}</h2>
+    <img
+      :src="image"
+      width="100"
+      height="100"
+    />
+    <img
+      src="https://a.allegroimg.com/s1024/0ca920/be8439dc415dbb96d1646871c732"
+      width="100"
+      height="100"
+    />
+    <img
+      src="https://a.allegroimg.com/s1024/0ca920/be8439dc415dbb96d1646871c732"
+      width="100"
+      height="100"
+    />
+    <img
+      src="https://a.allegroimg.com/s1024/0ca920/be8439dc415dbb96d1646871c732"
+      width="100"
+      height="100"
+    />
+    <img
+      src="https://a.allegroimg.com/s1024/0ca920/be8439dc415dbb96d1646871c732"
+      width="100"
+      height="100"
+    />
     <div>
       <AddTask @add-task="addTask" />
-      <button v-on:click="changeMemebers" id="changeMemeberGlobal">Change current member</button>
+      <button v-on:click="changeMemebers" id="changeMemeberGlobal">
+        Change current member
+      </button>
+      <br />
+      <button v-on:click="changeProductivity">
+        Click to change productivity points
+      </button>
     </div>
-
 
     <div class="row">
       <div class="col-3"></div>
@@ -13,6 +43,7 @@
       <div class="col-3"><h2>STAGE2</h2></div>
       <div class="col-3"></div>
     </div>
+
     <main class="flexbox">
       <Column id="column-1" name="TODO" @dropped="dropped" @left="left1">
         <div>
@@ -31,7 +62,7 @@
           :name="task.name"
           :urgent="task.urgent"
           :fixedDate="task.fixedDate"
-          :member = "currentMemeber"
+          :member="currentMemeber"
           draggable="true"
         >
         </Task>
@@ -115,11 +146,12 @@ export default {
       currentMemeber: 1,
       numberOfMemebers: 5,
       colors: ["red", "yellow", "green", "blue", "purple"],
+
+      image: "https://a.allegroimg.com/s1024/0ca920/be8439dc415dbb96d1646871c732",
     };
   },
 
   methods: {
-
     hej(e) {
       document.getElementById(e.target.id).style.background = "red";
     },
@@ -199,6 +231,7 @@ export default {
       });
       this.increaseTodoColumn();
     },
+
     changeMemebers() {
       if (this.currentMemeber < this.numberOfMemebers) {
         this.currentMemeber++;
@@ -206,9 +239,18 @@ export default {
         this.currentMemeber = 1;
       }
 
-      document.getElementById("changeMemeberGlobal").style.background = this.colors[this.currentMemeber -1 ];
+      document.getElementById(
+        "changeMemeberGlobal"
+      ).style.background = this.colors[this.currentMemeber - 1];
+    },
+
+    changeProductivity() {
+      this.image = "https://pl-static.z-dn.net/files/d14/2dd17fbf213c4420696270940935d591.jpg";
     }
+
   },
+
+
   name: "App",
   components: {
     Column,
