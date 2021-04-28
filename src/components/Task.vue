@@ -3,6 +3,7 @@
     :id="id"
     :name="name"
     :member="member"
+    :blocked="blocked"
     class="task"
     v-bind:class="{ urgent: urgent, fixedDate: fixedDate }"
     :draggable="draggable"
@@ -10,6 +11,10 @@
     @dragover.stop
   >
     {{ name }}
+
+    <div v-if="blocker">
+      <button v-on:click="unblock" class="unblockButton">BLOCKED</button>
+    </div>
 
     <div class="productivity">
       <button
@@ -122,6 +127,7 @@
 export default {
   data() {
     return {
+      blocker: this.blocked,
       start: "",
       end: "",
       prodPointClicked1: false,
@@ -148,7 +154,7 @@ export default {
     };
   },
 
-  props: ["id", "name", "draggable", "urgent", "fixedDate", "member"],
+  props: ["id", "name", "draggable", "urgent", "fixedDate", "member", "blocked"],
 
   methods: {
     dragStart: (e) => {
@@ -156,7 +162,6 @@ export default {
       const target = e.target;
       e.dataTransfer.setData("task_id", target.id);
     },
-
     addedProdPoint1() {
       this.currentMem1 = this.member;
       this.prodPointClicked1 = !this.prodPointClicked1;
@@ -197,6 +202,10 @@ export default {
       this.currentMem10 = this.member;
       this.prodPointClicked10 = !this.prodPointClicked10;
     },
+    unblock() {
+      alert("You unblocked this task, use some of your productivity points!");
+      this.blocker = false;
+    }
   },
 };
 </script>
@@ -232,5 +241,10 @@ hr.myLine {
   color: black;
   background-color: black;
   margin: 0;
+}
+
+.unblockButton {
+  background-color: red;
+  color: white;
 }
 </style>

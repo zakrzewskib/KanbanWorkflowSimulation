@@ -8,12 +8,21 @@
     <img :src="dice5.imgsource" :width="dicesSize" :height="dicesSize" />
     <div>
       <AddTask @add-task="addTask" />
+
       <button v-on:click="changeMemebers" id="changeMemeberGlobal">
         Change current member
       </button>
+
       <br />
+
       <button v-on:click="changeProductivity">
-        Click to change productivity points
+        Change productivity points
+      </button>
+
+      <br />
+      
+      <button v-on:click="changeProductivity">
+        Block random tasks
       </button>
     </div>
 
@@ -43,6 +52,7 @@
           :urgent="task.urgent"
           :fixedDate="task.fixedDate"
           :member="currentMemeber"
+          :blocked="task.blocked"
           draggable="true"
         >
         </Task>
@@ -105,12 +115,14 @@ export default {
           name: "Normal task",
           urgent: false,
           fixedDate: false,
+          blocked: true,
         },
         {
           id: Math.random(),
           name: "Urgent task",
           urgent: true,
           fixedDate: false,
+          blocked: true,
         },
       ],
       counters: [0, 0, 0, 0, 0, 0],
@@ -313,6 +325,7 @@ export default {
         name: task.name,
         urgent: task.urgent,
         fixedDate: task.fixedDate,
+        blocked: false,
       });
       this.increaseTodoColumn();
     },
