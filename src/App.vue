@@ -127,21 +127,21 @@ export default {
       numberOfMemebers: 5,
       colors: ["red", "yellow", "green", "blue", "purple"],
 
-      dices: [
+      dicesRed: [
         {
-          imgsource: require("./assets/dices/1.png"),
+          imgsource: require("./assets/dices/red/1.png"),
         },
         {
-          imgsource: require("./assets/dices/2.png"),
+          imgsource: require("./assets/dices/red/2.png"),
         },
         {
-          imgsource: require("./assets/dices/3.png"),
+          imgsource: require("./assets/dices/red/3.png"),
         },
         {
-          imgsource: require("./assets/dices/4.png"),
+          imgsource: require("./assets/dices/red/4.png"),
         },
         {
-          imgsource: require("./assets/dices/5.png"),
+          imgsource: require("./assets/dices/red/5.png"),
         },
       ],
 
@@ -163,20 +163,72 @@ export default {
         },
       ],
 
+      dicesGreen: [
+        {
+          imgsource: require("./assets/dices/green/1.png"),
+        },
+        {
+          imgsource: require("./assets/dices/green/2.png"),
+        },
+        {
+          imgsource: require("./assets/dices/green/3.png"),
+        },
+        {
+          imgsource: require("./assets/dices/green/4.png"),
+        },
+        {
+          imgsource: require("./assets/dices/green/5.png"),
+        },
+      ],
+      dicesBlue: [
+        {
+          imgsource: require("./assets/dices/blue/1.png"),
+        },
+        {
+          imgsource: require("./assets/dices/blue/2.png"),
+        },
+        {
+          imgsource: require("./assets/dices/blue/3.png"),
+        },
+        {
+          imgsource: require("./assets/dices/blue/4.png"),
+        },
+        {
+          imgsource: require("./assets/dices/blue/5.png"),
+        },
+      ],
+      dicesPurple: [
+        {
+          imgsource: require("./assets/dices/purple/1.png"),
+        },
+        {
+          imgsource: require("./assets/dices/purple/2.png"),
+        },
+        {
+          imgsource: require("./assets/dices/purple/3.png"),
+        },
+        {
+          imgsource: require("./assets/dices/purple/4.png"),
+        },
+        {
+          imgsource: require("./assets/dices/purple/5.png"),
+        },
+      ],
+
       dice1: {
-        imgsource: require("./assets/dices/1.png"),
+        imgsource: require("./assets/dices/red/1.png"),
       },
       dice2: {
-        imgsource: require("./assets/dices/2.png"),
+        imgsource: require("./assets/dices/yellow/2.png"),
       },
       dice3: {
-        imgsource: require("./assets/dices/3.png"),
+        imgsource: require("./assets/dices/green/3.png"),
       },
       dice4: {
-        imgsource: require("./assets/dices/4.png"),
+        imgsource: require("./assets/dices/blue/4.png"),
       },
       dice5: {
-        imgsource: require("./assets/dices/5.png"),
+        imgsource: require("./assets/dices/purple/5.png"),
       },
 
       dicesSize: 60,
@@ -283,12 +335,13 @@ export default {
       for (i = 0; i < this.numberOfMemebers; i++) {
         random[i] = Math.floor(Math.random() * (this.numberOfMemebers - 1));
       }
+      console.log(random);
 
-      this.dice1 = this.dices[random[0]];
-      this.dice2 = this.dicesYellow[random[1]];
-      this.dice3 = this.dices[random[2]];
-      this.dice4 = this.dices[random[3]];
-      this.dice5 = this.dices[random[4]];
+      this.dice1.imgsource = this.dicesRed[random[0]].imgsource;
+      this.dice2.imgsource = this.dicesYellow[random[1]].imgsource;
+      this.dice3.imgsource = this.dicesGreen[random[2]].imgsource;
+      this.dice4.imgsource = this.dicesBlue[random[3]].imgsource;
+      this.dice5.imgsource = this.dicesPurple[random[4]].imgsource;
     },
   },
 
