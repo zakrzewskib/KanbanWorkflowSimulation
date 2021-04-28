@@ -134,11 +134,20 @@ export default {
         "/img/5.93cb77a5.png",
       ],
 
+      cubesYellow: [
+        "/img/1.dfd045fd.png",
+        "/img/2.5b6a7d0a.png",
+        "/img/3.4dccb6f1.png",
+        "/img/4.2b19a1a2.png",
+        "/img/5.7b399d9a.png",
+      ],
+
       cube1: "/img/1.c5bb03d1.png",
-      cube2: "/img/2.28a31ce5.png",
+      cube2: "/img/2.5b6a7d0a.png",
       cube3: "/img/3.acb38a74.png",
       cube4: "/img/4.5b5bac68.png",
       cube5: "/img/5.93cb77a5.png",
+
       cubesSize: 60,
       test: "./assets/dices/5.png",
     };
@@ -237,15 +246,14 @@ export default {
       var i;
       var random = [];
       for (i = 0; i < this.numberOfMemebers; i++) {
-        random[i] = Math.floor(Math.random() * (this.numberOfMemebers-1));
+        random[i] = Math.floor(Math.random() * (this.numberOfMemebers - 1));
       }
 
       this.cube1 = this.cubes[random[0]];
-      this.cube2 = this.cubes[random[1]];
+      this.cube2 = this.cubesYellow[random[1]];
       this.cube3 = this.cubes[random[2]];
       this.cube4 = this.cubes[random[3]];
       this.cube5 = this.cubes[random[4]];
-
     },
   },
 
