@@ -33,7 +33,6 @@
           :fixedDate="task.fixedDate"
           :member = "currentMemeber"
           draggable="true"
-          @change-author="changeMember"
         >
         </Task>
       </Column>
