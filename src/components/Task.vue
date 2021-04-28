@@ -19,13 +19,13 @@
       ></button>
 
       <button
-        :style="prodPointClicked1 ? { 'background-color': 'red' } : null"
+        :style="prodPointClicked1 ? { 'background-color': colors[currentMem1-1] } : null"
         v-on:click="addedProdPoint1"
         class="prodPoint"
       ></button>
 
       <button
-        :style="prodPointClicked2 ? { 'background-color': 'red' } : null"
+        :style="prodPointClicked2 ? { 'background-color': colors[currentMem1-1] } : null"
         v-on:click="addedProdPoint2"
         class="prodPoint"
       ></button>
@@ -44,7 +44,7 @@ export default {
       prodPointClicked0: false,
       prodPointClicked1: false,
       prodPointClicked2: false,
-      colors: ["red", "blue", "green", "yellow"],
+      colors: ["red", "yellow", "green", "blue", "purple"],
       currentMem1: '',
     };
   },

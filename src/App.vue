@@ -114,7 +114,8 @@ export default {
       currentLeft: 0,
 
       currentMemeber: 1,
-      numberOfMemebers: 4,
+      numberOfMemebers: 5,
+      colors: ["red", "yellow", "green", "blue", "purple"],
     };
   },
 
@@ -199,32 +200,6 @@ export default {
       });
       this.increaseTodoColumn();
     },
-
-    changeMember(e) {
-      if (this.currentMemeber < this.numberOfMemebers) {
-        this.currentMemeber++;
-      } else {
-        this.currentMemeber = 1;
-      }
-
-      var color;
-      switch (this.currentMemeber) {
-        case 1:
-          color = "red";
-          break;
-        case 2:
-          color = "blue";
-          break;
-        case 3:
-          color = "green";
-          break;
-        case 4:
-          color = "yellow";
-          break;
-      }
-
-      e.target.style.background = color;
-    },
     changeMemebers() {
       if (this.currentMemeber < this.numberOfMemebers) {
         this.currentMemeber++;
@@ -232,22 +207,7 @@ export default {
         this.currentMemeber = 1;
       }
 
-      var color;
-      switch (this.currentMemeber) {
-        case 1:
-          color = "red";
-          break;
-        case 2:
-          color = "DeepSkyBlue";
-          break;
-        case 3:
-          color = "green";
-          break;
-        case 4:
-          color = "yellow";
-          break;
-      }
-      document.getElementById("changeMemeberGlobal").style.background = color;
+      document.getElementById("changeMemeberGlobal").style.background = this.colors[this.currentMemeber -1 ];
     }
   },
   name: "App",
