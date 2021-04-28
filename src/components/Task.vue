@@ -2,7 +2,7 @@
   <div
     :id="id"
     :name="name"
-    :test="test"
+    :member="member"
     class="task"
     v-bind:class="{ urgent: urgent, fixedDate: fixedDate }"
     :draggable="draggable"
@@ -19,13 +19,13 @@
       ></button>
 
       <button
-        :style="prodPointClicked1 ? { 'background-color': colors[currentMem1-1] } : null"
+        :style="prodPointClicked1 ? { 'background-color': colors[currentMem2-1] } : null"
         v-on:click="addedProdPoint1"
         class="prodPoint"
       ></button>
 
       <button
-        :style="prodPointClicked2 ? { 'background-color': colors[currentMem1-1] } : null"
+        :style="prodPointClicked2 ? { 'background-color': colors[currentMem3-1] } : null"
         v-on:click="addedProdPoint2"
         class="prodPoint"
       ></button>
@@ -45,7 +45,9 @@ export default {
       prodPointClicked1: false,
       prodPointClicked2: false,
       colors: ["red", "yellow", "green", "blue", "purple"],
-      currentMem1: '',
+      currentMem1: 1,
+      currentMem2: 1,
+      currentMem3: 1,
     };
   },
 
@@ -55,7 +57,7 @@ export default {
     "draggable",
     "urgent",
     "fixedDate",
-    "test",
+    "member",
   ],
 
   methods: {
@@ -65,14 +67,15 @@ export default {
     },
 
     addedProdPoint0() {
-      this.currentMem1 = this.test;
-      console.log(this.currentMem1);
+      this.currentMem1 = this.member;
       this.prodPointClicked0 = !this.prodPointClicked0;
     },
     addedProdPoint1() {
+      this.currentMem2 = this.member;
       this.prodPointClicked1 = !this.prodPointClicked1;
     },
     addedProdPoint2() {
+      this.currentMem3 = this.member;
       this.prodPointClicked2 = !this.prodPointClicked2;
     },
   },

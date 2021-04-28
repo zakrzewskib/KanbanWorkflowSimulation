@@ -31,7 +31,7 @@
           :name="task.name"
           :urgent="task.urgent"
           :fixedDate="task.fixedDate"
-          :test = "currentMemeber"
+          :member = "currentMemeber"
           draggable="true"
           @change-author="changeMember"
         >
