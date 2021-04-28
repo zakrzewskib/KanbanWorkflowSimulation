@@ -1,31 +1,11 @@
 <template>
   <div id="app">
     <h2>{{ title }}</h2>
-    <img
-      :src="image"
-      width="100"
-      height="100"
-    />
-    <img
-      src="https://a.allegroimg.com/s1024/0ca920/be8439dc415dbb96d1646871c732"
-      width="100"
-      height="100"
-    />
-    <img
-      src="https://a.allegroimg.com/s1024/0ca920/be8439dc415dbb96d1646871c732"
-      width="100"
-      height="100"
-    />
-    <img
-      src="https://a.allegroimg.com/s1024/0ca920/be8439dc415dbb96d1646871c732"
-      width="100"
-      height="100"
-    />
-    <img
-      src="https://a.allegroimg.com/s1024/0ca920/be8439dc415dbb96d1646871c732"
-      width="100"
-      height="100"
-    />
+    <img :src="cube1" :width="cubesSize" :height="cubesSize" />
+    <img :src="cube2" :width="cubesSize" :height="cubesSize" />
+    <img :src="cube3" :width="cubesSize" :height="cubesSize" />
+    <img :src="cube4" :width="cubesSize" :height="cubesSize" />
+    <img :src="cube5" :width="cubesSize" :height="cubesSize" />
     <div>
       <AddTask @add-task="addTask" />
       <button v-on:click="changeMemebers" id="changeMemeberGlobal">
@@ -146,16 +126,25 @@ export default {
       currentMemeber: 1,
       numberOfMemebers: 5,
       colors: ["red", "yellow", "green", "blue", "purple"],
+      cubes: [
+        "/img/1.c5bb03d1.png",
+        "/img/2.28a31ce5.png",
+        "/img/3.acb38a74.png",
+        "/img/4.5b5bac68.png",
+        "/img/5.93cb77a5.png",
+      ],
 
-      image: "https://a.allegroimg.com/s1024/0ca920/be8439dc415dbb96d1646871c732",
+      cube1: "/img/1.c5bb03d1.png",
+      cube2: "/img/2.28a31ce5.png",
+      cube3: "/img/3.acb38a74.png",
+      cube4: "/img/4.5b5bac68.png",
+      cube5: "/img/5.93cb77a5.png",
+      cubesSize: 60,
+      test: "./assets/dices/5.png",
     };
   },
 
   methods: {
-    hej(e) {
-      document.getElementById(e.target.id).style.background = "red";
-    },
-
     changeStyleIfMoreThanMax(counter, option, maxTasks) {
       var elementId = "col".concat(option, "counter");
       console.log(elementId);
@@ -245,11 +234,20 @@ export default {
     },
 
     changeProductivity() {
-      this.image = "https://pl-static.z-dn.net/files/d14/2dd17fbf213c4420696270940935d591.jpg";
-    }
+      var i;
+      var random = [];
+      for (i = 0; i < this.numberOfMemebers; i++) {
+        random[i] = Math.floor(Math.random() * (this.numberOfMemebers-1));
+      }
 
+      this.cube1 = this.cubes[random[0]];
+      this.cube2 = this.cubes[random[1]];
+      this.cube3 = this.cubes[random[2]];
+      this.cube4 = this.cubes[random[3]];
+      this.cube5 = this.cubes[random[4]];
+
+    },
   },
-
 
   name: "App",
   components: {
