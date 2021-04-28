@@ -13,20 +13,44 @@
 
     <div class="productivity">
       <button
-        :style="prodPointClicked0 ? { 'background-color': colors[currentMem1-1] } : null"
-        v-on:click="addedProdPoint0"
-        class="prodPoint"
-      ></button>
-
-      <button
-        :style="prodPointClicked1 ? { 'background-color': colors[currentMem2-1] } : null"
+        :style="
+          prodPointClicked1
+            ? { 'background-color': colors[currentMem1 - 1] }
+            : null
+        "
         v-on:click="addedProdPoint1"
         class="prodPoint"
       ></button>
 
       <button
-        :style="prodPointClicked2 ? { 'background-color': colors[currentMem3-1] } : null"
+        :style="
+          prodPointClicked2
+            ? { 'background-color': colors[currentMem2 - 1] }
+            : null
+        "
         v-on:click="addedProdPoint2"
+        class="prodPoint"
+      ></button>
+
+      <hr class="myLine" />
+
+      <button
+        :style="
+          prodPointClicked3
+            ? { 'background-color': colors[currentMem3 - 1] }
+            : null
+        "
+        v-on:click="addedProdPoint3"
+        class="prodPoint"
+      ></button>
+
+      <button
+        :style="
+          prodPointClicked4
+            ? { 'background-color': colors[currentMem4 - 1] }
+            : null
+        "
+        v-on:click="addedProdPoint4"
         class="prodPoint"
       ></button>
     </div>
@@ -41,24 +65,19 @@ export default {
     return {
       start: "",
       end: "",
-      prodPointClicked0: false,
       prodPointClicked1: false,
       prodPointClicked2: false,
+      prodPointClicked3: false,
+      prodPointClicked4: false,
       colors: ["red", "yellow", "green", "blue", "purple"],
       currentMem1: 1,
       currentMem2: 1,
       currentMem3: 1,
+      currentMem4: 1,
     };
   },
 
-  props: [
-    "id",
-    "name",
-    "draggable",
-    "urgent",
-    "fixedDate",
-    "member",
-  ],
+  props: ["id", "name", "draggable", "urgent", "fixedDate", "member"],
 
   methods: {
     dragStart: (e) => {
@@ -66,17 +85,21 @@ export default {
       e.dataTransfer.setData("task_id", target.id);
     },
 
-    addedProdPoint0() {
-      this.currentMem1 = this.member;
-      this.prodPointClicked0 = !this.prodPointClicked0;
-    },
     addedProdPoint1() {
-      this.currentMem2 = this.member;
+      this.currentMem1 = this.member;
       this.prodPointClicked1 = !this.prodPointClicked1;
     },
     addedProdPoint2() {
-      this.currentMem3 = this.member;
+      this.currentMem2 = this.member;
       this.prodPointClicked2 = !this.prodPointClicked2;
+    },
+    addedProdPoint3() {
+      this.currentMem3 = this.member;
+      this.prodPointClicked3 = !this.prodPointClicked3;
+    },
+    addedProdPoint4() {
+      this.currentMem4 = this.member;
+      this.prodPointClicked4 = !this.prodPointClicked4;
     },
   },
 };
@@ -105,5 +128,13 @@ export default {
 
 .fixedDate {
   background-color: rgb(200, 255, 207);
+}
+
+hr.myLine {
+  height: 1px;
+  border-width:0;
+  color:black;
+  background-color:black;
+  margin: 0;
 }
 </style>
