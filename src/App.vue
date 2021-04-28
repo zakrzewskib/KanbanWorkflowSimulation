@@ -6,7 +6,7 @@
       <button v-on:click="changeMemebers" id="changeMemeberGlobal">Change current member</button>
     </div>
 
-    <br />
+
     <div class="row">
       <div class="col-3"></div>
       <div class="col-3"><h2>STAGE1</h2></div>
@@ -225,7 +225,8 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  /* margin-top: 60px; */
+  margin-top: 20px;
 }
 @import "./styles/flexboxstyles.css";
 @import "./styles/columnstyles.css";

@@ -10,7 +10,6 @@
     @dragstart="left"
   >
     <h2>{{ name }}</h2>
-    <br />
     <slot />
   </div>
 </template>
