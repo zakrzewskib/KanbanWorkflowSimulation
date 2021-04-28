@@ -199,6 +199,10 @@ export default {
         idToInt,
         this.maxTasks[idToInt - 1]
       );
+
+      if(idToInt == 6) {
+        console.log("done!");
+      }
     },
 
     left1() {

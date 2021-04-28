@@ -152,6 +152,7 @@ export default {
 
   methods: {
     dragStart: (e) => {
+      console.log(e.target);
       const target = e.target;
       e.dataTransfer.setData("task_id", target.id);
     },
