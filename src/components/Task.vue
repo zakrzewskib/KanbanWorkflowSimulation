@@ -210,8 +210,7 @@ export default {
 }
 
 .task {
-
-  padding: 15px 25px;
+  /* padding: 15px 25px; */
   cursor: pointer;
   margin-bottom: 15px;
   border: 2px solid black;
