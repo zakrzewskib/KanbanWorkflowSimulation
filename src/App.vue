@@ -24,6 +24,8 @@
       <button v-on:click="setBlockers">
         Block random tasks
       </button>
+
+      <div>Tasks blocked: {{tasksBlocked}}</div>
     </div>
 
     <div class="row">
@@ -245,6 +247,7 @@ export default {
 
       dicesSize: 60,
       test: "./assets/dices/5.png",
+      tasksBlocked: [1, 2],
     };
   },
 
@@ -358,20 +361,18 @@ export default {
     },
 
     setBlockers() {
-      // this.tasks.splice(1,1, {
-      //   id: Math.random(),
-      //   name: this.tasks[0].name,
-      //   urgent: this.tasks[0].urgent,
-      //   fixedDate: this.tasks[0].fixedDate,
-      //   blocked: true,
-      // });
-
-      // for(var i = 0; i < this.tasks.length; i++) {
-      //   var random = Math.floor(Math.random() * 100);
-      //   if(random <= 20) {
-      //     this.tasks[i].blocked = true;
-      //   }
-      // }
+      var toBlock = [];
+      var j = 0;
+      for(var i = 0; i < this.tasks.length; i++) {
+        var random = Math.floor(Math.random() * 100);
+        if(random <= 20) {
+          toBlock[j] = Math.round(this.tasks[i].id * 100);
+          j++;
+        }
+      }
+      console.log(toBlock);
+      this.tasksBlocked = toBlock;
+      alert("You should block tasks with id: " + JSON.stringify(toBlock));
     },
   },
 

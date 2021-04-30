@@ -11,10 +11,13 @@
     @dragover.stop
   >
     {{ name }}
+    <div class="divWithId">id = {{roundedId}}</div>
 
     <div v-if="blocker">
       <button v-on:click="unblock" class="unblockButton">BLOCKED</button>
     </div>
+
+    <button v-on:click="setBlocker" class="setBlocker"></button>
 
     <div class="productivity">
       <button
@@ -151,6 +154,7 @@ export default {
       currentMem8: 1,
       currentMem9: 1,
       currentMem10: 1,
+      roundedId: Math.round(this.id*100),
     };
   },
 
@@ -205,7 +209,12 @@ export default {
     unblock() {
       alert("You unblocked this task, use some of your productivity points!");
       this.blocker = false;
-    }
+    },
+
+    setBlocker() {
+      this.blocker = true;
+    },
+
   },
 };
 </script>
@@ -247,4 +256,15 @@ hr.myLine {
   background-color: red;
   color: white;
 }
+
+.setBlocker {
+  width: 18px;
+  height: 18px;
+    background-color: red;
+}
+
+.divWithId {
+  font-size: 15px;
+}
+
 </style>
