@@ -22,6 +22,7 @@
           </button> -->
 
           <div>Tasks to block: {{ tasksBlocked }}</div>
+          (To unblock one task, you should use 4 productivity points)
         </div>
 
         <div class="col-3">
