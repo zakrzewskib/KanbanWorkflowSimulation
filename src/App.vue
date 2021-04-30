@@ -20,8 +20,8 @@
       </button>
 
       <br />
-      
-      <button v-on:click="changeProductivity">
+
+      <button v-on:click="setBlockers">
         Block random tasks
       </button>
     </div>
@@ -115,14 +115,14 @@ export default {
           name: "Normal task",
           urgent: false,
           fixedDate: false,
-          blocked: true,
+          blocked: false,
         },
         {
           id: Math.random(),
           name: "Urgent task",
           urgent: true,
           fixedDate: false,
-          blocked: true,
+          blocked: false,
         },
       ],
       counters: [0, 0, 0, 0, 0, 0],
@@ -355,6 +355,23 @@ export default {
       this.dice3.imgsource = this.dicesGreen[random[2]].imgsource;
       this.dice4.imgsource = this.dicesBlue[random[3]].imgsource;
       this.dice5.imgsource = this.dicesPurple[random[4]].imgsource;
+    },
+
+    setBlockers() {
+      // this.tasks.splice(1,1, {
+      //   id: Math.random(),
+      //   name: this.tasks[0].name,
+      //   urgent: this.tasks[0].urgent,
+      //   fixedDate: this.tasks[0].fixedDate,
+      //   blocked: true,
+      // });
+
+      // for(var i = 0; i < this.tasks.length; i++) {
+      //   var random = Math.floor(Math.random() * 100);
+      //   if(random <= 20) {
+      //     this.tasks[i].blocked = true;
+      //   }
+      // }
     },
   },
 
