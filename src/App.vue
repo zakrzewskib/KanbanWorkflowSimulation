@@ -7,25 +7,39 @@
     <img :src="dice4.imgsource" :width="dicesSize" :height="dicesSize" />
     <img :src="dice5.imgsource" :width="dicesSize" :height="dicesSize" />
     <div>
-      <AddTask @add-task="addTask" />
+      <div class="row">
+        <div class="col-3">
+          <button v-on:click="nextDay">
+            Next day
+          </button>
 
-      <button v-on:click="changeMemebers" id="changeMemeberGlobal">
-        Change current member
-      </button>
+          <div>Number of days: {{ currentDay }}</div>
+        </div>
 
-      <br />
+        <div class="col-3">
+          <!-- <button v-on:click="setBlockers">
+            Block random tasks
+          </button> -->
 
-      <button v-on:click="changeProductivity">
-        Change productivity points
-      </button>
+          <div>Tasks to block: {{ tasksBlocked }}</div>
+        </div>
 
-      <br />
+        <div class="col-3">
+          <AddTask @add-task="addTask" />
+        </div>
 
-      <button v-on:click="setBlockers">
-        Block random tasks
-      </button>
-
-      <div>Tasks blocked: {{tasksBlocked}}</div>
+        <div class="col-3">
+          <button v-on:click="changeMemebers" id="changeMemeberGlobal">
+            Change current member
+          </button>
+        </div>
+        <!-- 
+        <div class="col-2">
+          <button v-on:click="changeProductivity">
+            Change productivity points
+          </button>
+        </div> -->
+      </div>
     </div>
 
     <div class="row">
@@ -112,20 +126,20 @@ export default {
     return {
       title: "Kanban Board Workflow Simulation",
       tasks: [
-        {
-          id: Math.random(),
-          name: "Normal task",
-          urgent: false,
-          fixedDate: false,
-          blocked: false,
-        },
-        {
-          id: Math.random(),
-          name: "Urgent task",
-          urgent: true,
-          fixedDate: false,
-          blocked: false,
-        },
+        // {
+        //   id: Math.random(),
+        //   name: "Normal task",
+        //   urgent: false,
+        //   fixedDate: false,
+        //   blocked: false,
+        // },
+        // {
+        //   id: Math.random(),
+        //   name: "Urgent task",
+        //   urgent: true,
+        //   fixedDate: false,
+        //   blocked: false,
+        // },
       ],
       counters: [0, 0, 0, 0, 0, 0],
       maxTasks: [3, 3, 3, 3, 3, 20],
@@ -248,6 +262,8 @@ export default {
       dicesSize: 60,
       test: "./assets/dices/5.png",
       tasksBlocked: [1, 2],
+      currentDate: new Date(),
+      currentDay: 0,
     };
   },
 
@@ -363,16 +379,22 @@ export default {
     setBlockers() {
       var toBlock = [];
       var j = 0;
-      for(var i = 0; i < this.tasks.length; i++) {
+      for (var i = 0; i < this.tasks.length; i++) {
         var random = Math.floor(Math.random() * 100);
-        if(random <= 20) {
+        if (random <= 20 && this.tasks[i].blocked == false) {
           toBlock[j] = Math.round(this.tasks[i].id * 100);
           j++;
         }
       }
-      console.log(toBlock);
       this.tasksBlocked = toBlock;
-      alert("You should block tasks with id: " + JSON.stringify(toBlock));
+      // alert("You should block tasks with id: " + JSON.stringify(toBlock));
+    },
+
+    nextDay() {
+      // this.currentDate.add(1).day();
+      this.currentDay++;
+      this.changeProductivity();
+      this.setBlockers();
     },
   },
 

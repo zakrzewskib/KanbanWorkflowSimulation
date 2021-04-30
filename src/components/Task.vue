@@ -10,11 +10,11 @@
     @dragstart="dragStart"
     @dragover.stop
   >
-    {{ name }}
-    <div class="divWithId">id = {{roundedId}}</div>
-
-    <div v-if="blocker">
-      <button v-on:click="unblock" class="unblockButton">BLOCKED</button>
+    <div class="divWithId">
+      {{ name }}, id = {{ roundedId }}
+      <div v-if="blocker">
+        <button v-on:click="unblock" class="unblockButton">BLOCKED</button>
+      </div>
     </div>
 
     <button v-on:click="setBlocker" class="setBlocker"></button>
@@ -154,11 +154,19 @@ export default {
       currentMem8: 1,
       currentMem9: 1,
       currentMem10: 1,
-      roundedId: Math.round(this.id*100),
+      roundedId: Math.round(this.id * 100),
     };
   },
 
-  props: ["id", "name", "draggable", "urgent", "fixedDate", "member", "blocked"],
+  props: [
+    "id",
+    "name",
+    "draggable",
+    "urgent",
+    "fixedDate",
+    "member",
+    "blocked",
+  ],
 
   methods: {
     dragStart: (e) => {
@@ -214,7 +222,6 @@ export default {
     setBlocker() {
       this.blocker = true;
     },
-
   },
 };
 </script>
@@ -258,13 +265,12 @@ hr.myLine {
 }
 
 .setBlocker {
-  width: 18px;
-  height: 18px;
-    background-color: red;
+  width: 16px;
+  height: 16px;
+  background-color: red;
 }
 
 .divWithId {
   font-size: 15px;
 }
-
 </style>
