@@ -262,7 +262,7 @@ export default {
 
       dicesSize: 60,
       test: "./assets/dices/5.png",
-      tasksBlocked: [1, 2],
+      tasksBlocked: [],
       currentDate: new Date(),
       currentDay: 0,
     };

@@ -1,12 +1,11 @@
-.flexbox, .divv {
+.flexbox,
+.divv {
     display: flex;
     justify-content: space-between;
-  
     width: 100%;
     max-width: 1600px;
-    height: 100vh;
-  
+    min-height: 100vh;
     overflow: hidden;
     margin: 0 auto;
     padding: 15px;
-  }
+}
