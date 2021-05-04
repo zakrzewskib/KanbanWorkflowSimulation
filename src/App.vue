@@ -1,45 +1,34 @@
 <template>
   <div id="app">
-    <h2>{{ title }}</h2>
-    <img :src="dice1.imgsource" :width="dicesSize" :height="dicesSize" />
-    <img :src="dice2.imgsource" :width="dicesSize" :height="dicesSize" />
-    <img :src="dice3.imgsource" :width="dicesSize" :height="dicesSize" />
-    <img :src="dice4.imgsource" :width="dicesSize" :height="dicesSize" />
-    <img :src="dice5.imgsource" :width="dicesSize" :height="dicesSize" />
+    <h1>{{ title }}</h1>
+    <img :src="dice1.imgsource" :width="dicesSize" :height="dicesSize" alt="dice1"/>
+    <img :src="dice2.imgsource" :width="dicesSize" :height="dicesSize" alt="dice2"/>
+    <img :src="dice3.imgsource" :width="dicesSize" :height="dicesSize" alt="dice3"/>
+    <img :src="dice4.imgsource" :width="dicesSize" :height="dicesSize" alt="dice4"/>
+    <img :src="dice5.imgsource" :width="dicesSize" :height="dicesSize" alt="dice5"/>
     <div>
       <div class="row">
-        <div class="col-3">
-          <button v-on:click="nextDay">
-            Next day
-          </button>
+        <div class="col-4">
+          <div id="buttons">
+            <button v-on:click="nextDay" id="nextDay">
+              Next day
+            </button>
 
-          <div>Number of days: {{ currentDay }}</div>
+            <div id="addNewTask">
+              <AddTask @add-task="addTask" />
+            </div>
+          </div>
+
+          <div id="numberOfDays">Number of days: {{ currentDay }}</div>
         </div>
 
-        <div class="col-3">
-          <!-- <button v-on:click="setBlockers">
-            Block random tasks
-          </button> -->
-
-          <div>Tasks to block: {{ tasksBlocked }}</div>
-          (To unblock one task, you should use 4 productivity points)
+        <div class="col-4">
+          <div id="tasksToBlock">Tasks to block: {{ tasksToBlock }} 
+            <br>
+            <em> (To unblock one task, you should use 4 productivity points)</em>
+          </div>
+          
         </div>
-
-        <div class="col-3">
-          <AddTask @add-task="addTask" />
-        </div>
-
-        <div class="col-3">
-          <button v-on:click="changeMemebers" id="changeMemeberGlobal">
-            Change current member
-          </button>
-        </div>
-        <!-- 
-        <div class="col-2">
-          <button v-on:click="changeProductivity">
-            Change productivity points
-          </button>
-        </div> -->
       </div>
     </div>
 
@@ -127,20 +116,6 @@ export default {
     return {
       title: "Kanban Board Workflow Simulation",
       tasks: [
-        // {
-        //   id: Math.random(),
-        //   name: "Normal task",
-        //   urgent: false,
-        //   fixedDate: false,
-        //   blocked: false,
-        // },
-        // {
-        //   id: Math.random(),
-        //   name: "Urgent task",
-        //   urgent: true,
-        //   fixedDate: false,
-        //   blocked: false,
-        // },
       ],
       counters: [0, 0, 0, 0, 0, 0],
       maxTasks: [3, 3, 3, 3, 3, 20],
@@ -154,6 +129,7 @@ export default {
 
       currentMemeber: 1,
       numberOfMemebers: 5,
+
       colors: ["red", "yellow", "green", "blue", "purple"],
 
       dicesRed: [
@@ -173,7 +149,6 @@ export default {
           imgsource: require("./assets/dices/red/5.png"),
         },
       ],
-
       dicesYellow: [
         {
           imgsource: require("./assets/dices/yellow/1.png"),
@@ -191,7 +166,6 @@ export default {
           imgsource: require("./assets/dices/yellow/5.png"),
         },
       ],
-
       dicesGreen: [
         {
           imgsource: require("./assets/dices/green/1.png"),
@@ -243,7 +217,6 @@ export default {
           imgsource: require("./assets/dices/purple/5.png"),
         },
       ],
-
       dice1: {
         imgsource: require("./assets/dices/red/1.png"),
       },
@@ -261,8 +234,7 @@ export default {
       },
 
       dicesSize: 60,
-      test: "./assets/dices/5.png",
-      tasksBlocked: [],
+      tasksToBlock: [],
       currentDate: new Date(),
       currentDay: 0,
     };
@@ -271,7 +243,6 @@ export default {
   methods: {
     changeStyleIfMoreThanMax(counter, option, maxTasks) {
       var elementId = "col".concat(option, "counter");
-      console.log(elementId);
       if (counter >= maxTasks) {
         document.getElementById(elementId).style.color = "red";
       } else {
@@ -314,10 +285,6 @@ export default {
         idToInt,
         this.maxTasks[idToInt - 1]
       );
-
-      if (idToInt == 6) {
-        console.log("done!");
-      }
     },
 
     left1() {
@@ -356,7 +323,6 @@ export default {
       } else {
         this.currentMemeber = 1;
       }
-
       document.getElementById(
         "changeMemeberGlobal"
       ).style.background = this.colors[this.currentMemeber - 1];
@@ -368,8 +334,6 @@ export default {
       for (i = 0; i < this.numberOfMemebers; i++) {
         random[i] = Math.floor(Math.random() * (this.numberOfMemebers - 1));
       }
-      console.log(random);
-
       this.dice1.imgsource = this.dicesRed[random[0]].imgsource;
       this.dice2.imgsource = this.dicesYellow[random[1]].imgsource;
       this.dice3.imgsource = this.dicesGreen[random[2]].imgsource;
@@ -387,12 +351,10 @@ export default {
           j++;
         }
       }
-      this.tasksBlocked = toBlock;
-      // alert("You should block tasks with id: " + JSON.stringify(toBlock));
+      this.tasksToBlock = toBlock;
     },
 
     nextDay() {
-      // this.currentDate.add(1).day();
       this.currentDay++;
       this.changeProductivity();
       this.setBlockers();
@@ -415,13 +377,32 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  /* margin-top: 60px; */
   margin-top: 20px;
 }
+
 @import "./styles/flexboxstyles.css";
 @import "./styles/columnstyles.css";
 
 #changeMemeberGlobal {
   background: red;
 }
+
+#nextDay,
+#addNewTask {
+  display: inline-block;
+}
+
+h1 {
+  font-size: 1.8rem;
+}
+
+
+h2 {
+  font-size: 1.5rem;
+}
+
+#numberOfDays, #tasksToBlock {
+  font-size: 17px;
+}
+
 </style>
