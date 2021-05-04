@@ -1,6 +1,5 @@
 <template>
   <div
-    v-bind:style="styleObject"
     :id="id"
     :name="name"
     class="column"
@@ -19,11 +18,7 @@ export default {
   props: ["id", "name"],
   data() {
     return {
-      maxTasks: 5,
-      counter: 0,
-      styleObject: {
-        background: "",
-      },
+      
     };
   },
 
