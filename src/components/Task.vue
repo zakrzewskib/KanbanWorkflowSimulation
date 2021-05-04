@@ -170,7 +170,6 @@ export default {
 
   methods: {
     dragStart: (e) => {
-      console.log(e.target);
       const target = e.target;
       e.dataTransfer.setData("task_id", target.id);
     },
@@ -215,7 +214,7 @@ export default {
       this.prodPointClicked10 = !this.prodPointClicked10;
     },
     unblock() {
-      alert("You unblocked this task, use some of your productivity points!");
+      alert("You unblocked this task!");
       this.blocker = false;
     },
 
@@ -236,7 +235,6 @@ export default {
 }
 
 .task {
-  /* padding: 15px 25px; */
   cursor: pointer;
   margin-bottom: 15px;
   border: 2px solid black;
@@ -273,4 +271,5 @@ hr.myLine {
 .divWithId {
   font-size: 15px;
 }
+
 </style>
