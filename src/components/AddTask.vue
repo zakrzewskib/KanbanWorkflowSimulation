@@ -28,15 +28,12 @@ export default {
         fixedDate = true;
       }
 
-
       const newTask = {
         id: Math.random(),
         name: tasksTypes[index],
         urgent: urgent,
         fixedDate: fixedDate,
-        // day: "11.11",
       };
-      // console.log(newTask);
       this.$emit("add-task", newTask);
     },
   },
