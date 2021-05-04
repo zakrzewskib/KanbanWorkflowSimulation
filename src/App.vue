@@ -35,13 +35,13 @@
       <div class="row">
         <div class="col-4">
           <div id="buttons">
-            <button v-on:click="nextDay" id="nextDay">
-              Next day
-            </button>
-
             <div id="addNewTask">
               <AddTask @add-task="addTask" />
             </div>
+            
+            <button v-on:click="nextDay" id="nextDay">
+              Next day
+            </button>
           </div>
 
           <div id="numberOfDays">Number of days: {{ currentDay }}</div>
@@ -67,7 +67,7 @@
     </div>
 
     <main class="flexbox">
-      <Column id="column-1" name="TODO" @dropped="dropped" @left="left1">
+      <ColumnContainer id="container-1" name="TODO">
         <div>
           Max number of tasks:
           <input
@@ -77,64 +77,78 @@
           />
         </div>
         <div id="col1counter">Number of tasks: {{ counter1 }}</div>
-        <Task
-          v-for="task in tasks"
-          :key="task.id"
-          :id="task.id"
-          :name="task.name"
-          :urgent="task.urgent"
-          :fixedDate="task.fixedDate"
-          :member="currentMemeber"
-          :blocked="task.blocked"
-          draggable="true"
-        >
-        </Task>
-      </Column>
+        <Column id="column-1" name="TODO" @dropped="dropped" @left="left1">
+          <Task
+            v-for="task in tasks"
+            :key="task.id"
+            :id="task.id"
+            :name="task.name"
+            :urgent="task.urgent"
+            :fixedDate="task.fixedDate"
+            :member="currentMemeber"
+            :blocked="task.blocked"
+            draggable="true"
+          >
+          </Task>
+        </Column>
+      </ColumnContainer>
 
-      <Column id="column-2" name="STAGE1" @dropped="dropped" @left="left2">
+      <ColumnContainer id="container-2" name="STAGE1">
         <div>
           Max number of tasks:
           <input class="maxTasksInput" v-model="maxTasks[1]" />
         </div>
         <div id="col2counter">Number of tasks: {{ counter2 }}</div>
-      </Column>
+        <Column id="column-2" name="STAGE1" @dropped="dropped" @left="left2">
+        </Column>
+      </ColumnContainer>
 
-      <Column id="column-3" name="STAGE2" @dropped="dropped" @left="left3">
+      <ColumnContainer id="container-3" name="STAGE2">
         <div>
           Max number of tasks:
           <input class="maxTasksInput" v-model="maxTasks[2]" />
         </div>
         <div id="col3counter">Number of tasks: {{ counter3 }}</div>
-      </Column>
+        <Column id="column-3" name="STAGE2" @dropped="dropped" @left="left3">
+        </Column>
+      </ColumnContainer>
 
-      <Column id="column-4" name="STAGE1" @dropped="dropped" @left="left4">
+      <ColumnContainer id="container-4" name="STAGE1">
         <div>
           Max number of tasks:
           <input class="maxTasksInput" v-model="maxTasks[3]" />
         </div>
         <div id="col4counter">Number of tasks: {{ counter4 }}</div>
-      </Column>
+        <Column id="column-4" name="STAGE1" @dropped="dropped" @left="left4">
+        </Column>
+      </ColumnContainer>
 
-      <Column id="column-5" name="STAGE2" @dropped="dropped" @left="left5">
+      <ColumnContainer id="container-5" name="STAGE2">
         <div>
           Max number of tasks:
           <input class="maxTasksInput" v-model="maxTasks[4]" />
         </div>
         <div id="col5counter">Number of tasks: {{ counter5 }}</div>
-      </Column>
-      <Column id="column-6" name="DONE" @dropped="dropped" @left="left6">
+        <Column id="column-5" name="STAGE2" @dropped="dropped" @left="left5">
+        </Column>
+      </ColumnContainer>
+
+      <ColumnContainer id="container-6" name="DONE">
         <div>
           Max number of tasks:
           <input class="maxTasksInput" v-model="maxTasks[5]" />
         </div>
         <div id="col6counter">Number of tasks: {{ counter6 }}</div>
-      </Column>
+        <Column id="column-6" name="DONE" @dropped="dropped" @left="left6">
+        </Column>
+      </ColumnContainer>
     </main>
   </div>
 </template>
 
 <script>
 import Column from "./components/Column";
+import ColumnContainer from "./components/ColumnContainer";
 import Task from "./components/Task";
 import AddTask from "./components/AddTask";
 
@@ -392,6 +406,7 @@ export default {
     Column,
     Task,
     AddTask,
+    ColumnContainer,
   },
 };
 </script>
@@ -418,6 +433,11 @@ export default {
 }
 
 .flexbox .column {
+  width: 100%;
+  height: 100%;
+}
+
+.columnContainer {
   display: flex;
   flex-direction: column;
   color: black;
@@ -428,14 +448,14 @@ export default {
   padding: 15px;
 }
 
-#column-2,
-#column-4 {
+#container-2,
+#container-4 {
   margin-right: 0px;
   border-right: 1px solid black;
 }
 
-#column-3,
-#column-5 {
+#container-3,
+#container-5 {
   margin-left: 0px;
   border-left: 1px solid black;
 }

@@ -8,7 +8,6 @@
     @drop="dropped"
     @dragstart="left"
   >
-    <h2>{{ name }}</h2>
     <slot />
   </div>
 </template>
