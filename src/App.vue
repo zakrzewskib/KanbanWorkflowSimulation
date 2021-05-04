@@ -1,11 +1,36 @@
 <template>
   <div id="app">
     <h1>{{ title }}</h1>
-    <img :src="dice1.imgsource" :width="dicesSize" :height="dicesSize" alt="dice1"/>
-    <img :src="dice2.imgsource" :width="dicesSize" :height="dicesSize" alt="dice2"/>
-    <img :src="dice3.imgsource" :width="dicesSize" :height="dicesSize" alt="dice3"/>
-    <img :src="dice4.imgsource" :width="dicesSize" :height="dicesSize" alt="dice4"/>
-    <img :src="dice5.imgsource" :width="dicesSize" :height="dicesSize" alt="dice5"/>
+    <img
+      :src="dice1.imgsource"
+      :width="dicesSize"
+      :height="dicesSize"
+      alt="dice1"
+    />
+    <img
+      :src="dice2.imgsource"
+      :width="dicesSize"
+      :height="dicesSize"
+      alt="dice2"
+    />
+    <img
+      :src="dice3.imgsource"
+      :width="dicesSize"
+      :height="dicesSize"
+      alt="dice3"
+    />
+    <img
+      :src="dice4.imgsource"
+      :width="dicesSize"
+      :height="dicesSize"
+      alt="dice4"
+    />
+    <img
+      :src="dice5.imgsource"
+      :width="dicesSize"
+      :height="dicesSize"
+      alt="dice5"
+    />
     <div>
       <div class="row">
         <div class="col-4">
@@ -23,11 +48,13 @@
         </div>
 
         <div class="col-4">
-          <div id="tasksToBlock">Tasks to block: {{ tasksToBlock }} 
-            <br>
-            <em> (To unblock one task, you should use 4 productivity points)</em>
+          <div id="tasksToBlock">
+            Tasks to block: {{ tasksToBlock }}
+            <br />
+            <em>
+              (To unblock one task, you should use 4 productivity points)</em
+            >
           </div>
-          
         </div>
       </div>
     </div>
@@ -115,8 +142,7 @@ export default {
   data() {
     return {
       title: "Kanban Board Workflow Simulation",
-      tasks: [
-      ],
+      tasks: [],
       counters: [0, 0, 0, 0, 0, 0],
       maxTasks: [3, 3, 3, 3, 3, 20],
       counter1: 0,
@@ -380,8 +406,43 @@ export default {
   margin-top: 20px;
 }
 
-@import "./styles/flexboxstyles.css";
-@import "./styles/columnstyles.css";
+.flexbox {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1600px;
+  min-height: 100vh;
+  overflow: hidden;
+  margin: 0 auto;
+  padding: 15px;
+}
+
+.flexbox .column {
+  display: flex;
+  flex-direction: column;
+  color: black;
+  width: 100%;
+  max-width: 600px;
+  margin: 2px;
+  border: 5px solid black;
+  padding: 15px;
+}
+
+#column-2,
+#column-4 {
+  margin-right: 0px;
+  border-right: 1px solid black;
+}
+
+#column-3,
+#column-5 {
+  margin-left: 0px;
+  border-left: 1px solid black;
+}
+
+.maxTasksInput {
+  width: 12%;
+}
 
 #changeMemeberGlobal {
   background: red;
@@ -396,13 +457,12 @@ h1 {
   font-size: 1.8rem;
 }
 
-
 h2 {
   font-size: 1.5rem;
 }
 
-#numberOfDays, #tasksToBlock {
+#numberOfDays,
+#tasksToBlock {
   font-size: 17px;
 }
-
 </style>
