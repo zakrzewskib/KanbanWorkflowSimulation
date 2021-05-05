@@ -38,9 +38,12 @@
             <div id="addNewTask">
               <AddTask @add-task="addTask" />
             </div>
-            
+
             <button v-on:click="nextDay" id="nextDay">
               Next day
+            </button>
+            <button v-on:click="changeMemebers" id="changeMemeberGlobal">
+              Change current member
             </button>
           </div>
 
@@ -158,7 +161,7 @@ export default {
       title: "Kanban Board Workflow Simulation",
       tasks: [],
       counters: [0, 0, 0, 0, 0, 0],
-      maxTasks: [3, 3, 3, 3, 3, 20],
+      maxTasks: [8, 4, 4, 3, 3, 20],
       counter1: 0,
       counter2: 0,
       counter3: 0,
@@ -469,7 +472,8 @@ export default {
 }
 
 #nextDay,
-#addNewTask {
+#addNewTask,
+#changeMemeberGlobal {
   display: inline-block;
 }
 
