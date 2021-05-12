@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <h1>{{ title }}</h1>
+    Productivity points: <br>
     <img
       :src="dice1.imgsource"
       :width="dicesSize"
@@ -42,18 +43,35 @@
             <button v-on:click="nextDay" id="nextDay">
               Next day
             </button>
-            <button v-on:click="changeMemebers" id="changeMemeberGlobal">
-              Change current member
-            </button>
+            <div>
+              Change current developer <em>(use his productivity points)</em>:
+              <div>
+                <button id="developer1" v-on:click="changeToDeveloper1">
+                  1
+                </button>
+                <button id="developer2" v-on:click="changeToDeveloper2">
+                  2
+                </button>
+                <button id="developer3" v-on:click="changeToDeveloper3">
+                  3
+                </button>
+                <button id="developer4" v-on:click="changeToDeveloper4">
+                  4
+                </button>
+                <button id="developer5" v-on:click="changeToDeveloper5">
+                  5
+                </button>
+              </div>
+            </div>
           </div>
 
           <div id="numberOfDays">
             Number of days: {{ currentDay }}
-            <br>
+            <br />
             Current date:
-            {{currentDate.getDate()}}
-            {{currentDate.getMonth()+1}}
-            {{currentDate.getFullYear()}}
+            {{ currentDate.getDate() }}
+            {{ currentDate.getMonth() + 1 }}
+            {{ currentDate.getFullYear() }}
           </div>
         </div>
 
@@ -181,7 +199,7 @@ export default {
       currentMemeber: 1,
       numberOfMemebers: 5,
 
-      colors: ["red", "yellow", "green", "blue", "purple"],
+      colors: ["red", "yellow", "green", "CornflowerBlue", "purple"],
 
       dicesRed: [
         {
@@ -365,7 +383,7 @@ export default {
         urgent: task.urgent,
         fixedDate: task.fixedDate,
         blocked: false,
-        nr : task.nr,
+        nr: task.nr,
       });
       this.increaseTodoColumn();
     },
@@ -379,6 +397,50 @@ export default {
       document.getElementById(
         "changeMemeberGlobal"
       ).style.background = this.colors[this.currentMemeber - 1];
+    },
+
+    resetStyleOnDevelopers(one, two, three, four, five) {
+      if (one) {
+        document.getElementById("developer1").style.border = "";
+      }
+      if (two) {
+        document.getElementById("developer2").style.border = "";
+      }
+      if (three) {
+        document.getElementById("developer3").style.border = "";
+      }
+      if (four) {
+        document.getElementById("developer4").style.border = "";
+      }
+      if (five) {
+        document.getElementById("developer5").style.border = "";
+      }
+    },
+
+    changeToDeveloper1() {
+      this.currentMemeber = 1;
+      document.getElementById("developer1").style.border = "solid black 4px";
+      this.resetStyleOnDevelopers(false, true, true, true, true);
+    },
+    changeToDeveloper2() {
+      this.currentMemeber = 2;
+      document.getElementById("developer2").style.border = "solid black 4px";
+      this.resetStyleOnDevelopers(true, false, true, true, true);
+    },
+    changeToDeveloper3() {
+      this.currentMemeber = 3;
+      document.getElementById("developer3").style.border = "solid black 4px";
+      this.resetStyleOnDevelopers(true, true, false, true, true);
+    },
+    changeToDeveloper4() {
+      this.currentMemeber = 4;
+      document.getElementById("developer4").style.border = "solid black 4px";
+      this.resetStyleOnDevelopers(true, true, true, false, true);
+    },
+    changeToDeveloper5() {
+      this.currentMemeber = 5;
+      document.getElementById("developer5").style.border = "solid black 4px";
+      this.resetStyleOnDevelopers(true, true, true, true, false);
     },
 
     changeProductivity() {
@@ -410,7 +472,7 @@ export default {
     nextDay() {
       this.currentDay++;
       this.currentDate.setDate(this.currentDate.getDate() + 1);
-      this.currentYear= this.currentDate.getDay();
+      this.currentYear = this.currentDate.getDay();
       this.changeProductivity();
       this.setBlockers();
     },
@@ -434,6 +496,7 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 20px;
+  font-size: 17px;
 }
 
 .flexbox {
@@ -476,7 +539,8 @@ export default {
 }
 
 .maxTasksInput {
-  width: 12%;
+  width: 14%;
+  text-align: center;
 }
 
 #changeMemeberGlobal {
@@ -487,6 +551,7 @@ export default {
 #addNewTask,
 #changeMemeberGlobal {
   display: inline-block;
+  margin: 5px;
 }
 
 h1 {
@@ -500,5 +565,29 @@ h2 {
 #numberOfDays,
 #tasksToBlock {
   font-size: 17px;
+}
+
+[id^=developer] {
+  margin: 2px;
+}
+
+#developer1 {
+  background-color: red;
+}
+
+#developer2 {
+  background-color: yellow;
+}
+
+#developer3 {
+  background-color: green;
+}
+
+#developer4 {
+  background-color: CornflowerBlue;
+}
+
+#developer5 {
+  background-color: purple;
 }
 </style>

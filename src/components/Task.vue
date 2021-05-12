@@ -144,7 +144,7 @@ export default {
       prodPointClicked8: false,
       prodPointClicked9: false,
       prodPointClicked10: false,
-      colors: ["red", "yellow", "green", "blue", "purple"],
+      colors: ["red", "yellow", "green", "CornflowerBlue", "purple"],
       currentMem1: 1,
       currentMem2: 1,
       currentMem3: 1,
