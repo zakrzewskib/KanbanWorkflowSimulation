@@ -1,41 +1,10 @@
 <template>
   <div id="app">
     <h1>{{ title }}</h1>
-    Productivity points: <br>
-    <img
-      :src="dice1.imgsource"
-      :width="dicesSize"
-      :height="dicesSize"
-      alt="dice1"
-    />
-    <img
-      :src="dice2.imgsource"
-      :width="dicesSize"
-      :height="dicesSize"
-      alt="dice2"
-    />
-    <img
-      :src="dice3.imgsource"
-      :width="dicesSize"
-      :height="dicesSize"
-      alt="dice3"
-    />
-    <img
-      :src="dice4.imgsource"
-      :width="dicesSize"
-      :height="dicesSize"
-      alt="dice4"
-    />
-    <img
-      :src="dice5.imgsource"
-      :width="dicesSize"
-      :height="dicesSize"
-      alt="dice5"
-    />
-    <div>
-      <div class="row">
-        <div class="col-4">
-          <div id="buttons">
+    <div class="row">
+      <div class="col-4">
+        <div>
+          <div>
             <div id="addNewTask">
               <AddTask @add-task="addTask" />
             </div>
@@ -64,8 +33,42 @@
               </div>
             </div>
           </div>
-
-          <div id="numberOfDays">
+        </div>
+      </div>
+      <div class="col-4">
+        Productivity points: <br />
+        <img
+          :src="dice1.imgsource"
+          :width="dicesSize"
+          :height="dicesSize"
+          alt="dice1"
+        />
+        <img
+          :src="dice2.imgsource"
+          :width="dicesSize"
+          :height="dicesSize"
+          alt="dice2"
+        />
+        <img
+          :src="dice3.imgsource"
+          :width="dicesSize"
+          :height="dicesSize"
+          alt="dice3"
+        />
+        <img
+          :src="dice4.imgsource"
+          :width="dicesSize"
+          :height="dicesSize"
+          alt="dice4"
+        />
+        <img
+          :src="dice5.imgsource"
+          :width="dicesSize"
+          :height="dicesSize"
+          alt="dice5"
+        />
+        <div class="row">
+          <div class="col-6" id="numberOfDays">
             Number of days: {{ currentDay }}
             <br />
             Current date:
@@ -73,10 +76,8 @@
             {{ currentDate.getMonth() + 1 }}
             {{ currentDate.getFullYear() }}
           </div>
-        </div>
 
-        <div class="col-4">
-          <div id="tasksToBlock">
+          <div class="col-6" id="tasksToBlock">
             Tasks to block: {{ tasksToBlock }}
             <br />
             <em>
@@ -199,7 +200,13 @@ export default {
       currentMemeber: 1,
       numberOfMemebers: 5,
 
-      colors: ["LightCoral", "yellow", "DarkSeaGreen", "CornflowerBlue", "MediumPurple"],
+      colors: [
+        "LightCoral",
+        "yellow",
+        "DarkSeaGreen",
+        "CornflowerBlue",
+        "MediumPurple",
+      ],
 
       dicesRed: [
         {
@@ -562,12 +569,18 @@ h2 {
   font-size: 1.5rem;
 }
 
-#numberOfDays,
-#tasksToBlock {
-  font-size: 17px;
+#middleColumn {
+  overflow: hidden;
 }
 
-[id^=developer] {
+#numberOfDays {
+  float: left;
+}
+#tasksToBlock {
+  float: left;
+}
+
+[id^="developer"] {
   margin: 2px;
 }
 
