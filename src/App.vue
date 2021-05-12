@@ -90,6 +90,7 @@
             :fixedDate="task.fixedDate"
             :member="currentMemeber"
             :blocked="task.blocked"
+            :nr="task.nr"
             draggable="true"
           >
           </Task>
@@ -356,6 +357,7 @@ export default {
         urgent: task.urgent,
         fixedDate: task.fixedDate,
         blocked: false,
+        nr : task.nr,
       });
       this.increaseTodoColumn();
     },
@@ -390,7 +392,7 @@ export default {
       for (var i = 0; i < this.tasks.length; i++) {
         var random = Math.floor(Math.random() * 100);
         if (random <= 20 && this.tasks[i].blocked == false) {
-          toBlock[j] = Math.round(this.tasks[i].id * 100);
+          toBlock[j] = this.tasks[i].nr;
           j++;
         }
       }

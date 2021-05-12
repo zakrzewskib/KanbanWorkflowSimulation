@@ -4,14 +4,15 @@
     :name="name"
     :member="member"
     :blocked="blocked"
+    :nr="nr"
     class="task"
     v-bind:class="{ urgent: urgent, fixedDate: fixedDate }"
     :draggable="draggable"
     @dragstart="dragStart"
     @dragover.stop
   >
-    <div class="divWithId">
-      {{ name }}, id = {{ roundedId }}
+    <div class="divWithNr">
+      {{ name }}, nr. = {{nr}}
       <div v-if="blocker">
         <button v-on:click="unblock" class="unblockButton">BLOCKED</button>
       </div>
@@ -166,6 +167,7 @@ export default {
     "fixedDate",
     "member",
     "blocked",
+    "nr",
   ],
 
   methods: {
@@ -268,7 +270,7 @@ hr.myLine {
   background-color: red;
 }
 
-.divWithId {
+.divWithNr {
   font-size: 15px;
 }
 

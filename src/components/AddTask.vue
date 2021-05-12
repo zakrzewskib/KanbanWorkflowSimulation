@@ -7,6 +7,12 @@
 <script>
 export default {
   name: "AddTask",
+    data() {
+      return {
+        taskNumber: 1,
+      }
+
+  },
   methods: {
     randomIntFromInterval(min, max) {
       return Math.floor(Math.random() * (max - min + 1) + min);
@@ -18,6 +24,7 @@ export default {
       var index;
       var urgent = false;
       var fixedDate = false;
+      var nr = this.taskNumber;
       if(random <= 50) {
         index = 0;
       } else if (random > 50 && random <= 75) {
@@ -27,12 +34,14 @@ export default {
         index = 2;
         fixedDate = true;
       }
+      this.taskNumber++;
 
       const newTask = {
         id: Math.random(),
         name: tasksTypes[index],
         urgent: urgent,
         fixedDate: fixedDate,
+        nr: nr,
       };
       this.$emit("add-task", newTask);
     },
