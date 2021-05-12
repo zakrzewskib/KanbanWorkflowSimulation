@@ -199,7 +199,7 @@ export default {
       currentMemeber: 1,
       numberOfMemebers: 5,
 
-      colors: ["red", "yellow", "green", "CornflowerBlue", "purple"],
+      colors: ["LightCoral", "yellow", "DarkSeaGreen", "CornflowerBlue", "MediumPurple"],
 
       dicesRed: [
         {
@@ -572,7 +572,7 @@ h2 {
 }
 
 #developer1 {
-  background-color: red;
+  background-color: LightCoral;
 }
 
 #developer2 {
@@ -580,7 +580,7 @@ h2 {
 }
 
 #developer3 {
-  background-color: green;
+  background-color: DarkSeaGreen;
 }
 
 #developer4 {
@@ -588,6 +588,6 @@ h2 {
 }
 
 #developer5 {
-  background-color: purple;
+  background-color: MediumPurple;
 }
 </style>

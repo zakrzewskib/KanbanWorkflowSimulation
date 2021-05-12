@@ -12,13 +12,17 @@
     @dragover.stop
   >
     <div class="divWithNr">
-      {{ name }}, nr. = {{nr}}
+      {{ name }}, nr. = {{ nr }}
       <div v-if="blocker">
         <button v-on:click="unblock" class="unblockButton">BLOCKED</button>
       </div>
     </div>
 
-    <button v-on:click="setBlocker" class="setBlocker"></button>
+    <button
+      v-on:click="setBlocker"
+      class="setBlocker"
+      id="blockerButton"
+    ></button>
 
     <div class="productivity">
       <button
@@ -144,7 +148,13 @@ export default {
       prodPointClicked8: false,
       prodPointClicked9: false,
       prodPointClicked10: false,
-      colors: ["red", "yellow", "green", "CornflowerBlue", "purple"],
+      colors: [
+        "LightCoral",
+        "yellow",
+        "DarkSeaGreen",
+        "CornflowerBlue",
+        "MediumPurple",
+      ],
       currentMem1: 1,
       currentMem2: 1,
       currentMem3: 1,
@@ -215,13 +225,16 @@ export default {
       this.currentMem10 = this.member;
       this.prodPointClicked10 = !this.prodPointClicked10;
     },
+
     unblock() {
       alert("You unblocked this task!");
       this.blocker = false;
+      document.getElementById("blockerButton").style.visibility = "visible";
     },
 
     setBlocker() {
       this.blocker = true;
+      document.getElementById("blockerButton").style.visibility = "hidden";
     },
   },
 };
@@ -273,5 +286,4 @@ hr.myLine {
 .divWithNr {
   font-size: 15px;
 }
-
 </style>
