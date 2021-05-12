@@ -47,7 +47,14 @@
             </button>
           </div>
 
-          <div id="numberOfDays">Number of days: {{ currentDay }}</div>
+          <div id="numberOfDays">
+            Number of days: {{ currentDay }}
+            <br>
+            Current date:
+            {{currentDate.getDate()}}
+            {{currentDate.getMonth()+1}}
+            {{currentDate.getFullYear()}}
+          </div>
         </div>
 
         <div class="col-4">
@@ -281,6 +288,7 @@ export default {
       tasksToBlock: [],
       currentDate: new Date(),
       currentDay: 0,
+      currentYear: 0,
     };
   },
 
@@ -401,6 +409,8 @@ export default {
 
     nextDay() {
       this.currentDay++;
+      this.currentDate.setDate(this.currentDate.getDate() + 1);
+      this.currentYear= this.currentDate.getDay();
       this.changeProductivity();
       this.setBlockers();
     },
