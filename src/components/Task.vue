@@ -12,7 +12,12 @@
     @dragover.stop
   >
     <div class="divWithNr">
-      {{ name }}, nr. = {{ nr }}
+      <div class="taskName">
+        {{ name }}
+        nr. = {{ nr }}
+        <em v-on:click="deleteTask" class="fas fa-times" id="delBtn"></em>
+      </div>
+      
       <div v-if="blocker">
         <button v-on:click="unblock" class="unblockButton">BLOCKED</button>
       </div>
@@ -236,6 +241,9 @@ export default {
       this.blocker = true;
       document.getElementById("blockerButton").style.visibility = "hidden";
     },
+    deleteTask() {
+      this.$emit("delete-task", this.nr);
+    },
   },
 };
 </script>
@@ -285,5 +293,17 @@ hr.myLine {
 
 .divWithNr {
   font-size: 15px;
+  margin-left: 10px;
+}
+
+.fas {
+  color: red;
+  font-size: 14px;
+}
+
+#delBtn {
+  float: right;
+  margin-top: 3px;
+  margin-right: 6px;
 }
 </style>

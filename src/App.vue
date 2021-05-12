@@ -118,6 +118,7 @@
             :blocked="task.blocked"
             :nr="task.nr"
             draggable="true"
+            @delete-task="deleteTask"
           >
           </Task>
         </Column>
@@ -483,6 +484,9 @@ export default {
       this.changeProductivity();
       this.setBlockers();
     },
+    deleteTask(nr) {
+      this.tasks = this.tasks.filter((task)=>task.nr !== nr);
+    }
   },
 
   name: "App",
