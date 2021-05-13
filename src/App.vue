@@ -71,10 +71,8 @@
           <div class="col-6" id="numberOfDays">
             Number of days: {{ currentDay }}
             <br />
-            Current date:
-            {{ currentDate.getDate() }}
-            {{ currentDate.getMonth() + 1 }}
-            {{ currentDate.getFullYear() }}
+            Current date (dd/mm/yyyy):
+            {{currentDate.getDate()}}.{{currentDate.getMonth() + 1}}.{{currentDate.getFullYear()}}.
           </div>
 
           <div class="col-6" id="tasksToBlock">
@@ -455,7 +453,7 @@ export default {
       var i;
       var random = [];
       for (i = 0; i < this.numberOfMemebers; i++) {
-        random[i] = Math.floor(Math.random() * (this.numberOfMemebers - 1));
+        random[i] = Math.floor(Math.random() * (this.numberOfMemebers));
       }
       this.dice1.imgsource = this.dicesRed[random[0]].imgsource;
       this.dice2.imgsource = this.dicesYellow[random[1]].imgsource;
