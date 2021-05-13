@@ -607,4 +607,7 @@ h2 {
 #developer5 {
   background-color: MediumPurple;
 }
+img {
+  margin-right: 5px;
+}
 </style>
