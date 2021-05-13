@@ -75,11 +75,10 @@
             {{currentDate.getDate()}}.{{currentDate.getMonth() + 1}}.{{currentDate.getFullYear()}}.
           </div>
 
-          <div class="col-6" id="tasksToBlock">
-            Tasks to block: {{ tasksToBlock }}
-            <br />
+          <div class="col-6" id="toBlock">
+            <div id="tasksToBlock"> Tasks to block: {{ tasksToBlock }} </div>
             <em>
-              (To unblock one task, you should use 4 productivity points)</em
+              (To unblock one task, you should use about 3 productivity points)</em
             >
           </div>
         </div>
@@ -568,6 +567,10 @@ h1 {
 }
 
 h2 {
+  font-size: 1.8rem;
+}
+
+h3 {
   font-size: 1.5rem;
 }
 
@@ -578,8 +581,14 @@ h2 {
 #numberOfDays {
   float: left;
 }
-#tasksToBlock {
+
+#toBlock {
   float: left;
+}
+
+#tasksToBlock {
+  color: red;
+  font-weight: bold;
 }
 
 [id^="developer"] {

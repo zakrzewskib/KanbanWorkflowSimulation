@@ -1,6 +1,6 @@
 <template>
   <div class="columnContainer" :name="name">
-    <h2>{{ name }}</h2>
+    <h3>{{ name }}</h3>
     <slot />
   </div>
 </template>
