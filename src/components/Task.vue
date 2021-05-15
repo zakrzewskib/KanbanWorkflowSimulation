@@ -17,7 +17,7 @@
         nr. = {{ nr }}
         <em v-on:click="deleteTask" class="fas fa-times" id="delBtn"></em>
       </div>
-      
+
       <div v-if="blocker">
         <button v-on:click="unblock" class="unblockButton">BLOCKED</button>
       </div>
@@ -133,6 +133,11 @@
       ></button>
       <slot />
     </div>
+    <div>
+      <input class="date" placeholder="dd-mm-yyyy" v-model="startDate" />
+      <input class="date" placeholder="dd-mm-yyyy" v-model="endDate" />
+      <p class="taskCompleted">Task completed in: {{ total }}</p>
+    </div>
   </div>
 </template>
 
@@ -171,6 +176,8 @@ export default {
       currentMem9: 1,
       currentMem10: 1,
       roundedId: Math.round(this.id * 100),
+      startDate: "",
+      endDate: "",
     };
   },
 
@@ -184,6 +191,32 @@ export default {
     "blocked",
     "nr",
   ],
+  computed: {
+    total: function() {
+      const firstDate = new Date();
+      // firstDate.setMonth(parseInt(this.endDate.substring(3,5)) - 1);
+      // firstDate.setDate(parseInt(this.endDate.substring(0,2)));
+      console.log(this.endDate.substring(5, 9));
+      console.log(this.endDate.substring(3, 5));
+      console.log(this.endDate.substring(0, 2));
+
+      firstDate.setFullYear(
+        parseInt(this.endDate.substring(5, 9)),
+        parseInt(this.endDate.substring(3, 5)) - 1,
+        parseInt(this.endDate.substring(0, 2))
+      );
+
+      const secondDate = new Date();
+      secondDate.setFullYear(
+        parseInt(this.startDate.substring(5, 9)),
+        parseInt(this.startDate.substring(3, 5)) - 1,
+        parseInt(this.startDate.substring(0, 2))
+      );
+      const diffTime = Math.abs(firstDate - secondDate);
+      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+      return diffDays;
+    },
+  },
 
   methods: {
     dragStart: (e) => {
@@ -299,9 +332,20 @@ hr.myLine {
   font-size: 14px;
 }
 
+.taskCompleted {
+  font-size: 15px;
+}
+
 #delBtn {
   float: right;
   margin-top: 3px;
   margin-right: 6px;
+}
+
+.date {
+  width: 200px;
+  height: 20px;
+  text-align: center;
+  font-size: 15px;
 }
 </style>

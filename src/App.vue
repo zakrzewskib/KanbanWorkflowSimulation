@@ -78,9 +78,9 @@
             Number of days: {{ currentDay }}
             <br />
             Current date (dd/mm/yyyy):
-            {{ currentDate.getDate() }}.{{ currentDate.getMonth() + 1 }}.{{
+            {{ dayWithZero }}.{{ monthWithZero }}.{{
               currentDate.getFullYear()
-            }}.
+            }}
           </div>
 
           <div class="col-6" id="toBlock">
@@ -101,10 +101,10 @@
         <div class="probabilityDiv">
           <a>Normal task probability: </a>
           <input class="blockersP" v-model="normalProb" />
-          <br>
+          <br />
           <a>Urgent task probability: </a>
           <input class="blockersP" v-model="urgentProb" />
-          <br>
+          <br />
           <a>Fixed date task probability: </a>
           <input class="blockersP" v-model="fixedDateProb" />
         </div>
@@ -337,7 +337,8 @@ export default {
       tasksToBlock: [],
       currentDate: new Date(),
       currentDay: 0,
-      currentYear: 0,
+      dayWithZero: new Date().getDate(),
+      monthWithZero: new Date().getMonth() + 1,
 
       blockedProbability: 20,
       normalProb: 50,
@@ -508,10 +509,28 @@ export default {
       this.tasksToBlock = toBlock;
     },
 
+    addZeroToMonthAndDay() {
+      var month = this.currentDate.getMonth() + 1;
+      if (month < 9) {
+        this.monthWithZero = "0" + month;
+      } else {
+        this.monthWithZero = month;
+      }
+
+      var day = this.currentDate.getDate();
+      if (day < 9) {
+        this.dayWithZero = "0" + day;
+      } else {
+        this.dayWithZero = day;
+      }
+    },
+
     nextDay() {
       this.currentDay++;
       this.currentDate.setDate(this.currentDate.getDate() + 1);
-      this.currentYear = this.currentDate.getDay();
+
+      this.addZeroToMonthAndDay();
+
       this.changeProductivity();
       this.setBlockers();
     },
