@@ -234,12 +234,10 @@ export default {
     unblock() {
       alert("You unblocked this task!");
       this.blocker = false;
-      document.getElementById("blockerButton").style.visibility = "visible";
     },
 
     setBlocker() {
       this.blocker = true;
-      document.getElementById("blockerButton").style.visibility = "hidden";
     },
     deleteTask() {
       this.$emit("delete-task", this.nr);
