@@ -6,10 +6,10 @@
         <div>
           <div>
             <div id="addNewTask">
-              <AddTask @add-task="addTask" />
+              <AddTask class="button8" @add-task="addTask" />
             </div>
 
-            <button v-on:click="nextDay" id="nextDay">
+            <button v-on:click="nextDay" id="nextDay" class="button8">
               Next day
             </button>
             <div>
@@ -72,16 +72,24 @@
             Number of days: {{ currentDay }}
             <br />
             Current date (dd/mm/yyyy):
-            {{currentDate.getDate()}}.{{currentDate.getMonth() + 1}}.{{currentDate.getFullYear()}}.
+            {{ currentDate.getDate() }}.{{ currentDate.getMonth() + 1 }}.{{
+              currentDate.getFullYear()
+            }}.
           </div>
 
           <div class="col-6" id="toBlock">
-            <div id="tasksToBlock"> Tasks to block: {{ tasksToBlock }} </div>
+            <div id="tasksToBlock">Tasks to block: {{ tasksToBlock }}</div>
             <em>
-              (To unblock one task, you should use about 3 productivity points)</em
+              (To unblock one task, you should use about 3 productivity
+              points)</em
             >
           </div>
         </div>
+      </div>
+      <div class="col-4">
+        To block probability (in %):
+        <input class="blockersP" v-model="blockedProbability" />
+        <button class="submit button8">Submit</button>
       </div>
     </div>
 
@@ -312,6 +320,8 @@ export default {
       currentDate: new Date(),
       currentDay: 0,
       currentYear: 0,
+
+      blockedProbability: 20,
     };
   },
 
@@ -452,7 +462,7 @@ export default {
       var i;
       var random = [];
       for (i = 0; i < this.numberOfMemebers; i++) {
-        random[i] = Math.floor(Math.random() * (this.numberOfMemebers));
+        random[i] = Math.floor(Math.random() * this.numberOfMemebers);
       }
       this.dice1.imgsource = this.dicesRed[random[0]].imgsource;
       this.dice2.imgsource = this.dicesYellow[random[1]].imgsource;
@@ -466,7 +476,10 @@ export default {
       var j = 0;
       for (var i = 0; i < this.tasks.length; i++) {
         var random = Math.floor(Math.random() * 100);
-        if (random <= 20 && this.tasks[i].blocked == false) {
+        if (
+          random <= this.blockedProbability &&
+          this.tasks[i].blocked == false
+        ) {
           toBlock[j] = this.tasks[i].nr;
           j++;
         }
@@ -482,8 +495,8 @@ export default {
       this.setBlockers();
     },
     deleteTask(nr) {
-      this.tasks = this.tasks.filter((task)=>task.nr !== nr);
-    }
+      this.tasks = this.tasks.filter((task) => task.nr !== nr);
+    },
   },
 
   name: "App",
@@ -616,5 +629,14 @@ h3 {
 }
 img {
   margin-right: 5px;
+}
+
+.blockersP {
+  width: 40px;
+  margin-right: 10px;
+}
+
+.button8:active{
+  background-color:#bebebe;
 }
 </style>

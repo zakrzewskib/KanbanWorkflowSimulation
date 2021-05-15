@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button v-on:click="onClick">Add new task</button>
+    <button class="button8" v-on:click="onClick">Add new task</button>
   </div>
 </template>
 
