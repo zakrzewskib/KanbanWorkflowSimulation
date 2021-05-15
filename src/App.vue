@@ -78,9 +78,7 @@
             Number of days: {{ currentDay }}
             <br />
             Current date (dd/mm/yyyy):
-            {{ currentDate.getDate() }}.{{ currentDate.getMonth()+1 }}.{{
-              currentDate.getFullYear()
-            }}
+            {{currentDate.toLocaleDateString()}}
           </div>
 
           <div class="col-6" id="toBlock">

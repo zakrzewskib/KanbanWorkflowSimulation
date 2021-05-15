@@ -134,8 +134,8 @@
       <slot />
     </div>
     <div>
-      <input class="date" placeholder="dd-mm-yyyy" v-model="startDate" />
-      <input class="date" placeholder="dd-mm-yyyy" v-model="endDate" />
+      <input class="date" placeholder="dd.mm.yyyy" v-model="startDate" />
+      <input class="date" placeholder="dd.mm.yyyy" v-model="endDate" />
       <p class="taskCompleted">Task completed in: {{ total }}</p>
     </div>
   </div>
@@ -194,24 +194,31 @@ export default {
   computed: {
     total: function() {
       const firstDate = new Date();
-      // firstDate.setMonth(parseInt(this.endDate.substring(3,5)) - 1);
-      // firstDate.setDate(parseInt(this.endDate.substring(0,2)));
-      console.log(this.endDate.substring(5, 9));
-      console.log(this.endDate.substring(3, 5));
-      console.log(this.endDate.substring(0, 2));
+      const secondDate = new Date();
+      var yearIndex1 = 5;
+      var yearIndex2 = 5;
 
+      if(parseInt(this.endDate.substring(0, 2)) > 9) {
+        yearIndex1 += 1;
+      } 
+
+      if(parseInt(this.startDate.substring(0, 2)) > 9) {
+        yearIndex2 += 1;
+      } 
+  
       firstDate.setFullYear(
-        parseInt(this.endDate.substring(5, 9)),
+        parseInt(this.endDate.substring(yearIndex1, yearIndex1+4)),
         parseInt(this.endDate.substring(3, 5)) - 1,
         parseInt(this.endDate.substring(0, 2))
       );
 
-      const secondDate = new Date();
+
       secondDate.setFullYear(
-        parseInt(this.startDate.substring(5, 9)),
+        parseInt(this.startDate.substring(yearIndex2, yearIndex2+4)),
         parseInt(this.startDate.substring(3, 5)) - 1,
         parseInt(this.startDate.substring(0, 2))
       );
+
       const diffTime = Math.abs(firstDate - secondDate);
       const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
       return diffDays;
