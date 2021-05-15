@@ -78,7 +78,7 @@
             Number of days: {{ currentDay }}
             <br />
             Current date (dd/mm/yyyy):
-            {{ dayWithZero }}.{{ monthWithZero }}.{{
+            {{ currentDate.getDate() }}.{{ currentDate.getMonth()+1 }}.{{
               currentDate.getFullYear()
             }}
           </div>
@@ -337,8 +337,6 @@ export default {
       tasksToBlock: [],
       currentDate: new Date(),
       currentDay: 0,
-      dayWithZero: new Date().getDate(),
-      monthWithZero: new Date().getMonth() + 1,
 
       blockedProbability: 20,
       normalProb: 50,
@@ -508,29 +506,9 @@ export default {
       }
       this.tasksToBlock = toBlock;
     },
-
-    addZeroToMonthAndDay() {
-      var month = this.currentDate.getMonth() + 1;
-      if (month < 9) {
-        this.monthWithZero = "0" + month;
-      } else {
-        this.monthWithZero = month;
-      }
-
-      var day = this.currentDate.getDate();
-      if (day < 9) {
-        this.dayWithZero = "0" + day;
-      } else {
-        this.dayWithZero = day;
-      }
-    },
-
     nextDay() {
       this.currentDay++;
       this.currentDate.setDate(this.currentDate.getDate() + 1);
-
-      this.addZeroToMonthAndDay();
-
       this.changeProductivity();
       this.setBlockers();
     },
