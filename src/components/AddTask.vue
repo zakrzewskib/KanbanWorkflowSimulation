@@ -1,5 +1,9 @@
 <template>
-  <div>
+  <div
+    :normalProb="normalProb"
+    :urgentProb="urgentProb"
+    :fixedDateProb="fixedDateProb"
+  >
     <button class="button8" v-on:click="onClick">Add new task</button>
   </div>
 </template>
@@ -7,31 +11,51 @@
 <script>
 export default {
   name: "AddTask",
-    data() {
-      return {
-        taskNumber: 1,
-      }
-
+  data() {
+    return {
+      taskNumber: 1,
+    };
   },
+  props: ["normalProb", "urgentProb", "fixedDateProb"],
+
   methods: {
     randomIntFromInterval(min, max) {
       return Math.floor(Math.random() * (max - min + 1) + min);
     },
 
+    randomSample() {
+      const samples = [
+        { value: 0, weight: this.normalProb },
+        { value: 1, weight: this.urgentProb },
+        { value: 2, weight: this.fixedDateProb },
+      ];
+
+      // [0..1) * sum of weight
+      let sample =
+        Math.random() * samples.reduce((sum, { weight }) => sum + weight, 0);
+
+      // first sample n where sum of weight for [0..n] > sample
+      const { value } = samples.find(({ weight }) => (sample -= weight) < 0);
+
+      return value;
+    },
+
     onClick() {
       var tasksTypes = ["Normal task", "Urgent task", "Fixed date task"];
-      var random = this.randomIntFromInterval(1, 100);
       var index;
       var urgent = false;
       var fixedDate = false;
       var nr = this.taskNumber;
-      if(random <= 50) {
-        index = 0;
-      } else if (random > 50 && random <= 75) {
-        index = 1;
+
+      if(this.normalProb + this.urgentProb + this.fixedDateProb !=100) {
+        alert("Sum of probabilities should give 100!");
+        return;
+      }
+
+      index = this.randomSample();
+      if(index == 1) {
         urgent = true;
-      } else {
-        index = 2;
+      } else if (index == 2) {
         fixedDate = true;
       }
       this.taskNumber++;

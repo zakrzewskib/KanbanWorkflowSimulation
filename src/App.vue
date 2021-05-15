@@ -6,7 +6,13 @@
         <div>
           <div>
             <div id="addNewTask">
-              <AddTask class="button8" @add-task="addTask" />
+              <AddTask
+                class="button8"
+                @add-task="addTask"
+                :normalProb="normalProb"
+                :urgentProb="urgentProb"
+                :fixedDateProb="fixedDateProb"
+              />
             </div>
 
             <button v-on:click="nextDay" id="nextDay" class="button8">
@@ -87,9 +93,21 @@
         </div>
       </div>
       <div class="col-4">
-        To block probability (in %):
-        <input class="blockersP" v-model="blockedProbability" />
-        <button class="submit button8">Submit</button>
+        <div class="probabilityDiv">
+          <a>To block probability (in %): </a>
+          <input class="blockersP" v-model="blockedProbability" />
+        </div>
+
+        <div class="probabilityDiv">
+          <a>Normal task probability: </a>
+          <input class="blockersP" v-model="normalProb" />
+          <br>
+          <a>Urgent task probability: </a>
+          <input class="blockersP" v-model="urgentProb" />
+          <br>
+          <a>Fixed date task probability: </a>
+          <input class="blockersP" v-model="fixedDateProb" />
+        </div>
       </div>
     </div>
 
@@ -322,6 +340,9 @@ export default {
       currentYear: 0,
 
       blockedProbability: 20,
+      normalProb: 50,
+      urgentProb: 25,
+      fixedDateProb: 25,
     };
   },
 
@@ -636,7 +657,12 @@ img {
   margin-right: 10px;
 }
 
-.button8:active{
-  background-color:#bebebe;
+.button8:active {
+  background-color: #bebebe;
+}
+
+.probabilityDiv {
+  text-align: left;
+  margin-left: 40px;
 }
 </style>
