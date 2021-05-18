@@ -78,7 +78,7 @@
             Number of days: {{ currentDay }}
             <br />
             Current date (dd/mm/yyyy):
-            {{currentDate.toLocaleDateString()}}
+            {{ currentDate.toLocaleDateString() }}
           </div>
 
           <div class="col-6" id="toBlock">
@@ -342,6 +342,10 @@ export default {
       fixedDateProb: 25,
     };
   },
+
+  // created: function () {
+  //   alert("Quick page guide: This web app present a");
+  // },
 
   methods: {
     changeStyleIfMoreThanMax(counter, option, maxTasks) {
