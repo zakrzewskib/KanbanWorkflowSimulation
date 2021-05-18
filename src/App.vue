@@ -76,9 +76,9 @@
         <div class="row">
           <div class="col-6" id="numberOfDays">
             <div id="currentDay">Number of days: {{ currentDay }}</div>
-            <br />
-            Current date (dd/mm/yyyy):
-            {{ currentDate.toLocaleDateString() }}
+            <div id ="currentDate">
+            Current date (dd/mm/yyyy):&#10;{{ currentDate.toLocaleDateString() }}
+            </div>
           </div>
 
           <div class="col-6" id="toBlock">
@@ -663,5 +663,9 @@ img {
 .probabilityDiv {
   text-align: left;
   margin-left: 40px;
+}
+
+div {
+    white-space: pre-wrap;
 }
 </style>
