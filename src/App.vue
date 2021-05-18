@@ -75,7 +75,7 @@
         />
         <div class="row">
           <div class="col-6" id="numberOfDays">
-            Number of days: {{ currentDay }}
+            <div id="currentDay">Number of days: {{ currentDay }}</div>
             <br />
             Current date (dd/mm/yyyy):
             {{ currentDate.toLocaleDateString() }}
