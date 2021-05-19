@@ -8,9 +8,9 @@
     :dicesSize="dicesSize"
   >
     <strong id="productivityPoints">Productivity points (1-5): </strong>
-    <br>
+    <br />
     <em> Use them to fill productivity points in each task </em>
-    <br>
+    <br />
     <img
       :src="dice1.imgsource"
       :width="dicesSize"
@@ -55,7 +55,6 @@ export default {
 
   methods: {},
 };
-
 </script>
 
 <style scoped>

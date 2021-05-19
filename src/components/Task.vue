@@ -132,7 +132,7 @@
     <div>
       <input class="date" placeholder="dd.mm.yyyy" v-model="startDate" />
       <input class="date" placeholder="dd.mm.yyyy" v-model="endDate" />
-      <p class="taskCompleted">Task completed in: {{ total }}</p>
+      <p class="taskCompleted">Task completed in: {{ taskCompletedTime }}</p>
     </div>
   </div>
 </template>
@@ -141,8 +141,6 @@
 export default {
   data() {
     return {
-      start: "",
-      end: "",
       prodPointClicked1: false,
       prodPointClicked2: false,
       prodPointClicked3: false,
@@ -170,7 +168,6 @@ export default {
       currentMem8: 1,
       currentMem9: 1,
       currentMem10: 1,
-      roundedId: Math.round(this.id * 100),
       startDate: "",
       endDate: "",
     };
@@ -186,30 +183,30 @@ export default {
     "blocked",
     "nr",
   ],
+
   computed: {
-    total: function() {
+    taskCompletedTime: function() {
       const firstDate = new Date();
       const secondDate = new Date();
       var yearIndex1 = 5;
       var yearIndex2 = 5;
 
-      if(parseInt(this.endDate.substring(0, 2)) > 9) {
+      if (parseInt(this.endDate.substring(0, 2)) > 9) {
         yearIndex1 += 1;
-      } 
+      }
 
-      if(parseInt(this.startDate.substring(0, 2)) > 9) {
+      if (parseInt(this.startDate.substring(0, 2)) > 9) {
         yearIndex2 += 1;
-      } 
-  
+      }
+
       firstDate.setFullYear(
-        parseInt(this.endDate.substring(yearIndex1, yearIndex1+4)),
+        parseInt(this.endDate.substring(yearIndex1, yearIndex1 + 4)),
         parseInt(this.endDate.substring(3, 5)) - 1,
         parseInt(this.endDate.substring(0, 2))
       );
 
-
       secondDate.setFullYear(
-        parseInt(this.startDate.substring(yearIndex2, yearIndex2+4)),
+        parseInt(this.startDate.substring(yearIndex2, yearIndex2 + 4)),
         parseInt(this.startDate.substring(3, 5)) - 1,
         parseInt(this.startDate.substring(0, 2))
       );
@@ -225,42 +222,52 @@ export default {
       const target = e.target;
       e.dataTransfer.setData("task_id", target.id);
     },
+
     addedProdPoint1() {
       this.currentMem1 = this.member;
       this.prodPointClicked1 = !this.prodPointClicked1;
     },
+
     addedProdPoint2() {
       this.currentMem2 = this.member;
       this.prodPointClicked2 = !this.prodPointClicked2;
     },
+
     addedProdPoint3() {
       this.currentMem3 = this.member;
       this.prodPointClicked3 = !this.prodPointClicked3;
     },
+
     addedProdPoint4() {
       this.currentMem4 = this.member;
       this.prodPointClicked4 = !this.prodPointClicked4;
     },
+
     addedProdPoint5() {
       this.currentMem5 = this.member;
       this.prodPointClicked5 = !this.prodPointClicked5;
     },
+
     addedProdPoint6() {
       this.currentMem6 = this.member;
       this.prodPointClicked6 = !this.prodPointClicked6;
     },
+
     addedProdPoint7() {
       this.currentMem7 = this.member;
       this.prodPointClicked7 = !this.prodPointClicked7;
     },
+
     addedProdPoint8() {
       this.currentMem8 = this.member;
       this.prodPointClicked8 = !this.prodPointClicked8;
     },
+
     addedProdPoint9() {
       this.currentMem9 = this.member;
       this.prodPointClicked9 = !this.prodPointClicked9;
     },
+
     addedProdPoint10() {
       this.currentMem10 = this.member;
       this.prodPointClicked10 = !this.prodPointClicked10;
@@ -270,6 +277,7 @@ export default {
       alert("You unblocked this task!");
       this.$emit("unblocked-task", this.nr);
     },
+
     deleteTask() {
       this.$emit("delete-task", this.nr);
     },

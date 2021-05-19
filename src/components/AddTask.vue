@@ -29,14 +29,10 @@ export default {
         { value: 1, weight: this.urgentProb },
         { value: 2, weight: this.fixedDateProb },
       ];
-
-      // [0..1) * sum of weight
       let sample =
         Math.random() * samples.reduce((sum, { weight }) => sum + weight, 0);
 
-      // first sample n where sum of weight for [0..n] > sample
       const { value } = samples.find(({ weight }) => (sample -= weight) < 0);
-
       return value;
     },
 
@@ -47,13 +43,13 @@ export default {
       var fixedDate = false;
       var nr = this.taskNumber;
 
-      if(this.normalProb + this.urgentProb + this.fixedDateProb !=100) {
+      if (this.normalProb + this.urgentProb + this.fixedDateProb != 100) {
         alert("Sum of probabilities should give 100!");
         return;
       }
 
       index = this.randomSample();
-      if(index == 1) {
+      if (index == 1) {
         urgent = true;
       } else if (index == 2) {
         fixedDate = true;

@@ -19,9 +19,12 @@
               Next day
             </button>
             <div>
-              Change current developer 
-              <br>
-              <em>(use his productivity points - they are printed on dices images)</em>
+              Select current developer
+              <br />
+              <em
+                >(use his productivity points - they are printed on dices
+                images)</em
+              >
               <div>
                 <button id="developer1" v-on:click="changeToDeveloper1">
                   1
@@ -68,8 +71,8 @@
               Tasks blocked: [ {{ tasksBlocked.toString() }} ]
             </div>
             <em>
-              (To unblock one task, you should use some of productivity
-              points in current task)</em
+              (To unblock one task, you should use some of productivity points
+              in current task)</em
             >
           </div>
         </div>
@@ -193,7 +196,6 @@ import Dices from "./components/Dices";
 export default {
   data() {
     return {
-      dicesTest: "test",
       title: "Kanban Board Workflow Simulation",
       tasks: [],
       counters: [0, 0, 0, 0, 0, 0],
@@ -268,6 +270,7 @@ export default {
           imgsource: require("./assets/dices/green/5.png"),
         },
       ],
+
       dicesBlue: [
         {
           imgsource: require("./assets/dices/blue/1.png"),
@@ -285,6 +288,7 @@ export default {
           imgsource: require("./assets/dices/blue/5.png"),
         },
       ],
+
       dicesPurple: [
         {
           imgsource: require("./assets/dices/purple/1.png"),
@@ -302,18 +306,23 @@ export default {
           imgsource: require("./assets/dices/purple/5.png"),
         },
       ],
+
       dice1: {
         imgsource: require("./assets/dices/red/1.png"),
       },
+
       dice2: {
         imgsource: require("./assets/dices/yellow/2.png"),
       },
+
       dice3: {
         imgsource: require("./assets/dices/green/3.png"),
       },
+
       dice4: {
         imgsource: require("./assets/dices/blue/4.png"),
       },
+
       dice5: {
         imgsource: require("./assets/dices/purple/5.png"),
       },
@@ -330,15 +339,7 @@ export default {
     };
   },
 
-  // created: function () {
-  //   alert("Quick page guide: This web app present a");
-  // },
-
   methods: {
-    change() {
-      this.dicesTest = "nowe";
-    },
-
     changeStyleIfMoreThanMax(counter, option, maxTasks) {
       var elementId = "col".concat(option, "counter");
       if (counter >= maxTasks) {
@@ -388,18 +389,23 @@ export default {
     left1() {
       this.currentLeft = 1;
     },
+
     left2() {
       this.currentLeft = 2;
     },
+
     left3() {
       this.currentLeft = 3;
     },
+
     left4() {
       this.currentLeft = 4;
     },
+
     left5() {
       this.currentLeft = 5;
     },
+
     left6() {
       this.currentLeft = 6;
     },
@@ -450,21 +456,25 @@ export default {
       document.getElementById("developer1").style.border = "solid black 4px";
       this.resetStyleOnDevelopers(false, true, true, true, true);
     },
+
     changeToDeveloper2() {
       this.currentMemeber = 2;
       document.getElementById("developer2").style.border = "solid black 4px";
       this.resetStyleOnDevelopers(true, false, true, true, true);
     },
+
     changeToDeveloper3() {
       this.currentMemeber = 3;
       document.getElementById("developer3").style.border = "solid black 4px";
       this.resetStyleOnDevelopers(true, true, false, true, true);
     },
+
     changeToDeveloper4() {
       this.currentMemeber = 4;
       document.getElementById("developer4").style.border = "solid black 4px";
       this.resetStyleOnDevelopers(true, true, true, false, true);
     },
+
     changeToDeveloper5() {
       this.currentMemeber = 5;
       document.getElementById("developer5").style.border = "solid black 4px";
