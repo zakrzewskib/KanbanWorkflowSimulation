@@ -61,8 +61,11 @@
             </div>
           </div>
 
-          <div class="col-6" id="toBlock">
-            <div id="tasksToBlock">Tasks to block: [ {{ tasksToBlock.toString() }} ] </div>
+          <div class="col-6" id="tasksBlocked">
+            <div id="tasksBlocked">
+              Tasks blocked: [ {{ tasksBlocked.toString() }} ]
+            </div>
+            <br />
             <em>
               (To unblock one task, you should use about 3 productivity
               points)</em
@@ -120,6 +123,7 @@
             :nr="task.nr"
             draggable="true"
             @delete-task="deleteTask"
+            @unblocked-task="unblockTask"
           >
           </Task>
         </Column>
@@ -314,7 +318,7 @@ export default {
       },
 
       dicesSize: 60,
-      tasksToBlock: [],
+      tasksBlocked: [],
       currentDate: new Date(),
       currentDay: 0,
 
@@ -480,27 +484,26 @@ export default {
     },
 
     setBlockers() {
-      var toBlock = [];
+      var tasksBlocked = [];
       var j = 0;
+      let index = 0;
       for (let task of this.tasks) {
         let random = Math.floor(Math.random() * 100);
         if (random <= this.blockedProbability && !task.blocked) {
-          toBlock[j] = task.nr;
+          this.$set(this.tasks, index, {
+            id: task.id,
+            name: task.name,
+            urgent: task.urgent,
+            fixedDate: task.fixedDate,
+            nr: task.nr,
+            blocked: true,
+          });
+          tasksBlocked[j] = task.nr;
           j++;
+          index++;
         }
       }
-      this.tasksToBlock = toBlock;
-
-      let task = this.tasks[0];
-      this.$set(this.tasks, 0,  {
-        id: task.id,
-        name: "new Name",
-        urgent: task.urgent,
-        fixedDate: task.fixedDate,
-        nr: task.nr,
-        blocked: true,
-      });
-
+      this.tasksBlocked = tasksBlocked;
     },
     nextDay() {
       this.currentDay++;
@@ -510,6 +513,25 @@ export default {
     },
     deleteTask(nr) {
       this.tasks = this.tasks.filter((task) => task.nr !== nr);
+    },
+
+    unblockTask(nr) {
+      console.log(nr);
+      let index = 0;
+      for (let task of this.tasks) {
+        if (task.nr == nr) {
+          console.log("wow");
+          this.$set(this.tasks, index, {
+            id: task.id,
+            name: task.name,
+            urgent: task.urgent,
+            fixedDate: task.fixedDate,
+            nr: task.nr,
+            blocked: false,
+          });
+        }
+        index++;
+      }
     },
   },
 
@@ -610,11 +632,11 @@ h3 {
   float: left;
 }
 
-#toBlock {
+#tasksBlocked {
   float: left;
 }
 
-#tasksToBlock {
+#tasksBlocked {
   color: red;
   font-weight: bold;
 }

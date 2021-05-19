@@ -22,13 +22,6 @@
         <button v-on:click="unblock" class="unblockButton">BLOCKED</button>
       </div>
     </div>
-
-    <button
-      v-on:click="setBlocker"
-      class="setBlocker"
-      id="blockerButton"
-    ></button>
-
     <div class="productivity">
       <button
         :style="
@@ -145,7 +138,6 @@
 export default {
   data() {
     return {
-      blocker: this.blocked,
       start: "",
       end: "",
       prodPointClicked1: false,
@@ -273,13 +265,7 @@ export default {
 
     unblock() {
       alert("You unblocked this task!");
-      this.blocker = false;
-      // this.$emit("ublocked-task");
-    },
-
-    setBlocker() {
-      this.blocker = true;
-      // this.$emit("blocked-task");
+      this.$emit("unblocked-task", this.nr);
     },
     deleteTask() {
       this.$emit("delete-task", this.nr);
@@ -324,13 +310,6 @@ hr.myLine {
   background-color: red;
   color: white;
 }
-
-.setBlocker {
-  width: 16px;
-  height: 16px;
-  background-color: red;
-}
-
 .divWithNr {
   font-size: 15px;
   margin-left: 10px;
