@@ -42,42 +42,22 @@
         </div>
       </div>
       <div class="col-4">
-        Productivity points: <br />
-        <img
-          :src="dice1.imgsource"
-          :width="dicesSize"
-          :height="dicesSize"
-          alt="dice1"
-        />
-        <img
-          :src="dice2.imgsource"
-          :width="dicesSize"
-          :height="dicesSize"
-          alt="dice2"
-        />
-        <img
-          :src="dice3.imgsource"
-          :width="dicesSize"
-          :height="dicesSize"
-          alt="dice3"
-        />
-        <img
-          :src="dice4.imgsource"
-          :width="dicesSize"
-          :height="dicesSize"
-          alt="dice4"
-        />
-        <img
-          :src="dice5.imgsource"
-          :width="dicesSize"
-          :height="dicesSize"
-          alt="dice5"
-        />
+        <Dices
+          :dice1="dice1"
+          :dice2="dice2"
+          :dice3="dice3"
+          :dice4="dice4"
+          :dice5="dice5"
+          :dicesSize="dicesSize"
+        ></Dices>
+
         <div class="row">
           <div class="col-6" id="numberOfDays">
             <div id="currentDay">Number of days: {{ currentDay }}</div>
-            <div id ="currentDate">
-            Current date (dd/mm/yyyy):&#10;{{ currentDate.toLocaleDateString() }}
+            <div id="currentDate">
+              Current date (dd/mm/yyyy):&#10;{{
+                currentDate.toLocaleDateString()
+              }}
             </div>
           </div>
 
@@ -203,10 +183,12 @@ import Column from "./components/Column";
 import ColumnContainer from "./components/ColumnContainer";
 import Task from "./components/Task";
 import AddTask from "./components/AddTask";
+import Dices from "./components/Dices";
 
 export default {
   data() {
     return {
+      dicesTest: "test",
       title: "Kanban Board Workflow Simulation",
       tasks: [],
       counters: [0, 0, 0, 0, 0, 0],
@@ -348,6 +330,10 @@ export default {
   // },
 
   methods: {
+    change() {
+      this.dicesTest = "nowe";
+    },
+
     changeStyleIfMoreThanMax(counter, option, maxTasks) {
       var elementId = "col".concat(option, "counter");
       if (counter >= maxTasks) {
@@ -525,6 +511,7 @@ export default {
     Task,
     AddTask,
     ColumnContainer,
+    Dices,
   },
 };
 </script>
@@ -666,6 +653,6 @@ img {
 }
 
 div {
-    white-space: pre-wrap;
+  white-space: pre-wrap;
 }
 </style>
