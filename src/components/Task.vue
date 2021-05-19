@@ -132,7 +132,7 @@
     <div>
       <input class="date" placeholder="dd.mm.yyyy" v-model="startDate" />
       <input class="date" placeholder="dd.mm.yyyy" v-model="endDate" />
-      <p class="taskCompleted">Task completed in: {{ taskCompletedTime }}</p>
+      <p class="taskCompleted">Task completed in: {{ taskCompletedTime }} days</p>
     </div>
   </div>
 </template>

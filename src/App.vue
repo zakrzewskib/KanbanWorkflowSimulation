@@ -125,7 +125,7 @@
             :member="currentMemeber"
             :blocked="task.blocked"
             :nr="task.nr"
-            draggable="true"
+            :draggable="!task.blocked"
             @delete-task="deleteTask"
             @unblocked-task="unblockTask"
           >
