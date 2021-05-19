@@ -23,6 +23,7 @@
       </div>
     </div>
     <div class="productivity">
+      <small class="stage">S1:</small>
       <button
         :style="
           prodPointClicked1
@@ -74,6 +75,8 @@
       ></button>
 
       <hr class="myLine" />
+
+      <small class="stage">S2:</small>
 
       <button
         :style="
@@ -322,6 +325,7 @@ hr.myLine {
 
 .taskCompleted {
   font-size: 15px;
+  margin: 0px;
 }
 
 #delBtn {
@@ -334,6 +338,10 @@ hr.myLine {
   width: 200px;
   height: 20px;
   text-align: center;
+  font-size: 15px;
+}
+
+#stage {
   font-size: 15px;
 }
 </style>

@@ -7,7 +7,10 @@
     :dice5="dice5"
     :dicesSize="dicesSize"
   >
-    Productivity points: <br />
+    <strong id="productivityPoints">Productivity points (1-5): </strong>
+    <br>
+    <em> Use them to fill productivity points in each task </em>
+    <br>
     <img
       :src="dice1.imgsource"
       :width="dicesSize"
@@ -52,4 +55,11 @@ export default {
 
   methods: {},
 };
+
 </script>
+
+<style scoped>
+#productivityPoints {
+  font-size: 18px;
+}
+</style>

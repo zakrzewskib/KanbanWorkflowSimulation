@@ -19,7 +19,9 @@
               Next day
             </button>
             <div>
-              Change current developer <em>(use his productivity points)</em>:
+              Change current developer 
+              <br>
+              <em>(use his productivity points - they are printed on dices images)</em>
               <div>
                 <button id="developer1" v-on:click="changeToDeveloper1">
                   1
@@ -61,14 +63,13 @@
             </div>
           </div>
 
-          <div class="col-6" id="tasksBlocked">
+          <div class="col-6" id="tasksBlockedDiv">
             <div id="tasksBlocked">
               Tasks blocked: [ {{ tasksBlocked.toString() }} ]
             </div>
-            <br />
             <em>
-              (To unblock one task, you should use about 3 productivity
-              points)</em
+              (To unblock one task, you should use some of productivity
+              points in current task)</em
             >
           </div>
         </div>
@@ -490,6 +491,7 @@ export default {
       for (let task of this.tasks) {
         let random = Math.floor(Math.random() * 100);
         if (random <= this.blockedProbability && !task.blocked) {
+          console.log(task);
           this.$set(this.tasks, index, {
             id: task.id,
             name: task.name,
@@ -500,8 +502,8 @@ export default {
           });
           tasksBlocked[j] = task.nr;
           j++;
-          index++;
         }
+        index++;
       }
       this.tasksBlocked = tasksBlocked;
     },
@@ -632,8 +634,8 @@ h3 {
   float: left;
 }
 
-#tasksBlocked {
-  float: left;
+#tasksBlockedDiv {
+  text-align: center;
 }
 
 #tasksBlocked {
