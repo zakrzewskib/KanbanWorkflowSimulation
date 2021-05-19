@@ -482,13 +482,10 @@ export default {
     setBlockers() {
       var toBlock = [];
       var j = 0;
-      for (var i = 0; i < this.tasks.length; i++) {
-        var random = Math.floor(Math.random() * 100);
-        if (
-          random <= this.blockedProbability &&
-          this.tasks[i].blocked == false
-        ) {
-          toBlock[j] = this.tasks[i].nr;
+      for (let task of this.tasks) {
+        let random = Math.floor(Math.random() * 100);
+        if (random <= this.blockedProbability && !task.blocked) {
+          toBlock[j] = task.nr;
           j++;
         }
       }
