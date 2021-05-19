@@ -17,7 +17,7 @@ export default {
   props: ["id", "name"],
   data() {
     return {
-      
+      taskMoved: 0,
     };
   },
 
@@ -25,17 +25,28 @@ export default {
     drop: (e) => {
       const task_id = e.dataTransfer.getData("task_id");
       const task = document.getElementById(task_id);
-      task.style.display = "block";
-      e.target.appendChild(task);
+      if (task != null && task != undefined) {
+        task.style.display = "block";
+        e.target.appendChild(task);
+      }
     },
 
     dropped(e) {
       var droppedToId = e.target.id.substring(7);
-      this.$emit("dropped", droppedToId);
+
+      const task_id = e.dataTransfer.getData("task_id");
+      const task = document.getElementById(task_id);
+      if (task != null && task != undefined) {
+        this.$emit("dropped", droppedToId);
+      }
     },
 
-    left() {
-      this.$emit("left");
+    left(e) {
+      const task_id = e.dataTransfer.getData("task_id");
+      const task = document.getElementById(task_id);
+      if (task != null && task != undefined) {
+        this.$emit("left");
+      }
     },
   },
 };
