@@ -18,7 +18,7 @@
         <em v-on:click="deleteTask" class="fas fa-times" id="delBtn"></em>
       </div>
 
-      <div v-if="blocker">
+      <div v-if="blocked">
         <button v-on:click="unblock" class="unblockButton">BLOCKED</button>
       </div>
     </div>
@@ -274,10 +274,12 @@ export default {
     unblock() {
       alert("You unblocked this task!");
       this.blocker = false;
+      // this.$emit("ublocked-task");
     },
 
     setBlocker() {
       this.blocker = true;
+      // this.$emit("blocked-task");
     },
     deleteTask() {
       this.$emit("delete-task", this.nr);

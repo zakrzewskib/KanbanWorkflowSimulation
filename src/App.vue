@@ -62,7 +62,7 @@
           </div>
 
           <div class="col-6" id="toBlock">
-            <div id="tasksToBlock">Tasks to block: {{ tasksToBlock }}</div>
+            <div id="tasksToBlock">Tasks to block: [ {{ tasksToBlock.toString() }} ] </div>
             <em>
               (To unblock one task, you should use about 3 productivity
               points)</em
@@ -490,6 +490,17 @@ export default {
         }
       }
       this.tasksToBlock = toBlock;
+
+      let task = this.tasks[0];
+      this.$set(this.tasks, 0,  {
+        id: task.id,
+        name: "new Name",
+        urgent: task.urgent,
+        fixedDate: task.fixedDate,
+        nr: task.nr,
+        blocked: true,
+      });
+
     },
     nextDay() {
       this.currentDay++;
