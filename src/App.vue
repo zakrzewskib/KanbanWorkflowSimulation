@@ -526,7 +526,11 @@ export default {
       let index = 0;
       for (let task of this.tasks) {
         let random = Math.floor(Math.random() * 100);
-        if (random <= parseInt(this.blockedProbability) && !task.blocked && !task.done) {
+        if (
+          random <= parseInt(this.blockedProbability) &&
+          !task.blocked &&
+          !task.done
+        ) {
           this.$set(this.tasks, index, {
             id: task.id,
             name: task.name,
@@ -542,14 +546,18 @@ export default {
       }
       this.tasksBlocked = tasksBlocked;
     },
+    
     nextDay() {
       this.currentDay++;
       this.currentDate.setDate(this.currentDate.getDate() + 1);
       this.changeProductivity();
       this.setBlockers();
     },
+
     deleteTask(nr) {
-      this.tasks = this.tasks.filter((task) => task.nr !== nr);
+      if (confirm("Are you sure you want to delete this task?")) {
+        this.tasks = this.tasks.filter((task) => task.nr !== nr);
+      }
     },
 
     unblockTask(nr) {
