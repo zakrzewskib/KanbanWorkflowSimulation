@@ -43,7 +43,14 @@ export default {
       var fixedDate = false;
       var nr = this.taskNumber;
 
-      if (this.normalProb + this.urgentProb + this.fixedDateProb != 100) {
+      console.log(this.normalProb + this.urgentProb + this.fixedDateProb);
+      let sum =
+        parseInt(this.normalProb) +
+        parseInt(this.urgentProb) +
+        parseInt(this.fixedDateProb);
+      console.log(sum);
+
+      if (sum != 100) {
         alert("Sum of probabilities should give 100!");
         return;
       }

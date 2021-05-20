@@ -84,14 +84,16 @@
         </div>
 
         <div class="probabilityDiv">
-          <a>Normal task probability: </a>
+          <a>Normal task probability (in %): </a>
           <input class="blockersP" v-model="normalProb" />
           <br />
-          <a>Urgent task probability: </a>
+          <a>Urgent task probability (in %): </a>
           <input class="blockersP" v-model="urgentProb" />
           <br />
-          <a>Fixed date task probability: </a>
+          <a>Fixed date task probability (in %): </a>
           <input class="blockersP" v-model="fixedDateProb" />
+          <br>
+          <em>Sum of task type probabilities should sum up to 100%</em>
         </div>
       </div>
     </div>
@@ -501,7 +503,6 @@ export default {
       for (let task of this.tasks) {
         let random = Math.floor(Math.random() * 100);
         if (random <= this.blockedProbability && !task.blocked) {
-          console.log(task);
           this.$set(this.tasks, index, {
             id: task.id,
             name: task.name,
@@ -528,11 +529,9 @@ export default {
     },
 
     unblockTask(nr) {
-      console.log(nr);
       let index = 0;
       for (let task of this.tasks) {
         if (task.nr == nr) {
-          console.log("wow");
           this.$set(this.tasks, index, {
             id: task.id,
             name: task.name,
