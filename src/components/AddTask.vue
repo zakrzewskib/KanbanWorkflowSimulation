@@ -69,6 +69,7 @@ export default {
         urgent: urgent,
         fixedDate: fixedDate,
         nr: nr,
+        done: false,
       };
       this.$emit("add-task", newTask);
     },

@@ -61,12 +61,10 @@
             <div id="currentDay">Number of days: {{ currentDay }}</div>
             <div id="currentDate">
               <em>(dd/mm/yyyy)</em>
-              <br>
-              Start date: {{new Date().toLocaleDateString()}}
-              <br>
-              Current date:&#10;{{
-                currentDate.toLocaleDateString()
-              }}
+              <br />
+              Start date: {{ new Date().toLocaleDateString() }}
+              <br />
+              Current date:&#10;{{ currentDate.toLocaleDateString() }}
             </div>
           </div>
 
@@ -87,7 +85,7 @@
           <input class="blockersP" v-model="blockedProbability" />
         </div>
 
-        <br>
+        <br />
 
         <div class="probabilityDiv">
           <a>Normal task probability (in %): </a>
@@ -98,7 +96,7 @@
           <br />
           <a>Fixed date task probability (in %): </a>
           <input class="blockersP" v-model="fixedDateProb" />
-          <br>
+          <br />
           <em>(Sum of task type probabilities should sum up to 100%)</em>
         </div>
       </div>
@@ -382,8 +380,27 @@ export default {
       this.counter6 = this.counters[5];
     },
 
-    dropped(id) {
-      var idToInt = parseInt(id, 10);
+    dropped(id, task_id) {
+      var idToInt = parseInt(id);
+
+      if (id == 6) {
+        let index = 0;
+        for (let task of this.tasks) {
+          if (task.id == task_id) {
+            this.$set(this.tasks, index, {
+              id: task.id,
+              name: task.name,
+              urgent: task.urgent,
+              fixedDate: task.fixedDate,
+              nr: task.nr,
+              blocked: task.blocked,
+              done: true,
+            });
+          }
+          index++;
+        }
+      }
+
       this.decreaseLeftColumn(this.currentLeft);
       this.counters[idToInt - 1]++;
       this.udpateCounters();
@@ -426,6 +443,7 @@ export default {
         fixedDate: task.fixedDate,
         blocked: false,
         nr: task.nr,
+        done: task.done,
       });
       this.increaseTodoColumn();
     },
@@ -508,7 +526,7 @@ export default {
       let index = 0;
       for (let task of this.tasks) {
         let random = Math.floor(Math.random() * 100);
-        if (random <= parseInt(this.blockedProbability) && !task.blocked) {
+        if (random <= parseInt(this.blockedProbability) && !task.blocked && !task.done) {
           this.$set(this.tasks, index, {
             id: task.id,
             name: task.name,

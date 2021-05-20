@@ -34,7 +34,7 @@ export default {
       const task_id = e.dataTransfer.getData("task_id");
       const task = document.getElementById(task_id);
       if (task != null && task != undefined) {
-        this.$emit("dropped", droppedToId);
+        this.$emit("dropped", droppedToId, task_id);
       }
     },
 
