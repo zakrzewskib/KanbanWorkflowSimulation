@@ -504,7 +504,7 @@ export default {
       let index = 0;
       for (let task of this.tasks) {
         let random = Math.floor(Math.random() * 100);
-        if (random <= this.blockedProbability && !task.blocked) {
+        if (random <= parseInt(this.blockedProbability) && !task.blocked) {
           this.$set(this.tasks, index, {
             id: task.id,
             name: task.name,
