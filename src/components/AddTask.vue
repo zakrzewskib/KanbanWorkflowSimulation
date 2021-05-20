@@ -25,9 +25,9 @@ export default {
 
     randomSample() {
       const samples = [
-        { value: 0, weight: this.normalProb },
-        { value: 1, weight: this.urgentProb },
-        { value: 2, weight: this.fixedDateProb },
+        { value: 0, weight: parseInt(this.normalProb) },
+        { value: 1, weight: parseInt(this.urgentProb) },
+        { value: 2, weight: parseInt(this.fixedDateProb) },
       ];
       let sample =
         Math.random() * samples.reduce((sum, { weight }) => sum + weight, 0);
@@ -43,12 +43,10 @@ export default {
       var fixedDate = false;
       var nr = this.taskNumber;
 
-      console.log(this.normalProb + this.urgentProb + this.fixedDateProb);
       let sum =
         parseInt(this.normalProb) +
         parseInt(this.urgentProb) +
         parseInt(this.fixedDateProb);
-      console.log(sum);
 
       if (sum != 100) {
         alert("Sum of probabilities should give 100!");
@@ -56,11 +54,13 @@ export default {
       }
 
       index = this.randomSample();
+
       if (index == 1) {
         urgent = true;
       } else if (index == 2) {
         fixedDate = true;
       }
+
       this.taskNumber++;
 
       const newTask = {

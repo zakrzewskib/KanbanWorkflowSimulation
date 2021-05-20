@@ -83,6 +83,8 @@
           <input class="blockersP" v-model="blockedProbability" />
         </div>
 
+        <br>
+
         <div class="probabilityDiv">
           <a>Normal task probability (in %): </a>
           <input class="blockersP" v-model="normalProb" />
