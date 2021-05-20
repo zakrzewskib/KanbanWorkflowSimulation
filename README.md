@@ -1,24 +1,15 @@
-# kanbansim
+https://zakrzewskib.github.io/KanbanWorkflowSimulation/
 
-## Project setup
-```
-yarn install
-```
+### Project time:
+April 9 2021 - May 20 2021 (4th Semester of Applied Computer Science at the Warsaw University of Technology)
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
+### Github pages with Vue.js: 
+https://cli.vuejs.org/guide/deployment.html#cors <br />
+Files: deploy.sh, vue.config.js
 
-### Compiles and minifies for production
-```
-yarn build
-```
+### Good tutorial about Vue.js:
+https://www.youtube.com/watch?v=qZXt1Aom3Cs&ab_channel=TraversyMedia <br />
 
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### Vue testing:
+https://vue-test-utils.vuejs.org/guides/#getting-started <br />
+https://www.youtube.com/watch?v=Fbo4pttBZ9k&ab_channel=ProgramWithErik
