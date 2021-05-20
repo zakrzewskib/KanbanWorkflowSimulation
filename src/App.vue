@@ -382,25 +382,32 @@ export default {
 
     dropped(id, task_id) {
       var idToInt = parseInt(id);
+      let done = false;
+      let todo = false;
 
       if (id == 6) {
-        let index = 0;
-        for (let task of this.tasks) {
-          if (task.id == task_id) {
-            this.$set(this.tasks, index, {
-              id: task.id,
-              name: task.name,
-              urgent: task.urgent,
-              fixedDate: task.fixedDate,
-              nr: task.nr,
-              blocked: task.blocked,
-              done: true,
-            });
-          }
-          index++;
-        }
+        done = true;
+      }
+      if (id == 1) {
+        todo = true;
       }
 
+      let index = 0;
+      for (let task of this.tasks) {
+        if (task.id == task_id) {
+          this.$set(this.tasks, index, {
+            id: task.id,
+            name: task.name,
+            urgent: task.urgent,
+            fixedDate: task.fixedDate,
+            nr: task.nr,
+            blocked: task.blocked,
+            done: done,
+            todo: todo,
+          });
+        }
+        index++;
+      }
       this.decreaseLeftColumn(this.currentLeft);
       this.counters[idToInt - 1]++;
       this.udpateCounters();
@@ -444,6 +451,7 @@ export default {
         blocked: false,
         nr: task.nr,
         done: task.done,
+        todo: task.todo,
       });
       this.increaseTodoColumn();
     },
@@ -529,7 +537,8 @@ export default {
         if (
           random <= parseInt(this.blockedProbability) &&
           !task.blocked &&
-          !task.done
+          !task.done &&
+          !task.todo
         ) {
           this.$set(this.tasks, index, {
             id: task.id,
@@ -546,7 +555,7 @@ export default {
       }
       this.tasksBlocked = tasksBlocked;
     },
-    
+
     nextDay() {
       this.currentDay++;
       this.currentDate.setDate(this.currentDate.getDate() + 1);

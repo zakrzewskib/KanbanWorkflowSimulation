@@ -70,6 +70,7 @@ export default {
         fixedDate: fixedDate,
         nr: nr,
         done: false,
+        todo: true,
       };
       this.$emit("add-task", newTask);
     },
