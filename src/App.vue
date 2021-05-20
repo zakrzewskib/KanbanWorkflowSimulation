@@ -347,7 +347,7 @@ export default {
 
   methods: {
     changeStyleIfMoreThanMax(counter, option, maxTasks) {
-      var elementId = "col".concat(option, "counter");
+      const elementId = "col".concat(option, "counter");
       if (counter >= maxTasks) {
         document.getElementById(elementId).style.color = "red";
       } else {
@@ -381,7 +381,7 @@ export default {
     },
 
     dropped(id, task_id) {
-      var idToInt = parseInt(id);
+      const idToInt = parseInt(id);
       let done = false;
       let todo = false;
 
@@ -516,9 +516,8 @@ export default {
     },
 
     changeProductivity() {
-      var i;
-      var random = [];
-      for (i = 0; i < this.numberOfMemebers; i++) {
+      let random = [];
+      for (let i = 0; i < this.numberOfMemebers; i++) {
         random[i] = Math.floor(Math.random() * this.numberOfMemebers);
       }
       this.dice1.imgsource = this.dicesRed[random[0]].imgsource;
@@ -529,8 +528,8 @@ export default {
     },
 
     setBlockers() {
-      var tasksBlocked = [];
-      var j = 0;
+      let tasksBlocked = [];
+      let j = 0;
       let index = 0;
       for (let task of this.tasks) {
         let random = Math.floor(Math.random() * 100);

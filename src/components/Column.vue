@@ -30,7 +30,7 @@ export default {
     },
 
     dropped(e) {
-      var droppedToId = e.target.id.substring(7);
+      const droppedToId = e.target.id.substring(7);
       const task_id = e.dataTransfer.getData("task_id");
       const task = document.getElementById(task_id);
       if (task != null && task != undefined) {

@@ -37,11 +37,11 @@ export default {
     },
 
     onClick() {
-      var tasksTypes = ["Normal task", "Urgent task", "Fixed date task"];
-      var index;
-      var urgent = false;
-      var fixedDate = false;
-      var nr = this.taskNumber;
+      const tasksTypes = ["Normal task", "Urgent task", "Fixed date task"];
+      let index;
+      let urgent = false;
+      let fixedDate = false;
+      let nr = this.taskNumber;
 
       let sum =
         parseInt(this.normalProb) +

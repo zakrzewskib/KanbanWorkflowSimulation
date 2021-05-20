@@ -188,8 +188,8 @@ export default {
     taskCompletedTime: function() {
       const firstDate = new Date();
       const secondDate = new Date();
-      var yearIndex1 = 5;
-      var yearIndex2 = 5;
+      let yearIndex1 = 5;
+      let yearIndex2 = 5;
 
       if (parseInt(this.endDate.substring(0, 2)) > 9) {
         yearIndex1 += 1;
