@@ -296,7 +296,7 @@ export default {
 
 .task {
   cursor: pointer;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   border: 2px solid black;
   background-color: rgb(241, 241, 241);
 }
@@ -347,6 +347,7 @@ hr.myLine {
   height: 20px;
   text-align: center;
   font-size: 15px;
+  margin-bottom: 0px;
 }
 
 #stage {

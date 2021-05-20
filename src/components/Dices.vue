@@ -9,7 +9,7 @@
   >
     <strong id="productivityPoints">Productivity points (1-5): </strong>
     <br />
-    <em> Use them to fill productivity points in each task </em>
+    <em> (Use them to fill productivity points in each task) </em>
     <br />
     <img
       :src="dice1.imgsource"

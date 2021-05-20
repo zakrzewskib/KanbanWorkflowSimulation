@@ -22,7 +22,7 @@
               Select current developer
               <br />
               <em
-                >(use his productivity points - they are printed on dices
+                >(use his productivity points - they are printed on the dices
                 images)</em
               >
               <div>
@@ -60,7 +60,11 @@
           <div class="col-6" id="numberOfDays">
             <div id="currentDay">Number of days: {{ currentDay }}</div>
             <div id="currentDate">
-              Current date (dd/mm/yyyy):&#10;{{
+              <em>(dd/mm/yyyy)</em>
+              <br>
+              Start date: {{new Date().toLocaleDateString()}}
+              <br>
+              Current date:&#10;{{
                 currentDate.toLocaleDateString()
               }}
             </div>
@@ -95,7 +99,7 @@
           <a>Fixed date task probability (in %): </a>
           <input class="blockersP" v-model="fixedDateProb" />
           <br>
-          <em>Sum of task type probabilities should sum up to 100%</em>
+          <em>(Sum of task type probabilities should sum up to 100%)</em>
         </div>
       </div>
     </div>
