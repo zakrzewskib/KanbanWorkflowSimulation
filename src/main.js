@@ -13,7 +13,7 @@ import App from './App.vue'
 
 Vue.config.productionTip = false
 
-// window.onbeforeunload = function() { return false; } // Inform user about refreshing
+window.onbeforeunload = function() { return false; } // Inform user about refreshing
 
 new Vue({
     render: h => h(App),
