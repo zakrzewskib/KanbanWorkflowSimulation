@@ -45,6 +45,11 @@
             </div>
           </div>
         </div>
+
+        <div class="narration">
+          Dzień 1: Rozpoczynacie pracę w nowym zespole. Zdefiniujcie zadania
+          standardowe i zacznijcie nad nimi pracować.
+        </div>
       </div>
       <div class="col-4">
         <Dices
@@ -59,13 +64,6 @@
         <div class="row">
           <div class="col-6" id="numberOfDays">
             <div id="currentDay">Number of days: {{ currentDay }}</div>
-            <div id="currentDate">
-              <em>(dd/mm/yyyy)</em>
-              <br />
-              Start date: {{ new Date().toLocaleDateString() }}
-              <br />
-              Current date:&#10;{{ currentDate.toLocaleDateString() }}
-            </div>
           </div>
 
           <div class="col-6" id="tasksBlockedDiv">
@@ -375,7 +373,7 @@ export default {
       if (id == 1) {
         todo = true;
       }
-      if(id == 3) {
+      if (id == 3) {
         readyForStage2 = true;
       }
 
@@ -724,5 +722,11 @@ img {
 
 div {
   white-space: pre-wrap;
+}
+
+.narration {
+  border: 2px black solid;
+  margin-left: 20px;
+  text-align: center;
 }
 </style>
