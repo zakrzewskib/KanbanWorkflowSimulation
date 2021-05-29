@@ -134,6 +134,12 @@
       <input class="date" placeholder="dd.mm.yyyy" v-model="endDate" />
       <p class="taskCompleted">Task completed in: {{ taskCompletedTime }} days</p>
     </div>
+
+    <div :style="{display: fixedDate ? 'block' : 'none'}">
+      <p class="toComplete">To do in {{toCompleteIn}} days: </p>
+      <input class="toCompleteNumber"  v-model="toCompleteIn"/>
+    </div>
+
   </div>
 </template>
 
@@ -170,6 +176,7 @@ export default {
       currentMem10: 1,
       startDate: "",
       endDate: "",
+      toCompleteIn: 7,
     };
   },
 
@@ -331,9 +338,26 @@ hr.myLine {
   font-size: 14px;
 }
 
-.taskCompleted {
+.taskCompleted, .toComplete {
   font-size: 15px;
   margin: 0px;
+  display: inline-block;
+}
+
+.toComplete {
+  margin-right: 3px;
+}
+
+.toCompleteNumber {
+  width: 30px;
+  height: 20px;
+  text-align: center;
+  font-size: 15px;
+  margin-bottom: 0px;
+}
+
+.toComplete .toCompleteNumber {
+  display: block;
 }
 
 #delBtn {
@@ -353,4 +377,10 @@ hr.myLine {
 #stage {
   font-size: 15px;
 }
+
+.visible {
+   visibility: hidden;
+}
+
+
 </style>
