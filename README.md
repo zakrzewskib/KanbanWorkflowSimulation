@@ -13,3 +13,6 @@ https://www.youtube.com/watch?v=qZXt1Aom3Cs&ab_channel=TraversyMedia <br />
 ### Vue testing:
 https://vue-test-utils.vuejs.org/guides/#getting-started <br />
 https://www.youtube.com/watch?v=Fbo4pttBZ9k&ab_channel=ProgramWithErik
+
+### Screenshot of current web app appearance:
+<img src="https://github.com/zakrzewskib/KanbanWorkflowSimulation/blob/main/appearance.PNG">
