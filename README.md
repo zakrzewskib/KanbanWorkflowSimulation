@@ -1,7 +1,7 @@
 https://zakrzewskib.github.io/KanbanWorkflowSimulation/
 
 ### Project time:
-April 9 2021 - May 20 2021 (4th Semester of Applied Computer Science at the Warsaw University of Technology)
+April 9 2021 - May 29 2021 (4th Semester of Applied Computer Science at the Warsaw University of Technology)
 
 ### Github pages with Vue.js: 
 https://cli.vuejs.org/guide/deployment.html#cors <br />
