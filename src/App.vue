@@ -50,6 +50,15 @@
           Dzień 1: Rozpoczynacie pracę w nowym zespole. Zdefiniujcie zadania
           standardowe i zacznijcie nad nimi pracować.
         </div>
+
+         <AddUrgentTask
+                class="button8"
+                @add-task="addTask"
+                :normalProb="normalProb"
+                :urgentProb="urgentProb"
+                :fixedDateProb="fixedDateProb"
+              />
+
       </div>
       <div class="col-4">
         <Dices
@@ -68,7 +77,7 @@
 
           <div class="col-6" id="tasksBlockedDiv">
             <div id="tasksBlocked">
-              Tasks blocked: [ {{ tasksBlocked.toString() }} ]
+              Tasks blocked in current day: [ {{ tasksBlocked.toString() }} ]
             </div>
             <em>
               (To unblock one task, you should use some of productivity points
@@ -179,6 +188,7 @@ import ColumnContainer from "./components/ColumnContainer";
 import Task from "./components/Task";
 import AddTask from "./components/AddTask";
 import Dices from "./components/Dices";
+import AddUrgentTask from "./components/AddUrgentTask"
 
 export default {
   data() {
@@ -581,6 +591,7 @@ export default {
     AddTask,
     ColumnContainer,
     Dices,
+    AddUrgentTask,
   },
 };
 </script>
@@ -728,5 +739,9 @@ div {
   border: 2px black solid;
   margin-left: 20px;
   text-align: center;
+}
+
+#currentDay {
+  font-weight: bold;
 }
 </style>
