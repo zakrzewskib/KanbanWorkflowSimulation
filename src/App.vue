@@ -102,13 +102,6 @@
       </div>
     </div>
 
-    <div class="row">
-      <div class="col-3"></div>
-      <div class="col-3"><h2>STAGE1</h2></div>
-      <div class="col-3"><h2>STAGE2</h2></div>
-      <div class="col-3"></div>
-    </div>
-
     <main class="flexbox">
       <ColumnContainer id="container-1" name="TODO">
         <div>
@@ -159,13 +152,13 @@
         </Column>
       </ColumnContainer>
 
-      <ColumnContainer id="container-4" name="STAGE1">
+      <ColumnContainer id="container-4" name="STAGE2">
         <div>
           Max number of tasks:
           <input class="maxTasksInput" v-model="maxTasks[3]" />
         </div>
         <div id="col4counter">Number of tasks: {{ counter4 }}</div>
-        <Column id="column-4" name="STAGE1" @dropped="dropped" @left="left4">
+        <Column id="column-4" name="STAGE2" @dropped="dropped" @left="left4">
         </Column>
       </ColumnContainer>
 
