@@ -71,6 +71,7 @@ export default {
         nr: nr,
         done: false,
         todo: true,
+        readyForStage2: false,
       };
       this.$emit("add-task", newTask);
     },

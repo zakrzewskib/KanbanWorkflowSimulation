@@ -374,12 +374,16 @@ export default {
       const idToInt = parseInt(id);
       let done = false;
       let todo = false;
+      let readyForStage2 = false;
 
       if (id == 6) {
         done = true;
       }
       if (id == 1) {
         todo = true;
+      }
+      if(id == 3) {
+        readyForStage2 = true;
       }
 
       let index = 0;
@@ -394,6 +398,7 @@ export default {
             blocked: task.blocked,
             done: done,
             todo: todo,
+            readyForStage2: readyForStage2,
           });
         }
         index++;
@@ -442,6 +447,7 @@ export default {
         nr: task.nr,
         done: task.done,
         todo: task.todo,
+        readyForStage2: task.readyForStage2,
       });
       this.increaseTodoColumn();
     },
@@ -527,7 +533,8 @@ export default {
           random <= parseInt(this.blockedProbability) &&
           !task.blocked &&
           !task.done &&
-          !task.todo
+          !task.todo &&
+          !task.readyForStage2
         ) {
           this.$set(this.tasks, index, {
             id: task.id,
