@@ -149,7 +149,7 @@
         </Column>
       </ColumnContainer>
 
-      <ColumnContainer id="container-3" name="STAGE2">
+      <ColumnContainer id="container-3" name="READY FOR STAGE 2">
         <div>
           Max number of tasks:
           <input class="maxTasksInput" v-model="maxTasks[2]" />
@@ -166,16 +166,6 @@
         </div>
         <div id="col4counter">Number of tasks: {{ counter4 }}</div>
         <Column id="column-4" name="STAGE1" @dropped="dropped" @left="left4">
-        </Column>
-      </ColumnContainer>
-
-      <ColumnContainer id="container-5" name="STAGE2">
-        <div>
-          Max number of tasks:
-          <input class="maxTasksInput" v-model="maxTasks[4]" />
-        </div>
-        <div id="col5counter">Number of tasks: {{ counter5 }}</div>
-        <Column id="column-5" name="STAGE2" @dropped="dropped" @left="left5">
         </Column>
       </ColumnContainer>
 
@@ -635,8 +625,7 @@ export default {
   padding: 15px;
 }
 
-#container-2,
-#container-4 {
+#container-2 {
   margin-right: 0px;
   border-right: 1px solid black;
 }
