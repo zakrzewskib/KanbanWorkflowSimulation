@@ -7,7 +7,6 @@
           <div>
             <div id="addNewTask">
               <AddTask
-                class="button8"
                 @add-task="addTask"
                 :normalProb="normalProb"
                 :urgentProb="urgentProb"
@@ -49,14 +48,6 @@
         <div class="narration">
           {{ currentNarration }}
         </div>
-
-        <AddUrgentTask
-          class="button8"
-          @add-task="addTask"
-          :normalProb="normalProb"
-          :urgentProb="urgentProb"
-          :fixedDateProb="fixedDateProb"
-        />
       </div>
       <div class="col-4">
         <Dices
@@ -93,6 +84,7 @@
         <br />
 
         <div class="probabilityDiv">
+          <p>Task type probabilities:</p>
           <a>Normal task probability (in %): </a>
           <input class="blockersP" v-model="normalProb" />
           <br />
@@ -186,7 +178,6 @@ import ColumnContainer from "./components/ColumnContainer";
 import Task from "./components/Task";
 import AddTask from "./components/AddTask";
 import Dices from "./components/Dices";
-import AddUrgentTask from "./components/AddUrgentTask";
 
 export default {
   data() {
@@ -344,9 +335,9 @@ export default {
       currentDay: 0,
 
       blockedProbability: 20,
-      normalProb: 50,
-      urgentProb: 25,
-      fixedDateProb: 25,
+      normalProb: 100,
+      urgentProb: 0,
+      fixedDateProb: 0,
     };
   },
 
@@ -616,7 +607,6 @@ export default {
     AddTask,
     ColumnContainer,
     Dices,
-    AddUrgentTask,
   },
 };
 </script>

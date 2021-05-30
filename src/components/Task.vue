@@ -129,14 +129,18 @@
       ></button>
       <slot />
     </div>
-    <div>
-      <input class="date" placeholder="dd.mm.yyyy" v-model="startDate" />
-      <input class="date" placeholder="dd.mm.yyyy" v-model="endDate" />
+    <div class="divWithNr">
+      Start day:
+      <input class="date" v-model="startDate" />
+      <br>
+      End date:
+      <input class="date" v-model="endDate" />
+      <br>
       <p class="taskCompleted">Task completed in: {{ taskCompletedTime }} days</p>
     </div>
 
     <div :style="{display: fixedDate ? 'block' : 'none'}">
-      <p class="toComplete">To do in {{toCompleteIn}} days: </p>
+      <p class="toComplete">To do by day </p>
       <input class="toCompleteNumber"  v-model="toCompleteIn"/>
     </div>
 
@@ -176,7 +180,7 @@ export default {
       currentMem10: 1,
       startDate: "",
       endDate: "",
-      toCompleteIn: 7,
+      toCompleteIn: 10,
     };
   },
 
@@ -193,33 +197,7 @@ export default {
 
   computed: {
     taskCompletedTime: function() {
-      const firstDate = new Date();
-      const secondDate = new Date();
-      let yearIndex1 = 5;
-      let yearIndex2 = 5;
-
-      if (parseInt(this.endDate.substring(0, 2)) > 9) {
-        yearIndex1 += 1;
-      }
-
-      if (parseInt(this.startDate.substring(0, 2)) > 9) {
-        yearIndex2 += 1;
-      }
-
-      firstDate.setFullYear(
-        parseInt(this.endDate.substring(yearIndex1, yearIndex1 + 4)),
-        parseInt(this.endDate.substring(3, 5)) - 1,
-        parseInt(this.endDate.substring(0, 2))
-      );
-
-      secondDate.setFullYear(
-        parseInt(this.startDate.substring(yearIndex2, yearIndex2 + 4)),
-        parseInt(this.startDate.substring(3, 5)) - 1,
-        parseInt(this.startDate.substring(0, 2))
-      );
-
-      const diffTime = Math.abs(firstDate - secondDate);
-      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+      const diffDays = parseInt(this.endDate) - parseInt(this.startDate);
       return diffDays + 1;
     },
   },
@@ -367,7 +345,7 @@ hr.myLine {
 }
 
 .date {
-  width: 200px;
+  width: 40px;
   height: 20px;
   text-align: center;
   font-size: 15px;
