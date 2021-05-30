@@ -47,8 +47,7 @@
         </div>
 
         <div class="narration">
-          Dzień 1: Rozpoczynacie pracę w nowym zespole. Zdefiniujcie zadania
-          standardowe i zacznijcie nad nimi pracować.
+          {{currentNarration}}
         </div>
 
          <AddUrgentTask
@@ -207,6 +206,12 @@ export default {
 
       currentMemeber: 1,
       numberOfMemebers: 5,
+      currentNarrationNumber: 0,
+      currentNarration: "Dzień 0. \nRozpocznijcie symulację klikając przycisk 'Next Day'",
+      narrations: [
+        "Dzień 0. \nRozpocznijcie symulację klikając przycisk 'Next Day'",
+        "Dzień 1: \nRozpoczynacie pracę w nowym zespole. Zdefiniujcie zadania standardowe i zacznijcie nad nimi pracować."
+      ],
 
       colors: [
         "LightCoral",
@@ -558,6 +563,7 @@ export default {
       this.currentDate.setDate(this.currentDate.getDate() + 1);
       this.changeProductivity();
       this.setBlockers();
+      this.nextNarration()
     },
 
     deleteTask(nr) {
@@ -582,6 +588,12 @@ export default {
         index++;
       }
     },
+
+    nextNarration() {
+      this.currentNarrationNumber++;
+      this.currentNarration = this.narrations[this.currentNarrationNumber];
+    }
+
   },
 
   name: "App",
