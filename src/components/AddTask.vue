@@ -4,9 +4,10 @@
     :urgentProb="urgentProb"
     :fixedDateProb="fixedDateProb"
   >
-    <button class="button8" v-on:click="onClick">Add new task</button> <br>
-    <button class="button8" v-on:click="onClickUrgent">Add new urgent task</button>
-     <button class="button8" v-on:click="onClickFixed">Add new fixed time task</button>
+    <button class="button8" v-on:click="onClick">Add new task</button>
+    <br> <br>
+    <button class="button8 urgentButton" v-on:click="onClickUrgent">Add new urgent task</button>
+     <button class="button8 fixedDateButton" v-on:click="onClickFixed">Add new fixed time task</button>
   </div>
 </template>
 
@@ -125,3 +126,13 @@ export default {
   },
 };
 </script>
+<style scoped>
+.urgentButton {
+  background-color: rgb(255, 167, 167);
+}
+
+.fixedDateButton {
+  background-color: rgb(200, 255, 207);
+}
+
+</style>

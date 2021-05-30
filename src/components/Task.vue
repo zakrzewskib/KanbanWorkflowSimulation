@@ -16,6 +16,17 @@
         {{ name }}
         nr. = {{ nr }}
         <em v-on:click="deleteTask" class="fas fa-times" id="delBtn"></em>
+                Author:
+        <button
+          :style="
+            authorButtonClicked1
+              ? { 'background-color': colors[currentMem11 - 1] }
+              : null
+          "
+          v-on:click="authorButtonClicked"
+          class="prodPoint"
+        ></button>
+        
       </div>
 
       <div v-if="blocked">
@@ -132,18 +143,19 @@
     <div class="divWithNr">
       Start day:
       <input class="date" v-model="startDate" />
-      <br>
-      End date:
+      <br />
+      End day:
       <input class="date" v-model="endDate" />
-      <br>
-      <p class="taskCompleted">Task completed in: {{ taskCompletedTime }} days</p>
+      <br />
+      <p class="taskCompleted">
+        Task completed in: {{ taskCompletedTime }} days
+      </p>
     </div>
 
-    <div :style="{display: fixedDate ? 'block' : 'none'}">
-      <p class="toComplete">To do by day </p>
-      <input class="toCompleteNumber"  v-model="toCompleteIn"/>
+    <div :style="{ display: fixedDate ? 'block' : 'none' }">
+      <p class="toComplete">To do by day</p>
+      <input class="toCompleteNumber" v-model="toCompleteIn" />
     </div>
-
   </div>
 </template>
 
@@ -161,6 +173,7 @@ export default {
       prodPointClicked8: false,
       prodPointClicked9: false,
       prodPointClicked10: false,
+      authorButtonClicked1: false,
       colors: [
         "LightCoral",
         "yellow",
@@ -178,6 +191,7 @@ export default {
       currentMem8: 1,
       currentMem9: 1,
       currentMem10: 1,
+      currentMem11: 1,
       startDate: "",
       endDate: "",
       toCompleteIn: 10,
@@ -258,6 +272,11 @@ export default {
       this.prodPointClicked10 = !this.prodPointClicked10;
     },
 
+    authorButtonClicked() {
+      this.currentMem11 = this.member;
+      this.authorButtonClicked1 = !this.authorButtonClicked1;
+    },
+
     unblock() {
       alert("You unblocked this task!");
       this.$emit("unblocked-task", this.nr);
@@ -271,7 +290,7 @@ export default {
 </script>
 
 <style scoped>
-.productivity .prodPoint {
+.prodPoint {
   width: 18px;
   height: 18px;
   background-color: white;
@@ -316,7 +335,8 @@ hr.myLine {
   font-size: 14px;
 }
 
-.taskCompleted, .toComplete {
+.taskCompleted,
+.toComplete {
   font-size: 15px;
   margin: 0px;
   display: inline-block;
@@ -357,8 +377,6 @@ hr.myLine {
 }
 
 .visible {
-   visibility: hidden;
+  visibility: hidden;
 }
-
-
 </style>

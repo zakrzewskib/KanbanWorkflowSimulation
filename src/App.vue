@@ -593,7 +593,7 @@ export default {
       this.currentNarrationNumber++;
       if (this.currentNarrationNumber > 10) {
         this.currentNarration =
-          "Dzień " + this.currentNarrationNumber + ": \n" + "...";
+          "Dzień " + this.currentNarrationNumber + ": \n" + "Możecie dalej kontynuować symulację np. modyfikując prawdopodobieństwa występowania zadania danego typu, zmieniając dzień do którego trzeba skończyć zadanie czy ustawiając prawdopodobieństwo wystąpienia blokera.";
       } else {
         this.currentNarration = this.narrations[this.currentNarrationNumber];
       }
