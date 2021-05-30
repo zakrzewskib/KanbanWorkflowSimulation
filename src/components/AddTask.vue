@@ -4,7 +4,9 @@
     :urgentProb="urgentProb"
     :fixedDateProb="fixedDateProb"
   >
-    <button class="button8" v-on:click="onClick">Add new task</button>
+    <button class="button8" v-on:click="onClick">Add new task</button> <br>
+    <button class="button8" v-on:click="onClickUrgent">Add new urgent task</button>
+     <button class="button8" v-on:click="onClickFixed">Add new fixed time task</button>
   </div>
 </template>
 
@@ -75,6 +77,51 @@ export default {
       };
       this.$emit("add-task", newTask);
     },
+
+    onClickUrgent() {
+      const tasksTypes = ["Normal task", "Urgent task", "Fixed date task"];
+      let index = 1;
+      let urgent = true;
+      let fixedDate = false;
+      let nr = this.taskNumber;
+
+      this.taskNumber++;
+
+      const newTask = {
+        id: Math.random(),
+        name: tasksTypes[index],
+        urgent: urgent,
+        fixedDate: fixedDate,
+        nr: nr,
+        done: false,
+        todo: true,
+        readyForStage2: false,
+      };
+      this.$emit("add-task", newTask);
+    },
+
+    onClickFixed() {
+      const tasksTypes = ["Normal task", "Urgent task", "Fixed date task"];
+      let index = 2;
+      let urgent = false;
+      let fixedDate = true;
+      let nr = this.taskNumber;
+
+      this.taskNumber++;
+
+      const newTask = {
+        id: Math.random(),
+        name: tasksTypes[index],
+        urgent: urgent,
+        fixedDate: fixedDate,
+        nr: nr,
+        done: false,
+        todo: true,
+        readyForStage2: false,
+      };
+      this.$emit("add-task", newTask);
+    },
+
   },
 };
 </script>
