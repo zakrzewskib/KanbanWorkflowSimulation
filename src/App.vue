@@ -66,7 +66,7 @@
 
           <div class="col-6" id="tasksBlockedDiv">
             <div id="tasksBlocked">
-              Tasks blocked in current day: [ {{ tasksBlocked.toString() }} ]
+              Tasks blocked in current day:  <br> [ {{ tasksBlocked.toString() }} ]
             </div>
             <em>
               (To unblock one task, you should use some of productivity points
