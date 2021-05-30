@@ -47,17 +47,16 @@
         </div>
 
         <div class="narration">
-          {{currentNarration}}
+          {{ currentNarration }}
         </div>
 
-         <AddUrgentTask
-                class="button8"
-                @add-task="addTask"
-                :normalProb="normalProb"
-                :urgentProb="urgentProb"
-                :fixedDateProb="fixedDateProb"
-              />
-
+        <AddUrgentTask
+          class="button8"
+          @add-task="addTask"
+          :normalProb="normalProb"
+          :urgentProb="urgentProb"
+          :fixedDateProb="fixedDateProb"
+        />
       </div>
       <div class="col-4">
         <Dices
@@ -187,7 +186,7 @@ import ColumnContainer from "./components/ColumnContainer";
 import Task from "./components/Task";
 import AddTask from "./components/AddTask";
 import Dices from "./components/Dices";
-import AddUrgentTask from "./components/AddUrgentTask"
+import AddUrgentTask from "./components/AddUrgentTask";
 
 export default {
   data() {
@@ -207,10 +206,20 @@ export default {
       currentMemeber: 1,
       numberOfMemebers: 5,
       currentNarrationNumber: 0,
-      currentNarration: "Dzień 0. \nRozpocznijcie symulację klikając przycisk 'Next Day'",
+      currentNarration:
+        "Dzień 0. \nRozpocznijcie symulację klikając przycisk 'Next Day'.",
       narrations: [
         "Dzień 0. \nRozpocznijcie symulację klikając przycisk 'Next Day'",
-        "Dzień 1: \nRozpoczynacie pracę w nowym zespole. Zdefiniujcie zadania standardowe i zacznijcie nad nimi pracować."
+        "Dzień 1: \nRozpoczynacie pracę w nowym zespole. Zdefiniujcie zadania standardowe i zacznijcie nad nimi pracować.",
+        "Dzień 2: \n Nie zapomnijcie o wypełnieniu wszystkich pól w skrypcie.",
+        "Dzień 3: \nSystem płatności uległ awarii. Z każdą godziną firma traci duże pieniądze. Zdefiniujcie 4 zadania pilne (Expedite) i natychmiast zacznijcie nad nimi pracować. Ich ukończenie ma najwyższy priorytet.",
+        "Dzień 4: \nSpecjaliści od marketingu wymyślili promocję z okazji „Dnia Słonecznika”. Zdefiniujcie 3 zadania z ustaloną datą (Fixed Date). By przynieść wartość dla naszej organizacji muszą być ukończone najpóźniej 10 dnia. Ich wcześniejsze ukończenie nie jest ważne bo i tak promocja nie zostanie upubliczniona do końca 10 dnia.",
+        "Dzień 5: \nTo ostatni dzień w tygodniu. Pamiętajcie by po zakończeniu pracy podsumować tydzień tak jak zostało to opisane w skrypcie.",
+        "Dzień 6: \nNowy tydzień, nowe możliwości. Powodzenia.",
+        "Dzień 7: \nDobra robota, pracujcie dalej.",
+        "Dzień 8: \nJeden z menedżerów wpadł na pomysł dodania nowej funkcji do naszego produktu. Wymagałoby to zrealizowania 4 standardowych zadań (wszystkie muszą być ukończone by nowa funkcja działała). Prosi was o podanie szacowanego czasu zrealizowania tych zadań. Szacowany dzień ukończenia tych 4 zadań zapiszcie w skrypcie.",
+        "Dzień 9: \nZostały już tylko dwa dni na ukończenie zadań z ustaloną datą.",
+        "Dzień 10: \nOstatni dzień symulacji. Dokończcie pracę i podsumujcie ją w skrypcie.",
       ],
 
       colors: [
@@ -563,7 +572,7 @@ export default {
       this.currentDate.setDate(this.currentDate.getDate() + 1);
       this.changeProductivity();
       this.setBlockers();
-      this.nextNarration()
+      this.nextNarration();
     },
 
     deleteTask(nr) {
@@ -591,9 +600,13 @@ export default {
 
     nextNarration() {
       this.currentNarrationNumber++;
-      this.currentNarration = this.narrations[this.currentNarrationNumber];
-    }
-
+      if (this.currentNarrationNumber > 10) {
+        this.currentNarration =
+          "Dzień " + this.currentNarrationNumber + ": \n" + "...";
+      } else {
+        this.currentNarration = this.narrations[this.currentNarrationNumber];
+      }
+    },
   },
 
   name: "App",
