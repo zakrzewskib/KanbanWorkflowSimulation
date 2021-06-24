@@ -1,5 +1,7 @@
 https://zakrzewskib.github.io/KanbanWorkflowSimulation/
 
+[![Website shields.io](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](https://zakrzewskib.github.io/KanbanWorkflowSimulation/)
+
 ## Table of Contents
 * [About](#About)
 * [Code setup](#Code-setup)
