@@ -12,7 +12,7 @@ https://zakrzewskib.github.io/KanbanWorkflowSimulation/
 Project duration time: April 9 2021 - June 4 2021 (4th Semester of Applied Computer Science at the Warsaw University of Technology)
 <br />
 <br />
-<img src="https://github.com/zakrzewskib/KanbanWorkflowSimulation/blob/main/appearance.PNG">
+<img src="https://github.com/zakrzewskib/KanbanWorkflowSimulation/blob/main/docs/screenshots/appearance.PNG">
 
 ### Code setup
 yarn install <br />
