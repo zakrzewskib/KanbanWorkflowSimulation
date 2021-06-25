@@ -1,6 +1,8 @@
 https://zakrzewskib.github.io/KanbanWorkflowSimulation/
 
-[![Website shields.io](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](https://zakrzewskib.github.io/KanbanWorkflowSimulation/)
+<a href="https://vuejs.org/">
+<img src="https://vuejs.org/images/logo.svg" alt="Vue.js" width="100">
+</a>
 
 ## Table of Contents
 * [About](#About)
@@ -12,6 +14,12 @@ https://zakrzewskib.github.io/KanbanWorkflowSimulation/
 
 ### About
 Project duration time: April 9 2021 - June 4 2021 (4th Semester of Applied Computer Science at the Warsaw University of Technology)
+<br />
+
+It was individual project for one of my subjects at my degree course. <br />
+This web application should help simulate workflow with <a href="https://www.atlassian.com/agile/kanban/boards">Kanban Board</a> -  one of the tools that can be used to manage (agile) project. <br />
+You can simulate workflow for up to 5 developers, add different kind of tasks, generate personal productivity levels (by points on each dice) and follow daily narrations (in Polish).
+
 <br />
 <br />
 <img src="https://github.com/zakrzewskib/KanbanWorkflowSimulation/blob/main/docs/screenshots/appearance.PNG">
