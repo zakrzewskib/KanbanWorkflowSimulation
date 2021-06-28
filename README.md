@@ -1,8 +1,13 @@
-https://zakrzewskib.github.io/KanbanWorkflowSimulation/
-
 <a href="https://vuejs.org/">
 <img src="https://vuejs.org/images/logo.svg" alt="Vue.js" width="100">
 </a>
+
+<br> 
+<br> 
+
+![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/zakrzewskib/KanbanWorkflowSimulation)
+
+https://zakrzewskib.github.io/KanbanWorkflowSimulation/
 
 ## Table of Contents
 * [About](#About)
